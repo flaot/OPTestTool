@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             groupBox1 = new GroupBox();
+            radioButton15 = new RadioButton();
             radioButton14 = new RadioButton();
             radioButton13 = new RadioButton();
             radioButton12 = new RadioButton();
@@ -50,6 +51,7 @@
             // 
             // groupBox1
             // 
+            groupBox1.Controls.Add(radioButton15);
             groupBox1.Controls.Add(radioButton14);
             groupBox1.Controls.Add(radioButton13);
             groupBox1.Controls.Add(radioButton12);
@@ -71,13 +73,25 @@
             groupBox1.TabStop = false;
             groupBox1.Text = "图色(必选)";
             // 
+            // radioButton15
+            // 
+            radioButton15.AutoSize = true;
+            radioButton15.ForeColor = Color.Blue;
+            radioButton15.Location = new Point(180, 22);
+            radioButton15.Name = "radioButton15";
+            radioButton15.Size = new Size(93, 21);
+            radioButton15.TabIndex = 2;
+            radioButton15.TabStop = true;
+            radioButton15.Text = "normal.wgc";
+            radioButton15.UseVisualStyleBackColor = true;
+            // 
             // radioButton14
             // 
             radioButton14.AutoSize = true;
-            radioButton14.Location = new Point(173, 76);
+            radioButton14.Location = new Point(173, 106);
             radioButton14.Name = "radioButton14";
             radioButton14.Size = new Size(77, 21);
-            radioButton14.TabIndex = 13;
+            radioButton14.TabIndex = 32;
             radioButton14.TabStop = true;
             radioButton14.Text = "opengl.fi";
             radioButton14.UseVisualStyleBackColor = true;
@@ -85,10 +99,10 @@
             // radioButton13
             // 
             radioButton13.AutoSize = true;
-            radioButton13.Location = new Point(79, 103);
+            radioButton13.Location = new Point(79, 133);
             radioButton13.Name = "radioButton13";
             radioButton13.Size = new Size(83, 21);
-            radioButton13.TabIndex = 12;
+            radioButton13.TabIndex = 33;
             radioButton13.TabStop = true;
             radioButton13.Text = "opengl.es";
             radioButton13.UseVisualStyleBackColor = true;
@@ -96,10 +110,10 @@
             // radioButton12
             // 
             radioButton12.AutoSize = true;
-            radioButton12.Location = new Point(173, 103);
+            radioButton12.Location = new Point(173, 133);
             radioButton12.Name = "radioButton12";
             radioButton12.Size = new Size(91, 21);
-            radioButton12.TabIndex = 11;
+            radioButton12.TabIndex = 34;
             radioButton12.TabStop = true;
             radioButton12.Text = "opengl.nox";
             radioButton12.UseVisualStyleBackColor = true;
@@ -107,10 +121,10 @@
             // radioButton11
             // 
             radioButton11.AutoSize = true;
-            radioButton11.Location = new Point(79, 76);
+            radioButton11.Location = new Point(79, 106);
             radioButton11.Name = "radioButton11";
             radioButton11.Size = new Size(88, 21);
-            radioButton11.TabIndex = 10;
+            radioButton11.TabIndex = 31;
             radioButton11.TabStop = true;
             radioButton11.Text = "opengl.std";
             radioButton11.UseVisualStyleBackColor = true;
@@ -118,10 +132,10 @@
             // radioButton10
             // 
             radioButton10.AutoSize = true;
-            radioButton10.Location = new Point(6, 76);
+            radioButton10.Location = new Point(6, 106);
             radioButton10.Name = "radioButton10";
             radioButton10.Size = new Size(67, 21);
-            radioButton10.TabIndex = 9;
+            radioButton10.TabIndex = 30;
             radioButton10.TabStop = true;
             radioButton10.Text = "opengl";
             radioButton10.UseVisualStyleBackColor = true;
@@ -129,10 +143,10 @@
             // radioButton9
             // 
             radioButton9.AutoSize = true;
-            radioButton9.Location = new Point(270, 49);
+            radioButton9.Location = new Point(270, 77);
             radioButton9.Name = "radioButton9";
             radioButton9.Size = new Size(80, 21);
-            radioButton9.TabIndex = 8;
+            radioButton9.TabIndex = 24;
             radioButton9.TabStop = true;
             radioButton9.Text = "dx.d3d11";
             radioButton9.UseVisualStyleBackColor = true;
@@ -140,10 +154,10 @@
             // radioButton8
             // 
             radioButton8.AutoSize = true;
-            radioButton8.Location = new Point(185, 49);
+            radioButton8.Location = new Point(185, 77);
             radioButton8.Name = "radioButton8";
             radioButton8.Size = new Size(80, 21);
-            radioButton8.TabIndex = 7;
+            radioButton8.TabIndex = 23;
             radioButton8.TabStop = true;
             radioButton8.Text = "dx.d3d10";
             radioButton8.UseVisualStyleBackColor = true;
@@ -151,10 +165,10 @@
             // radioButton7
             // 
             radioButton7.AutoSize = true;
-            radioButton7.Location = new Point(105, 49);
+            radioButton7.Location = new Point(105, 77);
             radioButton7.Name = "radioButton7";
             radioButton7.Size = new Size(73, 21);
-            radioButton7.TabIndex = 6;
+            radioButton7.TabIndex = 22;
             radioButton7.TabStop = true;
             radioButton7.Text = "dx.d3d9";
             radioButton7.UseVisualStyleBackColor = true;
@@ -162,10 +176,10 @@
             // radioButton6
             // 
             radioButton6.AutoSize = true;
-            radioButton6.Location = new Point(52, 49);
+            radioButton6.Location = new Point(52, 77);
             radioButton6.Name = "radioButton6";
             radioButton6.Size = new Size(47, 21);
-            radioButton6.TabIndex = 5;
+            radioButton6.TabIndex = 21;
             radioButton6.TabStop = true;
             radioButton6.Text = "dx2";
             radioButton6.UseVisualStyleBackColor = true;
@@ -173,10 +187,10 @@
             // radioButton5
             // 
             radioButton5.AutoSize = true;
-            radioButton5.Location = new Point(6, 49);
+            radioButton5.Location = new Point(6, 77);
             radioButton5.Name = "radioButton5";
             radioButton5.Size = new Size(40, 21);
-            radioButton5.TabIndex = 4;
+            radioButton5.TabIndex = 20;
             radioButton5.TabStop = true;
             radioButton5.Text = "dx";
             radioButton5.UseVisualStyleBackColor = true;
@@ -184,10 +198,10 @@
             // radioButton4
             // 
             radioButton4.AutoSize = true;
-            radioButton4.Location = new Point(241, 22);
+            radioButton4.Location = new Point(54, 49);
             radioButton4.Name = "radioButton4";
             radioButton4.Size = new Size(52, 21);
-            radioButton4.TabIndex = 3;
+            radioButton4.TabIndex = 11;
             radioButton4.TabStop = true;
             radioButton4.Text = "gdi2";
             radioButton4.UseVisualStyleBackColor = true;
@@ -195,10 +209,10 @@
             // radioButton3
             // 
             radioButton3.AutoSize = true;
-            radioButton3.Location = new Point(190, 22);
+            radioButton3.Location = new Point(6, 49);
             radioButton3.Name = "radioButton3";
             radioButton3.Size = new Size(45, 21);
-            radioButton3.TabIndex = 2;
+            radioButton3.TabIndex = 10;
             radioButton3.TabStop = true;
             radioButton3.Text = "gdi";
             radioButton3.UseVisualStyleBackColor = true;
@@ -206,7 +220,7 @@
             // radioButton2
             // 
             radioButton2.AutoSize = true;
-            radioButton2.Location = new Point(91, 22);
+            radioButton2.Location = new Point(79, 22);
             radioButton2.Name = "radioButton2";
             radioButton2.Size = new Size(95, 21);
             radioButton2.TabIndex = 1;
@@ -231,7 +245,7 @@
             button1.Location = new Point(111, 192);
             button1.Name = "button1";
             button1.Size = new Size(75, 23);
-            button1.TabIndex = 1;
+            button1.TabIndex = 100;
             button1.Text = "确定";
             button1.UseVisualStyleBackColor = true;
             // 
@@ -241,7 +255,7 @@
             button2.Location = new Point(202, 192);
             button2.Name = "button2";
             button2.Size = new Size(75, 23);
-            button2.TabIndex = 2;
+            button2.TabIndex = 101;
             button2.Text = "取消";
             button2.UseVisualStyleBackColor = true;
             // 
@@ -283,5 +297,6 @@
         private Button button2;
         private RadioButton radioButton14;
         private RadioButton radioButton13;
+        private RadioButton radioButton15;
     }
 }

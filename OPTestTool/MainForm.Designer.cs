@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             tabControl1 = new TabControl();
-            tabPage1 = new TabPage();
+            综合设置 = new TabPage();
             groupBox2 = new GroupBox();
             Btn_GetCommandLine = new Button();
             Btn_SetPath = new Button();
@@ -46,7 +46,7 @@
             Btn_AllWindow = new Button();
             Txt_WindowTitle = new TextBox();
             label2 = new Label();
-            tabPage2 = new TabPage();
+            绑定参数 = new TabPage();
             Btn_SwitchBind = new Button();
             Btn_SetAero = new Button();
             Btn_GenBindCode = new Button();
@@ -64,7 +64,7 @@
             Btn_ChangeDisplay = new Button();
             Txt_BindDisplayMode = new TextBox();
             label6 = new Label();
-            tabPage3 = new TabPage();
+            测试图色 = new TabPage();
             Btn_FindPicEx = new Button();
             Finder_GetColor = new WindowFinder.LocationFinder();
             Txt_FindPicSim = new TextBox();
@@ -99,7 +99,7 @@
             Txt_CaptureX1 = new TextBox();
             label11 = new Label();
             Btn_Capture = new Button();
-            tabPage4 = new TabPage();
+            测试鼠标 = new TabPage();
             Finder_MoveTo = new WindowFinder.LocationFinder();
             panel1 = new Panel();
             ComboBox_MouseAction = new ComboBox();
@@ -129,7 +129,7 @@
             label25 = new Label();
             Btn_MoveTo = new Button();
             Btn_SetMouseDelay = new Button();
-            tabPage5 = new TabPage();
+            测试键盘 = new TabPage();
             CheckBox_KeyPreActive = new CheckBox();
             Txt_KeyPressStrDelay = new TextBox();
             label35 = new Label();
@@ -151,14 +151,14 @@
             label29 = new Label();
             Btn_KeyDown = new Button();
             Btn_SetKeypadDelay = new Button();
-            tabPage6 = new TabPage();
+            文本输入 = new TabPage();
             CheckBox_SendPreActive = new CheckBox();
             Btn_SendPaste = new Button();
             Btn_SendStringIme = new Button();
             Btn_SendString = new Button();
             Txt_SendText = new TextBox();
             label28 = new Label();
-            tabPage7 = new TabPage();
+            内存汇编 = new TabPage();
             groupBox4 = new GroupBox();
             Btn_WriteData = new Button();
             Btn_WriteString = new Button();
@@ -175,7 +175,7 @@
             Btn_ReadInt = new Button();
             Txt_ReadAddress = new TextBox();
             label30 = new Label();
-            tabPage8 = new TabPage();
+            OPExport = new TabPage();
             linkLabel3 = new LinkLabel();
             CheckBox_AddWifiDoc = new CheckBox();
             linkLabel2 = new LinkLabel();
@@ -196,19 +196,19 @@
             CheckBox_LogShowTime = new CheckBox();
             label1 = new Label();
             tabControl1.SuspendLayout();
-            tabPage1.SuspendLayout();
+            综合设置.SuspendLayout();
             groupBox2.SuspendLayout();
             groupBox1.SuspendLayout();
-            tabPage2.SuspendLayout();
-            tabPage3.SuspendLayout();
-            tabPage4.SuspendLayout();
+            绑定参数.SuspendLayout();
+            测试图色.SuspendLayout();
+            测试鼠标.SuspendLayout();
             panel1.SuspendLayout();
-            tabPage5.SuspendLayout();
-            tabPage6.SuspendLayout();
-            tabPage7.SuspendLayout();
+            测试键盘.SuspendLayout();
+            文本输入.SuspendLayout();
+            内存汇编.SuspendLayout();
             groupBox4.SuspendLayout();
             groupBox3.SuspendLayout();
-            tabPage8.SuspendLayout();
+            OPExport.SuspendLayout();
             Panel_UseOutProject.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
             splitContainer1.Panel1.SuspendLayout();
@@ -218,14 +218,14 @@
             // 
             // tabControl1
             // 
-            tabControl1.Controls.Add(tabPage1);
-            tabControl1.Controls.Add(tabPage2);
-            tabControl1.Controls.Add(tabPage3);
-            tabControl1.Controls.Add(tabPage4);
-            tabControl1.Controls.Add(tabPage5);
-            tabControl1.Controls.Add(tabPage6);
-            tabControl1.Controls.Add(tabPage7);
-            tabControl1.Controls.Add(tabPage8);
+            tabControl1.Controls.Add(综合设置);
+            tabControl1.Controls.Add(绑定参数);
+            tabControl1.Controls.Add(测试图色);
+            tabControl1.Controls.Add(测试鼠标);
+            tabControl1.Controls.Add(测试键盘);
+            tabControl1.Controls.Add(文本输入);
+            tabControl1.Controls.Add(内存汇编);
+            tabControl1.Controls.Add(OPExport);
             tabControl1.Dock = DockStyle.Fill;
             tabControl1.Location = new Point(0, 0);
             tabControl1.Margin = new Padding(3, 10, 3, 3);
@@ -234,17 +234,17 @@
             tabControl1.Size = new Size(650, 491);
             tabControl1.TabIndex = 0;
             // 
-            // tabPage1
+            // 综合设置
             // 
-            tabPage1.Controls.Add(groupBox2);
-            tabPage1.Controls.Add(groupBox1);
-            tabPage1.Location = new Point(4, 26);
-            tabPage1.Name = "tabPage1";
-            tabPage1.Padding = new Padding(3);
-            tabPage1.Size = new Size(642, 461);
-            tabPage1.TabIndex = 0;
-            tabPage1.Text = "综合设置";
-            tabPage1.UseVisualStyleBackColor = true;
+            综合设置.Controls.Add(groupBox2);
+            综合设置.Controls.Add(groupBox1);
+            综合设置.Location = new Point(4, 26);
+            综合设置.Name = "综合设置";
+            综合设置.Padding = new Padding(3);
+            综合设置.Size = new Size(642, 461);
+            综合设置.TabIndex = 0;
+            综合设置.Text = "综合设置";
+            综合设置.UseVisualStyleBackColor = true;
             // 
             // groupBox2
             // 
@@ -416,32 +416,32 @@
             label2.TabIndex = 0;
             label2.Text = "标题：";
             // 
-            // tabPage2
+            // 绑定参数
             // 
-            tabPage2.Controls.Add(Btn_SwitchBind);
-            tabPage2.Controls.Add(Btn_SetAero);
-            tabPage2.Controls.Add(Btn_GenBindCode);
-            tabPage2.Controls.Add(Btn_Bind);
-            tabPage2.Controls.Add(CheckBox_BindMessage);
-            tabPage2.Controls.Add(CheckBox_BindMoveWendow);
-            tabPage2.Controls.Add(Txt_BindMode);
-            tabPage2.Controls.Add(label10);
-            tabPage2.Controls.Add(Btn_ChangeKeypad);
-            tabPage2.Controls.Add(Txt_BindKeypadMode);
-            tabPage2.Controls.Add(label8);
-            tabPage2.Controls.Add(Btn_ChangeMouse);
-            tabPage2.Controls.Add(Txt_BindMouseMode);
-            tabPage2.Controls.Add(label7);
-            tabPage2.Controls.Add(Btn_ChangeDisplay);
-            tabPage2.Controls.Add(Txt_BindDisplayMode);
-            tabPage2.Controls.Add(label6);
-            tabPage2.Location = new Point(4, 26);
-            tabPage2.Name = "tabPage2";
-            tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(642, 461);
-            tabPage2.TabIndex = 1;
-            tabPage2.Text = "绑定参数";
-            tabPage2.UseVisualStyleBackColor = true;
+            绑定参数.Controls.Add(Btn_SwitchBind);
+            绑定参数.Controls.Add(Btn_SetAero);
+            绑定参数.Controls.Add(Btn_GenBindCode);
+            绑定参数.Controls.Add(Btn_Bind);
+            绑定参数.Controls.Add(CheckBox_BindMessage);
+            绑定参数.Controls.Add(CheckBox_BindMoveWendow);
+            绑定参数.Controls.Add(Txt_BindMode);
+            绑定参数.Controls.Add(label10);
+            绑定参数.Controls.Add(Btn_ChangeKeypad);
+            绑定参数.Controls.Add(Txt_BindKeypadMode);
+            绑定参数.Controls.Add(label8);
+            绑定参数.Controls.Add(Btn_ChangeMouse);
+            绑定参数.Controls.Add(Txt_BindMouseMode);
+            绑定参数.Controls.Add(label7);
+            绑定参数.Controls.Add(Btn_ChangeDisplay);
+            绑定参数.Controls.Add(Txt_BindDisplayMode);
+            绑定参数.Controls.Add(label6);
+            绑定参数.Location = new Point(4, 26);
+            绑定参数.Name = "绑定参数";
+            绑定参数.Padding = new Padding(3);
+            绑定参数.Size = new Size(642, 461);
+            绑定参数.TabIndex = 1;
+            绑定参数.Text = "绑定参数";
+            绑定参数.UseVisualStyleBackColor = true;
             // 
             // Btn_SwitchBind
             // 
@@ -614,48 +614,48 @@
             label6.TabIndex = 0;
             label6.Text = "图色：";
             // 
-            // tabPage3
+            // 测试图色
             // 
-            tabPage3.Controls.Add(Btn_FindPicEx);
-            tabPage3.Controls.Add(Finder_GetColor);
-            tabPage3.Controls.Add(Txt_FindPicSim);
-            tabPage3.Controls.Add(label24);
-            tabPage3.Controls.Add(Txt_FindPicFile);
-            tabPage3.Controls.Add(label23);
-            tabPage3.Controls.Add(Txt_FindPicDir);
-            tabPage3.Controls.Add(label22);
-            tabPage3.Controls.Add(Txt_FindPicDelta);
-            tabPage3.Controls.Add(label21);
-            tabPage3.Controls.Add(Txt_FindPicY2);
-            tabPage3.Controls.Add(label17);
-            tabPage3.Controls.Add(Txt_FindPicX2);
-            tabPage3.Controls.Add(label18);
-            tabPage3.Controls.Add(Txt_FindPicY1);
-            tabPage3.Controls.Add(label19);
-            tabPage3.Controls.Add(Txt_FindPicX1);
-            tabPage3.Controls.Add(label20);
-            tabPage3.Controls.Add(Btn_FindPic);
-            tabPage3.Controls.Add(Txt_GetColorY);
-            tabPage3.Controls.Add(label15);
-            tabPage3.Controls.Add(Txt_GetColorX);
-            tabPage3.Controls.Add(label16);
-            tabPage3.Controls.Add(Btn_GetColor);
-            tabPage3.Controls.Add(CheckBox_GetScreenDataBmp);
-            tabPage3.Controls.Add(Txt_CaptureY2);
-            tabPage3.Controls.Add(label14);
-            tabPage3.Controls.Add(Txt_CaptureX2);
-            tabPage3.Controls.Add(label13);
-            tabPage3.Controls.Add(Txt_CaptureY1);
-            tabPage3.Controls.Add(label12);
-            tabPage3.Controls.Add(Txt_CaptureX1);
-            tabPage3.Controls.Add(label11);
-            tabPage3.Controls.Add(Btn_Capture);
-            tabPage3.Location = new Point(4, 26);
-            tabPage3.Name = "tabPage3";
-            tabPage3.Size = new Size(642, 461);
-            tabPage3.TabIndex = 2;
-            tabPage3.Text = "测试图色";
-            tabPage3.UseVisualStyleBackColor = true;
+            测试图色.Controls.Add(Btn_FindPicEx);
+            测试图色.Controls.Add(Finder_GetColor);
+            测试图色.Controls.Add(Txt_FindPicSim);
+            测试图色.Controls.Add(label24);
+            测试图色.Controls.Add(Txt_FindPicFile);
+            测试图色.Controls.Add(label23);
+            测试图色.Controls.Add(Txt_FindPicDir);
+            测试图色.Controls.Add(label22);
+            测试图色.Controls.Add(Txt_FindPicDelta);
+            测试图色.Controls.Add(label21);
+            测试图色.Controls.Add(Txt_FindPicY2);
+            测试图色.Controls.Add(label17);
+            测试图色.Controls.Add(Txt_FindPicX2);
+            测试图色.Controls.Add(label18);
+            测试图色.Controls.Add(Txt_FindPicY1);
+            测试图色.Controls.Add(label19);
+            测试图色.Controls.Add(Txt_FindPicX1);
+            测试图色.Controls.Add(label20);
+            测试图色.Controls.Add(Btn_FindPic);
+            测试图色.Controls.Add(Txt_GetColorY);
+            测试图色.Controls.Add(label15);
+            测试图色.Controls.Add(Txt_GetColorX);
+            测试图色.Controls.Add(label16);
+            测试图色.Controls.Add(Btn_GetColor);
+            测试图色.Controls.Add(CheckBox_GetScreenDataBmp);
+            测试图色.Controls.Add(Txt_CaptureY2);
+            测试图色.Controls.Add(label14);
+            测试图色.Controls.Add(Txt_CaptureX2);
+            测试图色.Controls.Add(label13);
+            测试图色.Controls.Add(Txt_CaptureY1);
+            测试图色.Controls.Add(label12);
+            测试图色.Controls.Add(Txt_CaptureX1);
+            测试图色.Controls.Add(label11);
+            测试图色.Controls.Add(Btn_Capture);
+            测试图色.Location = new Point(4, 26);
+            测试图色.Name = "测试图色";
+            测试图色.Size = new Size(642, 461);
+            测试图色.TabIndex = 2;
+            测试图色.Text = "测试图色";
+            测试图色.UseVisualStyleBackColor = true;
             // 
             // Btn_FindPicEx
             // 
@@ -1036,41 +1036,41 @@
             Btn_Capture.UseVisualStyleBackColor = true;
             Btn_Capture.Click += Btn_Capture_Click;
             // 
-            // tabPage4
+            // 测试鼠标
             // 
-            tabPage4.Controls.Add(Finder_MoveTo);
-            tabPage4.Controls.Add(panel1);
-            tabPage4.Controls.Add(CheckBox_MousePreActionWindow);
-            tabPage4.Controls.Add(Btn_GetCursorPos);
-            tabPage4.Controls.Add(Btn_LeftDoubleClick);
-            tabPage4.Controls.Add(Btn_WheelUp);
-            tabPage4.Controls.Add(Btn_WheelDown);
-            tabPage4.Controls.Add(Btn_MiddleClick);
-            tabPage4.Controls.Add(Btn_MiddleUp);
-            tabPage4.Controls.Add(Btn_MiddleDown);
-            tabPage4.Controls.Add(Btn_RightClick);
-            tabPage4.Controls.Add(Btn_RightUp);
-            tabPage4.Controls.Add(Btn_RightDown);
-            tabPage4.Controls.Add(Btn_LeftClick);
-            tabPage4.Controls.Add(Btn_LeftUp);
-            tabPage4.Controls.Add(Btn_LeftDown);
-            tabPage4.Controls.Add(Txt_MoveRY);
-            tabPage4.Controls.Add(label26);
-            tabPage4.Controls.Add(Txt_MoveRX);
-            tabPage4.Controls.Add(label27);
-            tabPage4.Controls.Add(Btn_MoveR);
-            tabPage4.Controls.Add(Txt_MoveToY);
-            tabPage4.Controls.Add(label9);
-            tabPage4.Controls.Add(Txt_MoveToX);
-            tabPage4.Controls.Add(label25);
-            tabPage4.Controls.Add(Btn_MoveTo);
-            tabPage4.Controls.Add(Btn_SetMouseDelay);
-            tabPage4.Location = new Point(4, 26);
-            tabPage4.Name = "tabPage4";
-            tabPage4.Size = new Size(642, 461);
-            tabPage4.TabIndex = 3;
-            tabPage4.Text = "测试鼠标";
-            tabPage4.UseVisualStyleBackColor = true;
+            测试鼠标.Controls.Add(Finder_MoveTo);
+            测试鼠标.Controls.Add(panel1);
+            测试鼠标.Controls.Add(CheckBox_MousePreActionWindow);
+            测试鼠标.Controls.Add(Btn_GetCursorPos);
+            测试鼠标.Controls.Add(Btn_LeftDoubleClick);
+            测试鼠标.Controls.Add(Btn_WheelUp);
+            测试鼠标.Controls.Add(Btn_WheelDown);
+            测试鼠标.Controls.Add(Btn_MiddleClick);
+            测试鼠标.Controls.Add(Btn_MiddleUp);
+            测试鼠标.Controls.Add(Btn_MiddleDown);
+            测试鼠标.Controls.Add(Btn_RightClick);
+            测试鼠标.Controls.Add(Btn_RightUp);
+            测试鼠标.Controls.Add(Btn_RightDown);
+            测试鼠标.Controls.Add(Btn_LeftClick);
+            测试鼠标.Controls.Add(Btn_LeftUp);
+            测试鼠标.Controls.Add(Btn_LeftDown);
+            测试鼠标.Controls.Add(Txt_MoveRY);
+            测试鼠标.Controls.Add(label26);
+            测试鼠标.Controls.Add(Txt_MoveRX);
+            测试鼠标.Controls.Add(label27);
+            测试鼠标.Controls.Add(Btn_MoveR);
+            测试鼠标.Controls.Add(Txt_MoveToY);
+            测试鼠标.Controls.Add(label9);
+            测试鼠标.Controls.Add(Txt_MoveToX);
+            测试鼠标.Controls.Add(label25);
+            测试鼠标.Controls.Add(Btn_MoveTo);
+            测试鼠标.Controls.Add(Btn_SetMouseDelay);
+            测试鼠标.Location = new Point(4, 26);
+            测试鼠标.Name = "测试鼠标";
+            测试鼠标.Size = new Size(642, 461);
+            测试鼠标.TabIndex = 3;
+            测试鼠标.Text = "测试鼠标";
+            测试鼠标.UseVisualStyleBackColor = true;
             // 
             // Finder_MoveTo
             // 
@@ -1376,35 +1376,35 @@
             Btn_SetMouseDelay.UseVisualStyleBackColor = true;
             Btn_SetMouseDelay.Click += Btn_SetMouseDelay_Click;
             // 
-            // tabPage5
+            // 测试键盘
             // 
-            tabPage5.Controls.Add(CheckBox_KeyPreActive);
-            tabPage5.Controls.Add(Txt_KeyPressStrDelay);
-            tabPage5.Controls.Add(label35);
-            tabPage5.Controls.Add(Txt_KeyPressStr);
-            tabPage5.Controls.Add(label34);
-            tabPage5.Controls.Add(Btn_KeyPressStr);
-            tabPage5.Controls.Add(label33);
-            tabPage5.Controls.Add(Btn_KeyGroup);
-            tabPage5.Controls.Add(Txt_KeyPressTip);
-            tabPage5.Controls.Add(Txt_KeyPress);
-            tabPage5.Controls.Add(label31);
-            tabPage5.Controls.Add(Btn_KeyPress);
-            tabPage5.Controls.Add(Txt_KeyUpTip);
-            tabPage5.Controls.Add(Txt_KeyUp);
-            tabPage5.Controls.Add(label32);
-            tabPage5.Controls.Add(Btn_KeyUp);
-            tabPage5.Controls.Add(Txt_KeyDownTip);
-            tabPage5.Controls.Add(Txt_KeyDown);
-            tabPage5.Controls.Add(label29);
-            tabPage5.Controls.Add(Btn_KeyDown);
-            tabPage5.Controls.Add(Btn_SetKeypadDelay);
-            tabPage5.Location = new Point(4, 26);
-            tabPage5.Name = "tabPage5";
-            tabPage5.Size = new Size(642, 461);
-            tabPage5.TabIndex = 4;
-            tabPage5.Text = "测试键盘";
-            tabPage5.UseVisualStyleBackColor = true;
+            测试键盘.Controls.Add(CheckBox_KeyPreActive);
+            测试键盘.Controls.Add(Txt_KeyPressStrDelay);
+            测试键盘.Controls.Add(label35);
+            测试键盘.Controls.Add(Txt_KeyPressStr);
+            测试键盘.Controls.Add(label34);
+            测试键盘.Controls.Add(Btn_KeyPressStr);
+            测试键盘.Controls.Add(label33);
+            测试键盘.Controls.Add(Btn_KeyGroup);
+            测试键盘.Controls.Add(Txt_KeyPressTip);
+            测试键盘.Controls.Add(Txt_KeyPress);
+            测试键盘.Controls.Add(label31);
+            测试键盘.Controls.Add(Btn_KeyPress);
+            测试键盘.Controls.Add(Txt_KeyUpTip);
+            测试键盘.Controls.Add(Txt_KeyUp);
+            测试键盘.Controls.Add(label32);
+            测试键盘.Controls.Add(Btn_KeyUp);
+            测试键盘.Controls.Add(Txt_KeyDownTip);
+            测试键盘.Controls.Add(Txt_KeyDown);
+            测试键盘.Controls.Add(label29);
+            测试键盘.Controls.Add(Btn_KeyDown);
+            测试键盘.Controls.Add(Btn_SetKeypadDelay);
+            测试键盘.Location = new Point(4, 26);
+            测试键盘.Name = "测试键盘";
+            测试键盘.Size = new Size(642, 461);
+            测试键盘.TabIndex = 4;
+            测试键盘.Text = "测试键盘";
+            测试键盘.UseVisualStyleBackColor = true;
             // 
             // CheckBox_KeyPreActive
             // 
@@ -1609,20 +1609,20 @@
             Btn_SetKeypadDelay.UseVisualStyleBackColor = true;
             Btn_SetKeypadDelay.Click += Btn_SetKeypadDelay_Click;
             // 
-            // tabPage6
+            // 文本输入
             // 
-            tabPage6.Controls.Add(CheckBox_SendPreActive);
-            tabPage6.Controls.Add(Btn_SendPaste);
-            tabPage6.Controls.Add(Btn_SendStringIme);
-            tabPage6.Controls.Add(Btn_SendString);
-            tabPage6.Controls.Add(Txt_SendText);
-            tabPage6.Controls.Add(label28);
-            tabPage6.Location = new Point(4, 26);
-            tabPage6.Name = "tabPage6";
-            tabPage6.Size = new Size(642, 461);
-            tabPage6.TabIndex = 5;
-            tabPage6.Text = "文本输入";
-            tabPage6.UseVisualStyleBackColor = true;
+            文本输入.Controls.Add(CheckBox_SendPreActive);
+            文本输入.Controls.Add(Btn_SendPaste);
+            文本输入.Controls.Add(Btn_SendStringIme);
+            文本输入.Controls.Add(Btn_SendString);
+            文本输入.Controls.Add(Txt_SendText);
+            文本输入.Controls.Add(label28);
+            文本输入.Location = new Point(4, 26);
+            文本输入.Name = "文本输入";
+            文本输入.Size = new Size(642, 461);
+            文本输入.TabIndex = 5;
+            文本输入.Text = "文本输入";
+            文本输入.UseVisualStyleBackColor = true;
             // 
             // CheckBox_SendPreActive
             // 
@@ -1681,16 +1681,16 @@
             label28.TabIndex = 0;
             label28.Text = "待发送文本:";
             // 
-            // tabPage7
+            // 内存汇编
             // 
-            tabPage7.Controls.Add(groupBox4);
-            tabPage7.Controls.Add(groupBox3);
-            tabPage7.Location = new Point(4, 26);
-            tabPage7.Name = "tabPage7";
-            tabPage7.Size = new Size(642, 461);
-            tabPage7.TabIndex = 6;
-            tabPage7.Text = "内存汇编";
-            tabPage7.UseVisualStyleBackColor = true;
+            内存汇编.Controls.Add(groupBox4);
+            内存汇编.Controls.Add(groupBox3);
+            内存汇编.Location = new Point(4, 26);
+            内存汇编.Name = "内存汇编";
+            内存汇编.Size = new Size(642, 461);
+            内存汇编.TabIndex = 6;
+            内存汇编.Text = "内存汇编";
+            内存汇编.UseVisualStyleBackColor = true;
             // 
             // groupBox4
             // 
@@ -1866,26 +1866,26 @@
             label30.TabIndex = 0;
             label30.Text = "地址:";
             // 
-            // tabPage8
+            // OPExport
             // 
-            tabPage8.Controls.Add(linkLabel3);
-            tabPage8.Controls.Add(CheckBox_AddWifiDoc);
-            tabPage8.Controls.Add(linkLabel2);
-            tabPage8.Controls.Add(Panel_UseOutProject);
-            tabPage8.Controls.Add(CheckBox_UseOutProject);
-            tabPage8.Controls.Add(linkLabel1);
-            tabPage8.Controls.Add(label38);
-            tabPage8.Controls.Add(CheckBox_OpenGenCodeFolder);
-            tabPage8.Controls.Add(label37);
-            tabPage8.Controls.Add(ComboBox_CodeLang);
-            tabPage8.Controls.Add(Btn_GenerateCode);
-            tabPage8.Location = new Point(4, 26);
-            tabPage8.Name = "tabPage8";
-            tabPage8.Padding = new Padding(3);
-            tabPage8.Size = new Size(642, 461);
-            tabPage8.TabIndex = 7;
-            tabPage8.Text = "OpExport";
-            tabPage8.UseVisualStyleBackColor = true;
+            OPExport.Controls.Add(linkLabel3);
+            OPExport.Controls.Add(CheckBox_AddWifiDoc);
+            OPExport.Controls.Add(linkLabel2);
+            OPExport.Controls.Add(Panel_UseOutProject);
+            OPExport.Controls.Add(CheckBox_UseOutProject);
+            OPExport.Controls.Add(linkLabel1);
+            OPExport.Controls.Add(label38);
+            OPExport.Controls.Add(CheckBox_OpenGenCodeFolder);
+            OPExport.Controls.Add(label37);
+            OPExport.Controls.Add(ComboBox_CodeLang);
+            OPExport.Controls.Add(Btn_GenerateCode);
+            OPExport.Location = new Point(4, 26);
+            OPExport.Name = "OPExport";
+            OPExport.Padding = new Padding(3);
+            OPExport.Size = new Size(642, 461);
+            OPExport.TabIndex = 7;
+            OPExport.Text = "OPExport";
+            OPExport.UseVisualStyleBackColor = true;
             // 
             // linkLabel3
             // 
@@ -1988,7 +1988,7 @@
             label38.Name = "label38";
             label38.Size = new Size(628, 116);
             label38.TabIndex = 1;
-            label38.Text = "1.OPExport生成代码不是调用com组件的代码，自然是免注册\r\n2.可以使用本测试工具目录下的op_xx.dll或者自己编译附带调用函数的DLL\r\n    a.选择’使用外部OP工程‘ \r\n    b.选择语言'OP'->生成\r\n    c.编译op_xx.dll";
+            label38.Text = "1.OPExport生成代码不是调用com组件的代码，自然是免注册\r\n2.可以使用本测试工具目录下的op_xx.dll或者自己编译附带调用函数的DLL\r\n    a.选择’使用外部OP工程‘ \r\n    b.选择语言'OP'->生成（会为工程额外增加代码文件\r\n    c.编译op_xx.dll";
             label38.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // CheckBox_OpenGenCodeFolder
@@ -2118,29 +2118,29 @@
             FormClosed += MainForm_FormClosed;
             Load += MainForm_Load;
             tabControl1.ResumeLayout(false);
-            tabPage1.ResumeLayout(false);
+            综合设置.ResumeLayout(false);
             groupBox2.ResumeLayout(false);
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
-            tabPage2.ResumeLayout(false);
-            tabPage2.PerformLayout();
-            tabPage3.ResumeLayout(false);
-            tabPage3.PerformLayout();
-            tabPage4.ResumeLayout(false);
-            tabPage4.PerformLayout();
+            绑定参数.ResumeLayout(false);
+            绑定参数.PerformLayout();
+            测试图色.ResumeLayout(false);
+            测试图色.PerformLayout();
+            测试鼠标.ResumeLayout(false);
+            测试鼠标.PerformLayout();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
-            tabPage5.ResumeLayout(false);
-            tabPage5.PerformLayout();
-            tabPage6.ResumeLayout(false);
-            tabPage6.PerformLayout();
-            tabPage7.ResumeLayout(false);
+            测试键盘.ResumeLayout(false);
+            测试键盘.PerformLayout();
+            文本输入.ResumeLayout(false);
+            文本输入.PerformLayout();
+            内存汇编.ResumeLayout(false);
             groupBox4.ResumeLayout(false);
             groupBox4.PerformLayout();
             groupBox3.ResumeLayout(false);
             groupBox3.PerformLayout();
-            tabPage8.ResumeLayout(false);
-            tabPage8.PerformLayout();
+            OPExport.ResumeLayout(false);
+            OPExport.PerformLayout();
             Panel_UseOutProject.ResumeLayout(false);
             Panel_UseOutProject.PerformLayout();
             splitContainer1.Panel1.ResumeLayout(false);
@@ -2154,13 +2154,13 @@
         #endregion
 
         private TabControl tabControl1;
-        private TabPage tabPage1;
-        private TabPage tabPage2;
-        private TabPage tabPage3;
-        private TabPage tabPage4;
-        private TabPage tabPage5;
-        private TabPage tabPage6;
-        private TabPage tabPage7;
+        private TabPage 综合设置;
+        private TabPage 绑定参数;
+        private TabPage 测试图色;
+        private TabPage 测试鼠标;
+        private TabPage 测试键盘;
+        private TabPage 文本输入;
+        private TabPage 内存汇编;
         private SplitContainer splitContainer1;
         private Label label1;
         private RichTextBox TxtBox_Log;
@@ -2306,7 +2306,7 @@
         private TextBox Txt_WriteAddress;
         private Label label36;
         private Button Btn_FindPicEx;
-        private TabPage tabPage8;
+        private TabPage OPExport;
         private Button Btn_GenerateCode;
         private Label label38;
         private LinkLabel linkLabel1;
