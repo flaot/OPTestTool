@@ -234,6 +234,7 @@ namespace OPTestTool
         private void Btn_ChangeDisplay_Click(object sender, EventArgs e)
         {
             ChangeDisplayForm form = new ChangeDisplayForm();
+            form.SetSelect(Txt_BindDisplayMode.Text);
             DialogResult dialogResult = form.ShowDialog();
             if (dialogResult == DialogResult.OK)
             {
@@ -243,6 +244,7 @@ namespace OPTestTool
         private void Btn_ChangeMouse_Click(object sender, EventArgs e)
         {
             ChangeMouseForm form = new ChangeMouseForm();
+            form.SetSelect(Txt_BindMouseMode.Text);
             DialogResult dialogResult = form.ShowDialog();
             if (dialogResult == DialogResult.OK)
             {
@@ -252,6 +254,7 @@ namespace OPTestTool
         private void Btn_ChangeKeypad_Click(object sender, EventArgs e)
         {
             ChangeKeypadForm form = new ChangeKeypadForm();
+            form.SetSelect(Txt_BindKeypadMode.Text);
             DialogResult dialogResult = form.ShowDialog();
             if (dialogResult == DialogResult.OK)
             {

@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             groupBox1 = new GroupBox();
+            radioButton16 = new RadioButton();
             radioButton15 = new RadioButton();
             radioButton14 = new RadioButton();
             radioButton13 = new RadioButton();
@@ -51,6 +52,7 @@
             // 
             // groupBox1
             // 
+            groupBox1.Controls.Add(radioButton16);
             groupBox1.Controls.Add(radioButton15);
             groupBox1.Controls.Add(radioButton14);
             groupBox1.Controls.Add(radioButton13);
@@ -73,6 +75,17 @@
             groupBox1.TabStop = false;
             groupBox1.Text = "图色(必选)";
             // 
+            // radioButton16
+            // 
+            radioButton16.AutoSize = true;
+            radioButton16.Location = new Point(254, 76);
+            radioButton16.Name = "radioButton16";
+            radioButton16.Size = new Size(80, 21);
+            radioButton16.TabIndex = 25;
+            radioButton16.TabStop = true;
+            radioButton16.Text = "dx.d3d12";
+            radioButton16.UseVisualStyleBackColor = true;
+            // 
             // radioButton15
             // 
             radioButton15.AutoSize = true;
@@ -82,6 +95,7 @@
             radioButton15.Size = new Size(93, 21);
             radioButton15.TabIndex = 2;
             radioButton15.TabStop = true;
+            radioButton15.Tag = "只支持win10 1803以后";
             radioButton15.Text = "normal.wgc";
             radioButton15.UseVisualStyleBackColor = true;
             // 
@@ -143,7 +157,7 @@
             // radioButton9
             // 
             radioButton9.AutoSize = true;
-            radioButton9.Location = new Point(270, 77);
+            radioButton9.Location = new Point(168, 76);
             radioButton9.Name = "radioButton9";
             radioButton9.Size = new Size(80, 21);
             radioButton9.TabIndex = 24;
@@ -154,7 +168,7 @@
             // radioButton8
             // 
             radioButton8.AutoSize = true;
-            radioButton8.Location = new Point(185, 77);
+            radioButton8.Location = new Point(82, 76);
             radioButton8.Name = "radioButton8";
             radioButton8.Size = new Size(80, 21);
             radioButton8.TabIndex = 23;
@@ -165,7 +179,7 @@
             // radioButton7
             // 
             radioButton7.AutoSize = true;
-            radioButton7.Location = new Point(105, 77);
+            radioButton7.Location = new Point(6, 76);
             radioButton7.Name = "radioButton7";
             radioButton7.Size = new Size(73, 21);
             radioButton7.TabIndex = 22;
@@ -176,7 +190,7 @@
             // radioButton6
             // 
             radioButton6.AutoSize = true;
-            radioButton6.Location = new Point(52, 77);
+            radioButton6.Location = new Point(158, 49);
             radioButton6.Name = "radioButton6";
             radioButton6.Size = new Size(47, 21);
             radioButton6.TabIndex = 21;
@@ -187,7 +201,7 @@
             // radioButton5
             // 
             radioButton5.AutoSize = true;
-            radioButton5.Location = new Point(6, 77);
+            radioButton5.Location = new Point(112, 50);
             radioButton5.Name = "radioButton5";
             radioButton5.Size = new Size(40, 21);
             radioButton5.TabIndex = 20;
@@ -298,5 +312,6 @@
         private RadioButton radioButton14;
         private RadioButton radioButton13;
         private RadioButton radioButton15;
+        private RadioButton radioButton16;
     }
 }
