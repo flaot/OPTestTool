@@ -2017,7 +2017,7 @@
             // 
             ComboBox_CodeLang.DropDownStyle = ComboBoxStyle.DropDownList;
             ComboBox_CodeLang.FormattingEnabled = true;
-            ComboBox_CodeLang.Items.AddRange(new object[] { "C", "CPlusPlus", "CShare", "Python", "Java", "OP" });
+            ComboBox_CodeLang.Items.AddRange(new object[] { "C", "CPlusPlus", "CShare", "Python", "Java", "VB_NET", "OP" });
             ComboBox_CodeLang.Location = new Point(234, 195);
             ComboBox_CodeLang.Name = "ComboBox_CodeLang";
             ComboBox_CodeLang.Size = new Size(137, 25);
