@@ -10,50 +10,61 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\WindowFinder\WindowFinder.csproj" />
+    <Compile Remove="View\MainFormMethod.cs" />
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="From\ChangeKeypadForm.cs">
+    <EmbeddedResource Remove="MainFormMethod.resx" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="BotTimeICSharpCode.AvalonEdit" Version="1.0.2" />
+    <PackageReference Include="DotNetZip" Version="1.16.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <Compile Update="View\From\ChangeKeypadForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="From\ReadDataForm.cs">
+    <Compile Update="View\From\ReadDataForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="From\WriteDoubleForm.cs">
+    <Compile Update="View\From\WriteDoubleForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="From\WriteFloatForm.cs">
+    <Compile Update="View\From\WriteFloatForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="From\GetScreenDataBmpForm.cs">
+    <Compile Update="View\From\GetScreenDataBmpForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="From\WriteStringForm.cs">
+    <Compile Update="View\From\WriteStringForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="From\WriteDataForm.cs">
+    <Compile Update="View\From\WriteDataForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="From\WriteIntForm.cs">
+    <Compile Update="View\From\WriteIntForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="From\ReadStringForm.cs">
+    <Compile Update="View\From\ReadStringForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="From\ReadIntForm.cs">
+    <Compile Update="View\From\ReadIntForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="From\SetKeypadDelayForm.cs">
+    <Compile Update="View\From\SetKeypadDelayForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="From\SetMouseDelayForm.cs">
+    <Compile Update="View\From\SetMouseDelayForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="From\SetPathForm.cs">
+    <Compile Update="View\From\SetPathForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="From\ChangeMouseForm.cs">
+    <Compile Update="View\From\ChangeMouseForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Properties\Resources.Designer.cs">
@@ -63,18 +74,55 @@
     </Compile>
   </ItemGroup>
 
-  <ItemGroup>
-    <EmbeddedResource Update="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-  </ItemGroup>
+  
 
   <ItemGroup>
-    <None Update="Lib\op_x64.dll">
+    <None Update="Assets\BindHistory.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Lib\op_x86.dll">
+    <None Update="Assets\GlobalSetting.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Lib\op_x64.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Navigate\Helper\大漠免费版接口说明.CHM">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Navigate\Helper\大漠免费版接口说明.chw">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Navigate\Helper\大漠插件接口说明.chm">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Navigate\Helper\大漠插件接口说明.chw">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Navigate\Tools\乐玩\data\asm.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Navigate\Tools\乐玩\data\json.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Navigate\Tools\乐玩\data\RegExp.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Navigate\Tools\乐玩\user.ini">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Navigate\Tools\乐玩\乐玩助手.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Navigate\Tools\大漠\cfg.ini">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Navigate\Tools\大漠\大漠偏色计算器.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Navigate\Tools\大漠\大漠综合工具.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Navigate\Tools\精易\精易编程助手.zip">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

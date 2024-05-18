@@ -9,10 +9,13 @@ namespace OPTestTool
         Error,
         Exception
     }
+
     public static class Logger
     {
         public static event Action<LogType, string> LogMessageReceived;
+
         private static readonly ThreadLocal<StringBuilder> stringBuilder = new ThreadLocal<StringBuilder>();
+
         public static void Log(string msg)
         {
             if (LogMessageReceived != null)
@@ -30,6 +33,7 @@ namespace OPTestTool
             string text = stringBuilder.ToString();
             System.Diagnostics.Debug.WriteLine("[logr] " + text);
         }
+
         public static void LogWarning(object msg)
         {
             if (LogMessageReceived != null)
@@ -47,6 +51,7 @@ namespace OPTestTool
             string text = stringBuilder.ToString();
             System.Diagnostics.Debug.WriteLine("[Warn] " + text);
         }
+
         public static void LogError(string msg)
         {
             if (LogMessageReceived != null)
@@ -64,6 +69,7 @@ namespace OPTestTool
             string text = stringBuilder.ToString();
             System.Diagnostics.Debug.WriteLine("[Eror] " + text);
         }
+
         public static void LogException(Exception exception)
         {
             if (LogMessageReceived != null)
@@ -80,6 +86,11 @@ namespace OPTestTool
             stringBuilder.Value.Append(exception.Message + "\n" + exception.StackTrace);
             string text = stringBuilder.ToString();
             System.Diagnostics.Debug.WriteLine("[Exce] " + text);
+        }
+
+        public static void ToLog(this string log)
+        {
+            Log(log);
         }
     }
 }

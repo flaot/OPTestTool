@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34031.279
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowFinder", "WindowFinder\WindowFinder.csproj", "{84F4C41B-6887-4CDF-AC1C-E9C3AE1378A1}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OPTestTool", "OPTestTool\OPTestTool.csproj", "{AA02FEB8-AE80-443B-ACAE-36F8DE6F954B}"
 EndProject
 Global
@@ -15,14 +13,6 @@ Global
 		Release|x64 = Release|x64
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{84F4C41B-6887-4CDF-AC1C-E9C3AE1378A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{84F4C41B-6887-4CDF-AC1C-E9C3AE1378A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{84F4C41B-6887-4CDF-AC1C-E9C3AE1378A1}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{84F4C41B-6887-4CDF-AC1C-E9C3AE1378A1}.Debug|x64.Build.0 = Debug|Any CPU
-		{84F4C41B-6887-4CDF-AC1C-E9C3AE1378A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{84F4C41B-6887-4CDF-AC1C-E9C3AE1378A1}.Release|Any CPU.Build.0 = Release|Any CPU
-		{84F4C41B-6887-4CDF-AC1C-E9C3AE1378A1}.Release|x64.ActiveCfg = Release|Any CPU
-		{84F4C41B-6887-4CDF-AC1C-E9C3AE1378A1}.Release|x64.Build.0 = Release|Any CPU
 		{AA02FEB8-AE80-443B-ACAE-36F8DE6F954B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{AA02FEB8-AE80-443B-ACAE-36F8DE6F954B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AA02FEB8-AE80-443B-ACAE-36F8DE6F954B}.Debug|x64.ActiveCfg = Debug|Any CPU
