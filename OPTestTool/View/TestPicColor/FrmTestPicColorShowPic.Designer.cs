@@ -57,7 +57,7 @@ namespace ScriptTestTools.View.TestPicColor
             MinimizeBox = false;
             Name = "FrmTestPicColorShowPic";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = " 按F1查看帮助/F2编辑矩形图/F5刷新";
+            Text = " 按F1查看帮助/F5刷新";
             FormClosed += FrmTestPicColorShowPic_FormClosed;
             Load += FrmTestPicColorShowPic_Load;
             KeyDown += FrmTestPicColorShowPic_KeyDown;

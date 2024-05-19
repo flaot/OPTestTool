@@ -1,6 +1,7 @@
 using ICSharpCode.NRefactory.TypeSystem;
 using OPTestTool.Extension;
 using OPTestTool.Properties;
+using OPTestTool.View.Navigate;
 using ScriptTestTools.Entity;
 using ScriptTestTools.Model;
 using ScriptTestTools.StaticData;
@@ -181,7 +182,7 @@ namespace OPTestTool
                 {
                     case LogType.Log:
                     default:
-                        TxtBox_Log.SelectionColor = Color.Black;
+                        //TxtBox_Log.SelectionColor = Color.Black;
                         break;
 
                     case LogType.Warning:
@@ -572,7 +573,7 @@ namespace OPTestTool
         private Tuple<int, int, int, int, string> GetFindRangeAndPicFile()
         {
             //判断 txtTestPicColorFindPicPointPlus 是否有值,且是有效的值
-
+            int margin = txtTestPicColorFindPicPointMargin.Text.Trim().ToInt32();
             int x1 = int.Parse(Txt_FindPicX1.Text);
             int y1 = int.Parse(Txt_FindPicY1.Text);
             int x2 = int.Parse(Txt_FindPicX2.Text);
@@ -590,7 +591,6 @@ namespace OPTestTool
                     y1 = pointsArray[1].ToInt32();
                     x2 = pointsArray[2].ToInt32();
                     y2 = pointsArray[3].ToInt32();
-                    ShowMargin(x1, y1, x2 - x1, y2 - y1);
                 }
                 else
                 {
@@ -620,7 +620,9 @@ namespace OPTestTool
             //通配符
             if (picFile.Contains("?") | picFile.Contains("*"))
                 picFile = opSoft.MatchPicName(picFile);
-
+            x1 = x1 == 0 ? 0 : x1 - margin; y1 = y1 == 0 ? 0 : y1 - margin;
+            x2 = x2 + margin; y2 = y2 + margin;
+            ShowMargin(x1, y1, x2 - x1, y2 - y1);
             return Tuple.Create(x1, y1, x2, y2, picFile);
         }
 
@@ -822,10 +824,16 @@ namespace OPTestTool
         {
             if (CheckBox_MousePreActionWindow.Checked)
                 opSoft.SetWindowState(opSoft.GetBindWindow(), 1);
+            if (txtTestMouseMoveRSX.Text.Length > 0 & txtTestMouseMoveRSY.Text.Length > 0)
+            {
+                opSoft.MoveTo(txtTestMouseMoveRSX.Text.Trim().ToInt32(), txtTestMouseMoveRSY.Text.Trim().ToInt32());
+                opSoft.Delay(300);
+            }
             int x = int.Parse(Txt_MoveRX.Text);
             int y = int.Parse(Txt_MoveRY.Text);
             Logger.Log(string.Format(">>>MoveR {0},{1}", x, y));
-            int reault = opSoft.MoveR(x, y);
+            int reault = opSoft.MoveR(x, y);//BUG
+            //int reault = opSoft.MoveTo(x + txtTestMouseMoveRSX.Text.Trim().ToInt32(), y + txtTestMouseMoveRSY.Text.Trim().ToInt32());
             Logger.Log("返回值：" + reault);
             if (reault == 1 && CheckBox_MoveAndSend.Checked)
             {
@@ -1000,6 +1008,40 @@ namespace OPTestTool
             this.Txt_MoveToX.Text = point.Item1;
             this.Txt_MoveToY.Text = point.Item2;
             this.txtTestMouseMoveToXY.Text = point.Item1 + "," + point.Item2;
+        }
+
+        private void btnTestMouseAnchor_Click(object sender, EventArgs e)
+        {
+            this.txtTestMouseMoveRSX.Text = this.Txt_MoveToX.Text;
+            this.txtTestMouseMoveRSY.Text = this.Txt_MoveToY.Text;
+        }
+
+        private void btnTestMouseAnchorCalculate_Click(object sender, EventArgs e)
+        {
+            var rsx = this.txtTestMouseMoveRSX.Text.ToInt32();
+            var rsy = this.txtTestMouseMoveRSY.Text.ToInt32();
+            var tox = this.Txt_MoveToX.Text.ToInt32();
+            var toy = this.Txt_MoveToY.Text.ToInt32();
+            string rrx;
+            string rry;
+            if ((rsx - tox).ToString().Contains("-"))
+            {
+                rrx = (rsx - tox).ToString().Replace("-", "");
+            }
+            else
+            {
+                rrx = $"-{rsx - tox}";
+            }
+            if ((rsy - toy).ToString().Contains("-"))
+            {
+                rry = (rsy - toy).ToString().Replace("-", "");
+            }
+            else
+            {
+                rry = $"-{rsy - toy}";
+            }
+            this.Txt_MoveRX.Text = rrx;
+            this.Txt_MoveRY.Text = rry;
         }
 
         #endregion 测试鼠标
@@ -1463,6 +1505,10 @@ namespace OPTestTool
                     Process.Start(psi);
                     break;
 
+                case "Op插件接口说明":
+                    Process.Start(appPath + "Navigate\\Helper\\op-wiki-离线文档0.45.exe");
+                    break;
+
                 case "当前SetPath目录":
                     Process.Start(new ProcessStartInfo(opSoft.GetPath()) { UseShellExecute = true });
                     break;
@@ -1476,7 +1522,10 @@ namespace OPTestTool
                     break;
 
                 case "关于":
-                    MessageBox.Show("开源地址: https://github.com/flaot/OPTestTool \r\n 交流群:743710486");
+                    using (FrmAbout frmAbout = new FrmAbout())
+                    {
+                        frmAbout.ShowDialog();
+                    }
                     break;
 
                 default:

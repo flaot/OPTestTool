@@ -19,7 +19,14 @@ namespace OPTestTool.Extension
         /// <returns>value，舍入为最接近的 32 位无符号整数。 如果 value 为两个整数中间的数字，则返回二者中的偶数；即 4.5 转换为 4，而 5.5 转换为 6。</returns>
         public static int ToInt32<T>(this T data)
         {
-            return Convert.ToInt32(data);
+            try
+            {
+                return Convert.ToInt32(data);
+            }
+            catch
+            {
+                return 0;
+            }
         }
 
         /// <summary>
@@ -31,7 +38,14 @@ namespace OPTestTool.Extension
         public static double ToDouble<T>(this T data)
         {
             //Convert.ToDateTime
-            return Convert.ToDouble(data);
+            try
+            {
+                return Convert.ToDouble(data);
+            }
+            catch
+            {
+                return 0;
+            }
         }
 
         /// <summary>

@@ -86,6 +86,9 @@
     <None Update="Lib\op_x64.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="Navigate\Helper\op-wiki-离线文档0.45.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="Navigate\Helper\大漠免费版接口说明.CHM">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

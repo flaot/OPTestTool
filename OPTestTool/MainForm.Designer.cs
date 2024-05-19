@@ -108,6 +108,18 @@
             label11 = new Label();
             Btn_Capture = new Button();
             测试鼠标 = new TabPage();
+            groupBox6 = new GroupBox();
+            btnTestMouseAnchorCalculate = new Button();
+            btnTestMouseAnchor = new Button();
+            Btn_MoveR = new Button();
+            label45 = new Label();
+            label44 = new Label();
+            label27 = new Label();
+            txtTestMouseMoveRSY = new TextBox();
+            txtTestMouseMoveRSX = new TextBox();
+            Txt_MoveRX = new TextBox();
+            label26 = new Label();
+            Txt_MoveRY = new TextBox();
             txtTestMouseMoveToXY = new TextBox();
             label40 = new Label();
             pbTestMouseCursor = new PictureBox();
@@ -128,11 +140,6 @@
             Btn_LeftClick = new Button();
             Btn_LeftUp = new Button();
             Btn_LeftDown = new Button();
-            Txt_MoveRY = new TextBox();
-            label26 = new Label();
-            Txt_MoveRX = new TextBox();
-            label27 = new Label();
-            Btn_MoveR = new Button();
             Txt_MoveToY = new TextBox();
             label9 = new Label();
             Txt_MoveToX = new TextBox();
@@ -233,6 +240,7 @@
             groupBox5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pbTestPicColorCursor).BeginInit();
             测试鼠标.SuspendLayout();
+            groupBox6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pbTestMouseCursor).BeginInit();
             panel1.SuspendLayout();
             测试键盘.SuspendLayout();
@@ -331,7 +339,7 @@
             groupBox1.Controls.Add(Btn_AllWindow);
             groupBox1.Controls.Add(Txt_WindowTitle);
             groupBox1.Controls.Add(label2);
-            groupBox1.Location = new Point(4, 1);
+            groupBox1.Location = new Point(4, -3);
             groupBox1.Margin = new Padding(4, 3, 4, 3);
             groupBox1.Name = "groupBox1";
             groupBox1.Padding = new Padding(4, 3, 4, 3);
@@ -488,11 +496,11 @@
             绑定参数.Controls.Add(Btn_ChangeDisplay);
             绑定参数.Controls.Add(Txt_BindDisplayMode);
             绑定参数.Controls.Add(label6);
-            绑定参数.Location = new Point(4, 28);
+            绑定参数.Location = new Point(4, 29);
             绑定参数.Margin = new Padding(4, 3, 4, 3);
             绑定参数.Name = "绑定参数";
             绑定参数.Padding = new Padding(4, 3, 4, 3);
-            绑定参数.Size = new Size(735, 490);
+            绑定参数.Size = new Size(735, 489);
             绑定参数.TabIndex = 1;
             绑定参数.Text = "绑定参数";
             绑定参数.UseVisualStyleBackColor = true;
@@ -722,10 +730,10 @@
             测试图色.Controls.Add(Txt_CaptureX1);
             测试图色.Controls.Add(label11);
             测试图色.Controls.Add(Btn_Capture);
-            测试图色.Location = new Point(4, 28);
+            测试图色.Location = new Point(4, 29);
             测试图色.Margin = new Padding(4, 3, 4, 3);
             测试图色.Name = "测试图色";
-            测试图色.Size = new Size(735, 490);
+            测试图色.Size = new Size(735, 489);
             测试图色.TabIndex = 2;
             测试图色.Text = "测试图色";
             测试图色.UseVisualStyleBackColor = true;
@@ -1228,6 +1236,7 @@
             // 
             // 测试鼠标
             // 
+            测试鼠标.Controls.Add(groupBox6);
             测试鼠标.Controls.Add(txtTestMouseMoveToXY);
             测试鼠标.Controls.Add(label40);
             测试鼠标.Controls.Add(pbTestMouseCursor);
@@ -1246,24 +1255,176 @@
             测试鼠标.Controls.Add(Btn_LeftClick);
             测试鼠标.Controls.Add(Btn_LeftUp);
             测试鼠标.Controls.Add(Btn_LeftDown);
-            测试鼠标.Controls.Add(Txt_MoveRY);
-            测试鼠标.Controls.Add(label26);
-            测试鼠标.Controls.Add(Txt_MoveRX);
-            测试鼠标.Controls.Add(label27);
-            测试鼠标.Controls.Add(Btn_MoveR);
             测试鼠标.Controls.Add(Txt_MoveToY);
             测试鼠标.Controls.Add(label9);
             测试鼠标.Controls.Add(Txt_MoveToX);
             测试鼠标.Controls.Add(label25);
             测试鼠标.Controls.Add(Btn_MoveTo);
             测试鼠标.Controls.Add(Btn_SetMouseDelay);
-            测试鼠标.Location = new Point(4, 28);
+            测试鼠标.Location = new Point(4, 29);
             测试鼠标.Margin = new Padding(4, 3, 4, 3);
             测试鼠标.Name = "测试鼠标";
-            测试鼠标.Size = new Size(735, 490);
+            测试鼠标.Size = new Size(735, 489);
             测试鼠标.TabIndex = 3;
             测试鼠标.Text = "测试鼠标";
             测试鼠标.UseVisualStyleBackColor = true;
+            // 
+            // groupBox6
+            // 
+            groupBox6.Controls.Add(btnTestMouseAnchorCalculate);
+            groupBox6.Controls.Add(btnTestMouseAnchor);
+            groupBox6.Controls.Add(Btn_MoveR);
+            groupBox6.Controls.Add(label45);
+            groupBox6.Controls.Add(label44);
+            groupBox6.Controls.Add(label27);
+            groupBox6.Controls.Add(txtTestMouseMoveRSY);
+            groupBox6.Controls.Add(txtTestMouseMoveRSX);
+            groupBox6.Controls.Add(Txt_MoveRX);
+            groupBox6.Controls.Add(label26);
+            groupBox6.Controls.Add(Txt_MoveRY);
+            groupBox6.Location = new Point(9, 126);
+            groupBox6.Name = "groupBox6";
+            groupBox6.Size = new Size(307, 128);
+            groupBox6.TabIndex = 41;
+            groupBox6.TabStop = false;
+            groupBox6.Text = "MoveR偏移坐标计算";
+            // 
+            // btnTestMouseAnchorCalculate
+            // 
+            btnTestMouseAnchorCalculate.Location = new Point(233, 29);
+            btnTestMouseAnchorCalculate.Margin = new Padding(4, 3, 4, 3);
+            btnTestMouseAnchorCalculate.Name = "btnTestMouseAnchorCalculate";
+            btnTestMouseAnchorCalculate.Size = new Size(72, 31);
+            btnTestMouseAnchorCalculate.TabIndex = 16;
+            btnTestMouseAnchorCalculate.Text = "计算平移";
+            btnTestMouseAnchorCalculate.UseVisualStyleBackColor = true;
+            btnTestMouseAnchorCalculate.Click += btnTestMouseAnchorCalculate_Click;
+            // 
+            // btnTestMouseAnchor
+            // 
+            btnTestMouseAnchor.Location = new Point(163, 29);
+            btnTestMouseAnchor.Margin = new Padding(4, 3, 4, 3);
+            btnTestMouseAnchor.Name = "btnTestMouseAnchor";
+            btnTestMouseAnchor.Size = new Size(57, 31);
+            btnTestMouseAnchor.TabIndex = 16;
+            btnTestMouseAnchor.Text = "取锚点";
+            btnTestMouseAnchor.UseVisualStyleBackColor = true;
+            btnTestMouseAnchor.Click += btnTestMouseAnchor_Click;
+            // 
+            // Btn_MoveR
+            // 
+            Btn_MoveR.Location = new Point(0, 80);
+            Btn_MoveR.Margin = new Padding(4, 3, 4, 3);
+            Btn_MoveR.Name = "Btn_MoveR";
+            Btn_MoveR.Size = new Size(125, 31);
+            Btn_MoveR.TabIndex = 16;
+            Btn_MoveR.Text = "MoveR";
+            Btn_MoveR.UseVisualStyleBackColor = true;
+            Btn_MoveR.Click += Btn_MoveR_Click;
+            // 
+            // label45
+            // 
+            label45.AutoSize = true;
+            label45.Cursor = Cursors.SizeWE;
+            label45.Location = new Point(79, 38);
+            label45.Margin = new Padding(4, 0, 4, 0);
+            label45.Name = "label45";
+            label45.Size = new Size(25, 19);
+            label45.TabIndex = 17;
+            label45.Tag = "Txt_MoveRX";
+            label45.Text = "sx:";
+            label45.MouseDown += LabelInt_MouseDown;
+            label45.MouseMove += LabelInt_MouseMove;
+            label45.MouseUp += LabelInt_MouseUp;
+            // 
+            // label44
+            // 
+            label44.AutoSize = true;
+            label44.Cursor = Cursors.SizeWE;
+            label44.Location = new Point(2, 38);
+            label44.Margin = new Padding(4, 0, 4, 0);
+            label44.Name = "label44";
+            label44.Size = new Size(25, 19);
+            label44.TabIndex = 17;
+            label44.Tag = "Txt_MoveRX";
+            label44.Text = "sx:";
+            label44.MouseDown += LabelInt_MouseDown;
+            label44.MouseMove += LabelInt_MouseMove;
+            label44.MouseUp += LabelInt_MouseUp;
+            // 
+            // label27
+            // 
+            label27.AutoSize = true;
+            label27.Cursor = Cursors.SizeWE;
+            label27.Location = new Point(142, 82);
+            label27.Margin = new Padding(4, 0, 4, 0);
+            label27.Name = "label27";
+            label27.Size = new Size(24, 19);
+            label27.TabIndex = 17;
+            label27.Tag = "Txt_MoveRX";
+            label27.Text = "rx:";
+            label27.MouseDown += LabelInt_MouseDown;
+            label27.MouseMove += LabelInt_MouseMove;
+            label27.MouseUp += LabelInt_MouseUp;
+            // 
+            // txtTestMouseMoveRSY
+            // 
+            txtTestMouseMoveRSY.Location = new Point(106, 35);
+            txtTestMouseMoveRSY.Margin = new Padding(4, 3, 4, 3);
+            txtTestMouseMoveRSY.Name = "txtTestMouseMoveRSY";
+            txtTestMouseMoveRSY.Size = new Size(48, 24);
+            txtTestMouseMoveRSY.TabIndex = 18;
+            txtTestMouseMoveRSY.Text = "0";
+            txtTestMouseMoveRSY.TextChanged += TextBoxInt_TextChanged;
+            txtTestMouseMoveRSY.KeyPress += TextBoxInt_KeyPress;
+            // 
+            // txtTestMouseMoveRSX
+            // 
+            txtTestMouseMoveRSX.Location = new Point(29, 35);
+            txtTestMouseMoveRSX.Margin = new Padding(4, 3, 4, 3);
+            txtTestMouseMoveRSX.Name = "txtTestMouseMoveRSX";
+            txtTestMouseMoveRSX.Size = new Size(48, 24);
+            txtTestMouseMoveRSX.TabIndex = 18;
+            txtTestMouseMoveRSX.Text = "0";
+            txtTestMouseMoveRSX.TextChanged += TextBoxInt_TextChanged;
+            txtTestMouseMoveRSX.KeyPress += TextBoxInt_KeyPress;
+            // 
+            // Txt_MoveRX
+            // 
+            Txt_MoveRX.Location = new Point(173, 80);
+            Txt_MoveRX.Margin = new Padding(4, 3, 4, 3);
+            Txt_MoveRX.Name = "Txt_MoveRX";
+            Txt_MoveRX.Size = new Size(48, 24);
+            Txt_MoveRX.TabIndex = 18;
+            Txt_MoveRX.Text = "1";
+            Txt_MoveRX.TextChanged += TextBoxInt_TextChanged;
+            Txt_MoveRX.KeyPress += TextBoxInt_KeyPress;
+            // 
+            // label26
+            // 
+            label26.AutoSize = true;
+            label26.Cursor = Cursors.SizeWE;
+            label26.Location = new Point(226, 82);
+            label26.Margin = new Padding(4, 0, 4, 0);
+            label26.Name = "label26";
+            label26.Size = new Size(24, 19);
+            label26.TabIndex = 19;
+            label26.Tag = "Txt_MoveRY";
+            label26.Text = "ry:";
+            label26.MouseDown += LabelInt_MouseDown;
+            label26.MouseMove += LabelInt_MouseMove;
+            label26.MouseUp += LabelInt_MouseUp;
+            // 
+            // Txt_MoveRY
+            // 
+            Txt_MoveRY.Location = new Point(257, 80);
+            Txt_MoveRY.Margin = new Padding(4, 3, 4, 3);
+            Txt_MoveRY.Name = "Txt_MoveRY";
+            Txt_MoveRY.Size = new Size(48, 24);
+            Txt_MoveRY.TabIndex = 20;
+            Txt_MoveRY.Text = "1";
+            Txt_MoveRY.TextChanged += TextBoxInt_TextChanged;
+            Txt_MoveRY.KeyPress += TextBoxInt_KeyPress;
             // 
             // txtTestMouseMoveToXY
             // 
@@ -1343,7 +1504,7 @@
             // 
             // Btn_GetCursorPos
             // 
-            Btn_GetCursorPos.Location = new Point(9, 399);
+            Btn_GetCursorPos.Location = new Point(9, 440);
             Btn_GetCursorPos.Margin = new Padding(4, 3, 4, 3);
             Btn_GetCursorPos.Name = "Btn_GetCursorPos";
             Btn_GetCursorPos.Size = new Size(125, 31);
@@ -1354,7 +1515,7 @@
             // 
             // Btn_LeftDoubleClick
             // 
-            Btn_LeftDoubleClick.Location = new Point(301, 345);
+            Btn_LeftDoubleClick.Location = new Point(301, 395);
             Btn_LeftDoubleClick.Margin = new Padding(4, 3, 4, 3);
             Btn_LeftDoubleClick.Name = "Btn_LeftDoubleClick";
             Btn_LeftDoubleClick.Size = new Size(125, 31);
@@ -1365,7 +1526,7 @@
             // 
             // Btn_WheelUp
             // 
-            Btn_WheelUp.Location = new Point(156, 345);
+            Btn_WheelUp.Location = new Point(155, 395);
             Btn_WheelUp.Margin = new Padding(4, 3, 4, 3);
             Btn_WheelUp.Name = "Btn_WheelUp";
             Btn_WheelUp.Size = new Size(125, 31);
@@ -1376,7 +1537,7 @@
             // 
             // Btn_WheelDown
             // 
-            Btn_WheelDown.Location = new Point(9, 345);
+            Btn_WheelDown.Location = new Point(9, 395);
             Btn_WheelDown.Margin = new Padding(4, 3, 4, 3);
             Btn_WheelDown.Name = "Btn_WheelDown";
             Btn_WheelDown.Size = new Size(125, 31);
@@ -1387,7 +1548,7 @@
             // 
             // Btn_MiddleClick
             // 
-            Btn_MiddleClick.Location = new Point(301, 292);
+            Btn_MiddleClick.Location = new Point(301, 350);
             Btn_MiddleClick.Margin = new Padding(4, 3, 4, 3);
             Btn_MiddleClick.Name = "Btn_MiddleClick";
             Btn_MiddleClick.Size = new Size(125, 31);
@@ -1398,7 +1559,7 @@
             // 
             // Btn_MiddleUp
             // 
-            Btn_MiddleUp.Location = new Point(156, 292);
+            Btn_MiddleUp.Location = new Point(155, 350);
             Btn_MiddleUp.Margin = new Padding(4, 3, 4, 3);
             Btn_MiddleUp.Name = "Btn_MiddleUp";
             Btn_MiddleUp.Size = new Size(125, 31);
@@ -1409,7 +1570,7 @@
             // 
             // Btn_MiddleDown
             // 
-            Btn_MiddleDown.Location = new Point(9, 292);
+            Btn_MiddleDown.Location = new Point(9, 350);
             Btn_MiddleDown.Margin = new Padding(4, 3, 4, 3);
             Btn_MiddleDown.Name = "Btn_MiddleDown";
             Btn_MiddleDown.Size = new Size(125, 31);
@@ -1420,7 +1581,7 @@
             // 
             // Btn_RightClick
             // 
-            Btn_RightClick.Location = new Point(301, 235);
+            Btn_RightClick.Location = new Point(301, 305);
             Btn_RightClick.Margin = new Padding(4, 3, 4, 3);
             Btn_RightClick.Name = "Btn_RightClick";
             Btn_RightClick.Size = new Size(125, 31);
@@ -1431,7 +1592,7 @@
             // 
             // Btn_RightUp
             // 
-            Btn_RightUp.Location = new Point(156, 235);
+            Btn_RightUp.Location = new Point(155, 305);
             Btn_RightUp.Margin = new Padding(4, 3, 4, 3);
             Btn_RightUp.Name = "Btn_RightUp";
             Btn_RightUp.Size = new Size(125, 31);
@@ -1442,7 +1603,7 @@
             // 
             // Btn_RightDown
             // 
-            Btn_RightDown.Location = new Point(9, 235);
+            Btn_RightDown.Location = new Point(9, 305);
             Btn_RightDown.Margin = new Padding(4, 3, 4, 3);
             Btn_RightDown.Name = "Btn_RightDown";
             Btn_RightDown.Size = new Size(125, 31);
@@ -1453,7 +1614,7 @@
             // 
             // Btn_LeftClick
             // 
-            Btn_LeftClick.Location = new Point(301, 179);
+            Btn_LeftClick.Location = new Point(301, 260);
             Btn_LeftClick.Margin = new Padding(4, 3, 4, 3);
             Btn_LeftClick.Name = "Btn_LeftClick";
             Btn_LeftClick.Size = new Size(125, 31);
@@ -1464,7 +1625,7 @@
             // 
             // Btn_LeftUp
             // 
-            Btn_LeftUp.Location = new Point(156, 179);
+            Btn_LeftUp.Location = new Point(155, 260);
             Btn_LeftUp.Margin = new Padding(4, 3, 4, 3);
             Btn_LeftUp.Name = "Btn_LeftUp";
             Btn_LeftUp.Size = new Size(125, 31);
@@ -1475,7 +1636,7 @@
             // 
             // Btn_LeftDown
             // 
-            Btn_LeftDown.Location = new Point(9, 179);
+            Btn_LeftDown.Location = new Point(9, 260);
             Btn_LeftDown.Margin = new Padding(4, 3, 4, 3);
             Btn_LeftDown.Name = "Btn_LeftDown";
             Btn_LeftDown.Size = new Size(125, 31);
@@ -1483,69 +1644,6 @@
             Btn_LeftDown.Text = "LeftDown";
             Btn_LeftDown.UseVisualStyleBackColor = true;
             Btn_LeftDown.Click += Btn_LeftDown_Click;
-            // 
-            // Txt_MoveRY
-            // 
-            Txt_MoveRY.Location = new Point(269, 142);
-            Txt_MoveRY.Margin = new Padding(4, 3, 4, 3);
-            Txt_MoveRY.Name = "Txt_MoveRY";
-            Txt_MoveRY.Size = new Size(48, 24);
-            Txt_MoveRY.TabIndex = 20;
-            Txt_MoveRY.Text = "1";
-            Txt_MoveRY.TextChanged += TextBoxInt_TextChanged;
-            Txt_MoveRY.KeyPress += TextBoxInt_KeyPress;
-            // 
-            // label26
-            // 
-            label26.AutoSize = true;
-            label26.Cursor = Cursors.SizeWE;
-            label26.Location = new Point(238, 144);
-            label26.Margin = new Padding(4, 0, 4, 0);
-            label26.Name = "label26";
-            label26.Size = new Size(24, 19);
-            label26.TabIndex = 19;
-            label26.Tag = "Txt_MoveRY";
-            label26.Text = "ry:";
-            label26.MouseDown += LabelInt_MouseDown;
-            label26.MouseMove += LabelInt_MouseMove;
-            label26.MouseUp += LabelInt_MouseUp;
-            // 
-            // Txt_MoveRX
-            // 
-            Txt_MoveRX.Location = new Point(183, 142);
-            Txt_MoveRX.Margin = new Padding(4, 3, 4, 3);
-            Txt_MoveRX.Name = "Txt_MoveRX";
-            Txt_MoveRX.Size = new Size(48, 24);
-            Txt_MoveRX.TabIndex = 18;
-            Txt_MoveRX.Text = "1";
-            Txt_MoveRX.TextChanged += TextBoxInt_TextChanged;
-            Txt_MoveRX.KeyPress += TextBoxInt_KeyPress;
-            // 
-            // label27
-            // 
-            label27.AutoSize = true;
-            label27.Cursor = Cursors.SizeWE;
-            label27.Location = new Point(152, 144);
-            label27.Margin = new Padding(4, 0, 4, 0);
-            label27.Name = "label27";
-            label27.Size = new Size(24, 19);
-            label27.TabIndex = 17;
-            label27.Tag = "Txt_MoveRX";
-            label27.Text = "rx:";
-            label27.MouseDown += LabelInt_MouseDown;
-            label27.MouseMove += LabelInt_MouseMove;
-            label27.MouseUp += LabelInt_MouseUp;
-            // 
-            // Btn_MoveR
-            // 
-            Btn_MoveR.Location = new Point(9, 136);
-            Btn_MoveR.Margin = new Padding(4, 3, 4, 3);
-            Btn_MoveR.Name = "Btn_MoveR";
-            Btn_MoveR.Size = new Size(125, 31);
-            Btn_MoveR.TabIndex = 16;
-            Btn_MoveR.Text = "MoveR";
-            Btn_MoveR.UseVisualStyleBackColor = true;
-            Btn_MoveR.Click += Btn_MoveR_Click;
             // 
             // Txt_MoveToY
             // 
@@ -2365,8 +2463,9 @@
             // TxtBox_Log
             // 
             TxtBox_Log.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            TxtBox_Log.BackColor = Color.LightGray;
+            TxtBox_Log.BackColor = Color.FromArgb(0, 43, 54);
             TxtBox_Log.Font = new Font("Microsoft YaHei UI", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            TxtBox_Log.ForeColor = Color.FromArgb(42, 161, 152);
             TxtBox_Log.Location = new Point(0, 40);
             TxtBox_Log.Margin = new Padding(4, 3, 4, 3);
             TxtBox_Log.Name = "TxtBox_Log";
@@ -2515,7 +2614,7 @@
             // 
             oP插件接口说明ToolStripMenuItem.Name = "oP插件接口说明ToolStripMenuItem";
             oP插件接口说明ToolStripMenuItem.Size = new Size(198, 24);
-            oP插件接口说明ToolStripMenuItem.Text = "OP插件接口说明";
+            oP插件接口说明ToolStripMenuItem.Text = "Op插件接口说明";
             oP插件接口说明ToolStripMenuItem.Click += ToolbarClick;
             // 
             // toolStripSeparator2
@@ -2575,6 +2674,8 @@
             ((System.ComponentModel.ISupportInitialize)pbTestPicColorCursor).EndInit();
             测试鼠标.ResumeLayout(false);
             测试鼠标.PerformLayout();
+            groupBox6.ResumeLayout(false);
+            groupBox6.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pbTestMouseCursor).EndInit();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
@@ -2798,5 +2899,12 @@
         private Button btnTestPicColorFindPicFindPicExCustomCode;
         private TextBox txtTestPicColorFindPicPointMargin;
         private Label label43;
+        private GroupBox groupBox6;
+        private Button btnTestMouseAnchorCalculate;
+        private Button btnTestMouseAnchor;
+        private Label label45;
+        private Label label44;
+        private TextBox txtTestMouseMoveRSY;
+        private TextBox txtTestMouseMoveRSX;
     }
 }
