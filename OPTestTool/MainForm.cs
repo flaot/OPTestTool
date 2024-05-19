@@ -367,6 +367,7 @@ namespace OPTestTool
                 int reault = opSoft.UnBindWindow();
                 IsBindWindow = false;
                 BindWindowHwnd = 0;
+                BindWindow.Hwnd = 0;
                 Logger.Log("返回值：" + reault);
             }
             else
@@ -398,6 +399,7 @@ namespace OPTestTool
                 {
                     IsBindWindow = true;
                     BindWindowHwnd = nHwnd;
+                    BindWindow.Hwnd = nHwnd;
                     MessageBox.Show("绑定成功");
                 }
             }
@@ -622,7 +624,7 @@ namespace OPTestTool
                 picFile = opSoft.MatchPicName(picFile);
             x1 = x1 == 0 ? 0 : x1 - margin; y1 = y1 == 0 ? 0 : y1 - margin;
             x2 = x2 + margin; y2 = y2 + margin;
-            ShowMargin(x1, y1, x2 - x1, y2 - y1);
+            //ShowMargin(x1, y1, x2 - x1, y2 - y1);
             return Tuple.Create(x1, y1, x2, y2, picFile);
         }
 
