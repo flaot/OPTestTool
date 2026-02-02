@@ -190,11 +190,23 @@
             ComboBox_CodeLang = new ComboBox();
             Btn_GenerateCode = new Button();
             splitContainer1 = new SplitContainer();
+            MenuItemStrip = new MenuStrip();
+            关于ToolStripMenuItem = new ToolStripMenuItem();
+            相关链接ToolStripMenuItem = new ToolStripMenuItem();
+            MenuItem_JumpOP = new ToolStripMenuItem();
+            MenuItem_JumpOPDoc = new ToolStripMenuItem();
+            toolStripMenuItem2 = new ToolStripSeparator();
+            MenuItem_JumpOPExport = new ToolStripMenuItem();
+            MenuItem_CheckUpdate = new ToolStripMenuItem();
+            toolStripMenuItem1 = new ToolStripSeparator();
+            MenuItem_About = new ToolStripMenuItem();
             TxtBox_Log = new RichTextBox();
             Btn_Clear = new Button();
             CheckBox_LogAutoScroll = new CheckBox();
             CheckBox_LogShowTime = new CheckBox();
             label1 = new Label();
+            工具ToolStripMenuItem = new ToolStripMenuItem();
+            MenuItem_WordDictTool = new ToolStripMenuItem();
             tabControl1.SuspendLayout();
             综合设置.SuspendLayout();
             groupBox2.SuspendLayout();
@@ -214,6 +226,7 @@
             splitContainer1.Panel1.SuspendLayout();
             splitContainer1.Panel2.SuspendLayout();
             splitContainer1.SuspendLayout();
+            MenuItemStrip.SuspendLayout();
             SuspendLayout();
             // 
             // tabControl1
@@ -227,11 +240,11 @@
             tabControl1.Controls.Add(内存汇编);
             tabControl1.Controls.Add(OPExport);
             tabControl1.Dock = DockStyle.Fill;
-            tabControl1.Location = new Point(0, 0);
+            tabControl1.Location = new Point(0, 25);
             tabControl1.Margin = new Padding(3, 10, 3, 3);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(650, 491);
+            tabControl1.Size = new Size(650, 466);
             tabControl1.TabIndex = 0;
             // 
             // 综合设置
@@ -241,7 +254,7 @@
             综合设置.Location = new Point(4, 26);
             综合设置.Name = "综合设置";
             综合设置.Padding = new Padding(3);
-            综合设置.Size = new Size(642, 461);
+            综合设置.Size = new Size(642, 436);
             综合设置.TabIndex = 0;
             综合设置.Text = "综合设置";
             综合设置.UseVisualStyleBackColor = true;
@@ -251,7 +264,7 @@
             groupBox2.Controls.Add(Btn_GetCommandLine);
             groupBox2.Controls.Add(Btn_SetPath);
             groupBox2.Dock = DockStyle.Bottom;
-            groupBox2.Location = new Point(3, 337);
+            groupBox2.Location = new Point(3, 312);
             groupBox2.Name = "groupBox2";
             groupBox2.Size = new Size(636, 121);
             groupBox2.TabIndex = 12;
@@ -295,7 +308,7 @@
             groupBox1.Controls.Add(label2);
             groupBox1.Location = new Point(3, 3);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(636, 333);
+            groupBox1.Size = new Size(636, 308);
             groupBox1.TabIndex = 0;
             groupBox1.TabStop = false;
             groupBox1.Text = "窗口信息";
@@ -316,7 +329,7 @@
             TreeView_Window.HideSelection = false;
             TreeView_Window.Location = new Point(0, 85);
             TreeView_Window.Name = "TreeView_Window";
-            TreeView_Window.Size = new Size(636, 243);
+            TreeView_Window.Size = new Size(636, 218);
             TreeView_Window.TabIndex = 11;
             TreeView_Window.AfterSelect += TreeView_Window_AfterSelect;
             TreeView_Window.NodeMouseDoubleClick += TreeView_Window_NodeMouseDoubleClick;
@@ -438,7 +451,7 @@
             绑定参数.Location = new Point(4, 26);
             绑定参数.Name = "绑定参数";
             绑定参数.Padding = new Padding(3);
-            绑定参数.Size = new Size(642, 461);
+            绑定参数.Size = new Size(642, 436);
             绑定参数.TabIndex = 1;
             绑定参数.Text = "绑定参数";
             绑定参数.UseVisualStyleBackColor = true;
@@ -652,7 +665,7 @@
             测试图色.Controls.Add(Btn_Capture);
             测试图色.Location = new Point(4, 26);
             测试图色.Name = "测试图色";
-            测试图色.Size = new Size(642, 461);
+            测试图色.Size = new Size(642, 436);
             测试图色.TabIndex = 2;
             测试图色.Text = "测试图色";
             测试图色.UseVisualStyleBackColor = true;
@@ -1067,7 +1080,7 @@
             测试鼠标.Controls.Add(Btn_SetMouseDelay);
             测试鼠标.Location = new Point(4, 26);
             测试鼠标.Name = "测试鼠标";
-            测试鼠标.Size = new Size(642, 461);
+            测试鼠标.Size = new Size(642, 436);
             测试鼠标.TabIndex = 3;
             测试鼠标.Text = "测试鼠标";
             测试鼠标.UseVisualStyleBackColor = true;
@@ -1401,7 +1414,7 @@
             测试键盘.Controls.Add(Btn_SetKeypadDelay);
             测试键盘.Location = new Point(4, 26);
             测试键盘.Name = "测试键盘";
-            测试键盘.Size = new Size(642, 461);
+            测试键盘.Size = new Size(642, 436);
             测试键盘.TabIndex = 4;
             测试键盘.Text = "测试键盘";
             测试键盘.UseVisualStyleBackColor = true;
@@ -1619,7 +1632,7 @@
             文本输入.Controls.Add(label28);
             文本输入.Location = new Point(4, 26);
             文本输入.Name = "文本输入";
-            文本输入.Size = new Size(642, 461);
+            文本输入.Size = new Size(642, 436);
             文本输入.TabIndex = 5;
             文本输入.Text = "文本输入";
             文本输入.UseVisualStyleBackColor = true;
@@ -1687,7 +1700,7 @@
             内存汇编.Controls.Add(groupBox3);
             内存汇编.Location = new Point(4, 26);
             内存汇编.Name = "内存汇编";
-            内存汇编.Size = new Size(642, 461);
+            内存汇编.Size = new Size(642, 436);
             内存汇编.TabIndex = 6;
             内存汇编.Text = "内存汇编";
             内存汇编.UseVisualStyleBackColor = true;
@@ -1882,7 +1895,7 @@
             OPExport.Location = new Point(4, 26);
             OPExport.Name = "OPExport";
             OPExport.Padding = new Padding(3);
-            OPExport.Size = new Size(642, 461);
+            OPExport.Size = new Size(642, 436);
             OPExport.TabIndex = 7;
             OPExport.Text = "OPExport";
             OPExport.UseVisualStyleBackColor = true;
@@ -1891,7 +1904,7 @@
             // 
             linkLabel3.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             linkLabel3.AutoSize = true;
-            linkLabel3.Location = new Point(8, 405);
+            linkLabel3.Location = new Point(8, 380);
             linkLabel3.Name = "linkLabel3";
             linkLabel3.Size = new Size(54, 17);
             linkLabel3.TabIndex = 21;
@@ -1904,7 +1917,7 @@
             // 
             CheckBox_AddWifiDoc.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             CheckBox_AddWifiDoc.AutoSize = true;
-            CheckBox_AddWifiDoc.Location = new Point(489, 405);
+            CheckBox_AddWifiDoc.Location = new Point(489, 380);
             CheckBox_AddWifiDoc.Name = "CheckBox_AddWifiDoc";
             CheckBox_AddWifiDoc.Size = new Size(145, 21);
             CheckBox_AddWifiDoc.TabIndex = 19;
@@ -1915,7 +1928,7 @@
             // 
             linkLabel2.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             linkLabel2.AutoSize = true;
-            linkLabel2.Location = new Point(8, 433);
+            linkLabel2.Location = new Point(8, 408);
             linkLabel2.Name = "linkLabel2";
             linkLabel2.Size = new Size(90, 17);
             linkLabel2.TabIndex = 18;
@@ -1997,7 +2010,7 @@
             CheckBox_OpenGenCodeFolder.AutoSize = true;
             CheckBox_OpenGenCodeFolder.Checked = true;
             CheckBox_OpenGenCodeFolder.CheckState = CheckState.Checked;
-            CheckBox_OpenGenCodeFolder.Location = new Point(489, 432);
+            CheckBox_OpenGenCodeFolder.Location = new Point(489, 407);
             CheckBox_OpenGenCodeFolder.Name = "CheckBox_OpenGenCodeFolder";
             CheckBox_OpenGenCodeFolder.Size = new Size(147, 21);
             CheckBox_OpenGenCodeFolder.TabIndex = 20;
@@ -2042,6 +2055,7 @@
             // splitContainer1.Panel1
             // 
             splitContainer1.Panel1.Controls.Add(tabControl1);
+            splitContainer1.Panel1.Controls.Add(MenuItemStrip);
             // 
             // splitContainer1.Panel2
             // 
@@ -2053,6 +2067,78 @@
             splitContainer1.Size = new Size(984, 491);
             splitContainer1.SplitterDistance = 650;
             splitContainer1.TabIndex = 1;
+            // 
+            // MenuItemStrip
+            // 
+            MenuItemStrip.Items.AddRange(new ToolStripItem[] { 工具ToolStripMenuItem, 关于ToolStripMenuItem });
+            MenuItemStrip.Location = new Point(0, 0);
+            MenuItemStrip.Name = "MenuItemStrip";
+            MenuItemStrip.Size = new Size(650, 25);
+            MenuItemStrip.TabIndex = 1;
+            MenuItemStrip.Text = "menuStrip1";
+            // 
+            // 关于ToolStripMenuItem
+            // 
+            关于ToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { 相关链接ToolStripMenuItem, MenuItem_CheckUpdate, toolStripMenuItem1, MenuItem_About });
+            关于ToolStripMenuItem.Name = "关于ToolStripMenuItem";
+            关于ToolStripMenuItem.Size = new Size(44, 21);
+            关于ToolStripMenuItem.Text = "帮助";
+            // 
+            // 相关链接ToolStripMenuItem
+            // 
+            相关链接ToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { MenuItem_JumpOP, MenuItem_JumpOPDoc, toolStripMenuItem2, MenuItem_JumpOPExport });
+            相关链接ToolStripMenuItem.Name = "相关链接ToolStripMenuItem";
+            相关链接ToolStripMenuItem.Size = new Size(180, 22);
+            相关链接ToolStripMenuItem.Text = "相关链接";
+            // 
+            // MenuItem_JumpOP
+            // 
+            MenuItem_JumpOP.Name = "MenuItem_JumpOP";
+            MenuItem_JumpOP.Size = new Size(180, 22);
+            MenuItem_JumpOP.Tag = "https://github.com/WallBreaker2/op/releases";
+            MenuItem_JumpOP.Text = "OP插件下载";
+            MenuItem_JumpOP.Click += MenuItem_JumpLink_Click;
+            // 
+            // MenuItem_JumpOPDoc
+            // 
+            MenuItem_JumpOPDoc.Name = "MenuItem_JumpOPDoc";
+            MenuItem_JumpOPDoc.Size = new Size(180, 22);
+            MenuItem_JumpOPDoc.Tag = "https://github.com/WallBreaker2/op/wiki";
+            MenuItem_JumpOPDoc.Text = "OP在线文档";
+            MenuItem_JumpOPDoc.Click += MenuItem_JumpLink_Click;
+            // 
+            // toolStripMenuItem2
+            // 
+            toolStripMenuItem2.Name = "toolStripMenuItem2";
+            toolStripMenuItem2.Size = new Size(177, 6);
+            // 
+            // MenuItem_JumpOPExport
+            // 
+            MenuItem_JumpOPExport.Name = "MenuItem_JumpOPExport";
+            MenuItem_JumpOPExport.Size = new Size(180, 22);
+            MenuItem_JumpOPExport.Tag = "https://github.com/flaot/OPExport";
+            MenuItem_JumpOPExport.Text = "OPExport";
+            MenuItem_JumpOPExport.Click += MenuItem_JumpLink_Click;
+            // 
+            // MenuItem_CheckUpdate
+            // 
+            MenuItem_CheckUpdate.Name = "MenuItem_CheckUpdate";
+            MenuItem_CheckUpdate.Size = new Size(180, 22);
+            MenuItem_CheckUpdate.Tag = "https://github.com/flaot/OPTestTool/releases/";
+            MenuItem_CheckUpdate.Text = "检查更新";
+            MenuItem_CheckUpdate.Click += MenuItem_JumpLink_Click;
+            // 
+            // toolStripMenuItem1
+            // 
+            toolStripMenuItem1.Name = "toolStripMenuItem1";
+            toolStripMenuItem1.Size = new Size(177, 6);
+            // 
+            // MenuItem_About
+            // 
+            MenuItem_About.Name = "MenuItem_About";
+            MenuItem_About.Size = new Size(180, 22);
+            MenuItem_About.Text = "关于";
+            MenuItem_About.Click += MenuItem_About_Click;
             // 
             // TxtBox_Log
             // 
@@ -2107,12 +2193,27 @@
             label1.TabIndex = 0;
             label1.Text = "日志";
             // 
+            // 工具ToolStripMenuItem
+            // 
+            工具ToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { MenuItem_WordDictTool });
+            工具ToolStripMenuItem.Name = "工具ToolStripMenuItem";
+            工具ToolStripMenuItem.Size = new Size(44, 21);
+            工具ToolStripMenuItem.Text = "工具";
+            // 
+            // MenuItem_WordDictTool
+            // 
+            MenuItem_WordDictTool.Name = "MenuItem_WordDictTool";
+            MenuItem_WordDictTool.Size = new Size(180, 22);
+            MenuItem_WordDictTool.Text = "字库制作";
+            MenuItem_WordDictTool.Click += MenuItem_WordDictTool_Click;
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(984, 491);
             Controls.Add(splitContainer1);
+            MainMenuStrip = MenuItemStrip;
             Name = "MainForm";
             Text = "OP插件绑定测试工具";
             FormClosed += MainForm_FormClosed;
@@ -2144,10 +2245,13 @@
             Panel_UseOutProject.ResumeLayout(false);
             Panel_UseOutProject.PerformLayout();
             splitContainer1.Panel1.ResumeLayout(false);
+            splitContainer1.Panel1.PerformLayout();
             splitContainer1.Panel2.ResumeLayout(false);
             splitContainer1.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).EndInit();
             splitContainer1.ResumeLayout(false);
+            MenuItemStrip.ResumeLayout(false);
+            MenuItemStrip.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -2320,5 +2424,17 @@
         private LinkLabel linkLabel2;
         private CheckBox CheckBox_AddWifiDoc;
         private LinkLabel linkLabel3;
+        private MenuStrip MenuItemStrip;
+        private ToolStripMenuItem 关于ToolStripMenuItem;
+        private ToolStripMenuItem 相关链接ToolStripMenuItem;
+        private ToolStripMenuItem MenuItem_JumpOP;
+        private ToolStripMenuItem MenuItem_JumpOPDoc;
+        private ToolStripMenuItem MenuItem_JumpOPExport;
+        private ToolStripMenuItem MenuItem_CheckUpdate;
+        private ToolStripSeparator toolStripMenuItem1;
+        private ToolStripMenuItem MenuItem_About;
+        private ToolStripSeparator toolStripMenuItem2;
+        private ToolStripMenuItem 工具ToolStripMenuItem;
+        private ToolStripMenuItem MenuItem_WordDictTool;
     }
 }

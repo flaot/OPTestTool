@@ -7,6 +7,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowFinder", "WindowFinde
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OPTestTool", "OPTestTool\OPTestTool.csproj", "{AA02FEB8-AE80-443B-ACAE-36F8DE6F954B}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WordDictTool", "WordDictTool\WordDictTool.csproj", "{402F1AE6-75B2-4C1B-B348-4901EFDC5CDB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Lib", "Lib", "{59942D9D-CD41-48FD-8E6F-1AD204E5CBC4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{B23D2215-1CAE-4302-85EA-F9535CA55313}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,9 +37,29 @@ Global
 		{AA02FEB8-AE80-443B-ACAE-36F8DE6F954B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{AA02FEB8-AE80-443B-ACAE-36F8DE6F954B}.Release|x64.ActiveCfg = Release|Any CPU
 		{AA02FEB8-AE80-443B-ACAE-36F8DE6F954B}.Release|x64.Build.0 = Release|Any CPU
+		{402F1AE6-75B2-4C1B-B348-4901EFDC5CDB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{402F1AE6-75B2-4C1B-B348-4901EFDC5CDB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{402F1AE6-75B2-4C1B-B348-4901EFDC5CDB}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{402F1AE6-75B2-4C1B-B348-4901EFDC5CDB}.Debug|x64.Build.0 = Debug|Any CPU
+		{402F1AE6-75B2-4C1B-B348-4901EFDC5CDB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{402F1AE6-75B2-4C1B-B348-4901EFDC5CDB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{402F1AE6-75B2-4C1B-B348-4901EFDC5CDB}.Release|x64.ActiveCfg = Release|Any CPU
+		{402F1AE6-75B2-4C1B-B348-4901EFDC5CDB}.Release|x64.Build.0 = Release|Any CPU
+		{B23D2215-1CAE-4302-85EA-F9535CA55313}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B23D2215-1CAE-4302-85EA-F9535CA55313}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B23D2215-1CAE-4302-85EA-F9535CA55313}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{B23D2215-1CAE-4302-85EA-F9535CA55313}.Debug|x64.Build.0 = Debug|Any CPU
+		{B23D2215-1CAE-4302-85EA-F9535CA55313}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B23D2215-1CAE-4302-85EA-F9535CA55313}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B23D2215-1CAE-4302-85EA-F9535CA55313}.Release|x64.ActiveCfg = Release|Any CPU
+		{B23D2215-1CAE-4302-85EA-F9535CA55313}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{84F4C41B-6887-4CDF-AC1C-E9C3AE1378A1} = {59942D9D-CD41-48FD-8E6F-1AD204E5CBC4}
+		{B23D2215-1CAE-4302-85EA-F9535CA55313} = {59942D9D-CD41-48FD-8E6F-1AD204E5CBC4}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {EAF32FFA-CD08-4ED2-BC54-95667E5E10B7}

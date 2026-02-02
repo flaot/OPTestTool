@@ -14,6 +14,7 @@ namespace OPTestTool
         private static bool _showLogTime;
         private OpSoft opSoft = new OpSoft();
         private GetScreenDataBmpForm _getScreenDataBmpForm;
+        private WordDictTool.MainForm _wordDictTool;
 
         public MainForm()
         {
@@ -922,6 +923,27 @@ namespace OPTestTool
         private void TextBoxFloatBar_KeyPress(object sender, KeyPressEventArgs e) => Utils.TextBoxFloatBar_KeyPress(sender, e);
         #endregion
 
-
+        #region ²Ëµ¥À¸
+        private void MenuItem_WordDictTool_Click(object sender, EventArgs e)
+        {
+            if (_wordDictTool == null)
+                _wordDictTool = new WordDictTool.MainForm();
+            if (_wordDictTool.Visible)
+                _wordDictTool.Focus();
+            else
+                _wordDictTool.Show();
+        }
+        private void MenuItem_JumpLink_Click(object sender, EventArgs e)
+        {
+            var linkLabel = (ToolStripMenuItem)sender;
+            var url = (string)linkLabel.Tag;
+            Process.Start(new ProcessStartInfo(url) { UseShellExecute = true });
+        }
+        private void MenuItem_About_Click(object sender, EventArgs e)
+        {
+            AboutFrom aboutFrom = new AboutFrom();
+            aboutFrom.ShowDialog();
+        }
+        #endregion
     }
 }
