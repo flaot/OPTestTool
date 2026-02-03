@@ -5,7 +5,7 @@ License：https://github.com/WallBreaker2/op/blob/master/LICENSE
 
 using System;
 using System.Runtime.InteropServices;
-public partial class OpSoft: IDisposable, IComparable<OpSoft>
+public partial class OpSoft : IDisposable, IComparable<OpSoft>
 {
 #if X86
     const string DLL_NAME = "./Dll/op_x32.dll";
@@ -579,6 +579,16 @@ public partial class OpSoft: IDisposable, IComparable<OpSoft>
         return str;
     }
     /// <summary>
+    /// 查找指定区域内的所有颜色数量
+    /// </summary>
+    /// <param name="x1"></param>
+    /// <param name="y1"></param>
+    /// <param name="x2"></param>
+    /// <param name="y2"></param>
+    /// <param name="color"></param>
+    /// <param name="sim"></param>
+    public int GetColorNum(int x1, int y1, int x2, int y2, string color, double sim) => OP_GetColorNum(_op, x1, y1, x2, y2, color, sim);
+    /// <summary>
     /// 获取鼠标位置.
     /// </summary>
     /// <param name="x"></param>
@@ -633,6 +643,13 @@ public partial class OpSoft: IDisposable, IComparable<OpSoft>
         string str = Marshal.PtrToStringUni(_pStr);
         return str;
     }
+    /// <summary>
+    /// 获取指定图片的尺寸，如果指定的图片已经被加入缓存，则从缓存中获取信息.此接口也会把此图片加入缓存
+    /// </summary>
+    /// <param name="pic_name"></param>
+    /// <param name="width"></param>
+    /// <param name="height"></param>
+    public int GetPicSize(string pic_name, out int width, out int height) => OP_GetPicSize(_op, pic_name, out width, out height);
     /// <summary>
     /// 获取给定坐标的可见窗口句柄
     /// </summary>
@@ -755,6 +772,56 @@ public partial class OpSoft: IDisposable, IComparable<OpSoft>
             if (_nSize > 0) Marshal.FreeHGlobal(_pStr);
             _pStr = Marshal.AllocHGlobal(_nSize = _size);
             OP_GetWindowTitle(_op, hwnd, _pStr, _nSize);
+        }
+        string str = Marshal.PtrToStringUni(_pStr);
+        return str;
+    }
+    /// <summary>
+    /// 在使用GetWords进行词组识别以后,可以用此接口进行识别词组数量的计算
+    /// </summary>
+    /// <param name="result"></param>
+    public int GetWordResultCount(string result) => OP_GetWordResultCount(_op, result);
+    /// <summary>
+    /// 在使用GetWords进行词组识别以后,可以用此接口进行识别各个词组的坐标
+    /// </summary>
+    /// <param name="result"></param>
+    /// <param name="index"></param>
+    /// <param name="x"></param>
+    /// <param name="y"></param>
+    public int GetWordResultPos(string result, int index, out int x, out int y) => OP_GetWordResultPos(_op, result, index, out x, out y);
+    /// <summary>
+    /// 在使用GetWords进行词组识别以后,可以用此接口进行识别各个词组的内容
+    /// </summary>
+    /// <param name="result"></param>
+    /// <param name="index"></param>
+    public string GetWordResultStr(string result, int index)
+    {
+        int _size = OP_GetWordResultStr(_op, result, index, _pStr, _nSize);
+        if (_size > 0)
+        {
+            if (_nSize > 0) Marshal.FreeHGlobal(_pStr);
+            _pStr = Marshal.AllocHGlobal(_nSize = _size);
+            OP_GetWordResultStr(_op, result, index, _pStr, _nSize);
+        }
+        string str = Marshal.PtrToStringUni(_pStr);
+        return str;
+    }
+    /// <summary>
+    /// 识别这个范围内所有满足条件的词组，这个识别函数不会用到字库. 只是识别大概形状的位置
+    /// </summary>
+    /// <param name="x1"></param>
+    /// <param name="y1"></param>
+    /// <param name="x2"></param>
+    /// <param name="y2"></param>
+    /// <param name="color"></param>
+    public string GetWordsNoDict(int x1, int y1, int x2, int y2, string color)
+    {
+        int _size = OP_GetWordsNoDict(_op, x1, y1, x2, y2, color, _pStr, _nSize);
+        if (_size > 0)
+        {
+            if (_nSize > 0) Marshal.FreeHGlobal(_pStr);
+            _pStr = Marshal.AllocHGlobal(_nSize = _size);
+            OP_GetWordsNoDict(_op, x1, y1, x2, y2, color, _pStr, _nSize);
         }
         string str = Marshal.PtrToStringUni(_pStr);
         return str;
@@ -1143,6 +1210,10 @@ public partial class OpSoft: IDisposable, IComparable<OpSoft>
     /// <param name="millseconds"></param>
     public int Sleep(int millseconds) => OP_Sleep(_op, millseconds);
     /// <summary>
+    /// 
+    /// </summary>
+    public void Test() => OP_Test(_op);
+    /// <summary>
     /// 解绑窗口
     /// </summary>
     public int UnBindWindow() => OP_UnBindWindow(_op);
@@ -1322,6 +1393,9 @@ public partial class OpSoft: IDisposable, IComparable<OpSoft>
     private static extern int OP_GetColor(IntPtr _op, int x, int y, IntPtr _pStr, int _nSize);
 
     [DllImport(DLL_NAME, CharSet = CharSet.Unicode, CallingConvention = CallingConvention.Cdecl)]
+    private static extern int OP_GetColorNum(IntPtr _op, int x1, int y1, int x2, int y2, string color, double sim);
+
+    [DllImport(DLL_NAME, CharSet = CharSet.Unicode, CallingConvention = CallingConvention.Cdecl)]
     private static extern int OP_GetCursorPos(IntPtr _op, out int x, out int y);
 
     [DllImport(DLL_NAME, CharSet = CharSet.Unicode, CallingConvention = CallingConvention.Cdecl)]
@@ -1350,6 +1424,9 @@ public partial class OpSoft: IDisposable, IComparable<OpSoft>
 
     [DllImport(DLL_NAME, CharSet = CharSet.Unicode, CallingConvention = CallingConvention.Cdecl)]
     private static extern int OP_GetPath(IntPtr _op, IntPtr _pStr, int _nSize);
+
+    [DllImport(DLL_NAME, CharSet = CharSet.Unicode, CallingConvention = CallingConvention.Cdecl)]
+    private static extern int OP_GetPicSize(IntPtr _op, string pic_name, out int width, out int height);
 
     [DllImport(DLL_NAME, CharSet = CharSet.Unicode, CallingConvention = CallingConvention.Cdecl)]
     private static extern int OP_GetPointWindow(IntPtr _op, int x, int y);
@@ -1389,6 +1466,18 @@ public partial class OpSoft: IDisposable, IComparable<OpSoft>
 
     [DllImport(DLL_NAME, CharSet = CharSet.Unicode, CallingConvention = CallingConvention.Cdecl)]
     private static extern int OP_GetWindowTitle(IntPtr _op, int hwnd, IntPtr _pStr, int _nSize);
+
+    [DllImport(DLL_NAME, CharSet = CharSet.Unicode, CallingConvention = CallingConvention.Cdecl)]
+    private static extern int OP_GetWordResultCount(IntPtr _op, string result);
+
+    [DllImport(DLL_NAME, CharSet = CharSet.Unicode, CallingConvention = CallingConvention.Cdecl)]
+    private static extern int OP_GetWordResultPos(IntPtr _op, string result, int index, out int x, out int y);
+
+    [DllImport(DLL_NAME, CharSet = CharSet.Unicode, CallingConvention = CallingConvention.Cdecl)]
+    private static extern int OP_GetWordResultStr(IntPtr _op, string result, int index, IntPtr _pStr, int _nSize);
+
+    [DllImport(DLL_NAME, CharSet = CharSet.Unicode, CallingConvention = CallingConvention.Cdecl)]
+    private static extern int OP_GetWordsNoDict(IntPtr _op, int x1, int y1, int x2, int y2, string color, IntPtr _pStr, int _nSize);
 
     [DllImport(DLL_NAME, CharSet = CharSet.Unicode, CallingConvention = CallingConvention.Cdecl)]
     private static extern int OP_InjectDll(IntPtr _op, string process_name, string dll_name);
@@ -1548,6 +1637,9 @@ public partial class OpSoft: IDisposable, IComparable<OpSoft>
 
     [DllImport(DLL_NAME, CharSet = CharSet.Unicode, CallingConvention = CallingConvention.Cdecl)]
     private static extern int OP_Sleep(IntPtr _op, int millseconds);
+
+    [DllImport(DLL_NAME, CharSet = CharSet.Unicode, CallingConvention = CallingConvention.Cdecl)]
+    private static extern void OP_Test(IntPtr _op);
 
     [DllImport(DLL_NAME, CharSet = CharSet.Unicode, CallingConvention = CallingConvention.Cdecl)]
     private static extern int OP_UnBindWindow(IntPtr _op);

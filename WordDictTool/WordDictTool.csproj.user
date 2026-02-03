@@ -2,8 +2,11 @@
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup />
   <ItemGroup>
-    <Compile Update="MainForm.cs">
+    <Compile Update="From\MainForm.cs">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="From\GridControl.cs">
+      <SubType>UserControl</SubType>
     </Compile>
   </ItemGroup>
 </Project>
