@@ -49,7 +49,7 @@
             Btn_FindChar = new Button();
             Btn_Sort = new Button();
             textBox2 = new TextBox();
-            dataGridView1 = new DataGridView();
+            DataGridView_Color = new DataGridView();
             Pos = new DataGridViewTextBoxColumn();
             Color = new DataGridViewImageColumn();
             RGB = new DataGridViewTextBoxColumn();
@@ -65,15 +65,15 @@
             tableLayoutPanel1 = new TableLayoutPanel();
             groupBox6 = new GroupBox();
             groupBox9 = new GroupBox();
-            textBox1 = new TextBox();
-            checkBox2 = new CheckBox();
+            TextBox_Color = new TextBox();
+            CheckBox_Bk = new CheckBox();
             panel1 = new Panel();
             groupBox3 = new GroupBox();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)DataGridView_Color).BeginInit();
             groupBox5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
             tableLayoutPanel1.SuspendLayout();
@@ -286,20 +286,21 @@
             textBox2.Size = new Size(231, 23);
             textBox2.TabIndex = 15;
             // 
-            // dataGridView1
+            // DataGridView_Color
             // 
-            dataGridView1.AllowUserToAddRows = false;
-            dataGridView1.AllowUserToDeleteRows = false;
-            dataGridView1.AllowUserToResizeColumns = false;
-            dataGridView1.AllowUserToResizeRows = false;
-            dataGridView1.BackgroundColor = SystemColors.ButtonFace;
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { Pos, Color, RGB, HSV, Grayscale, OffColor, Check });
-            dataGridView1.Location = new Point(6, 20);
-            dataGridView1.Margin = new Padding(6);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.Size = new Size(347, 373);
-            dataGridView1.TabIndex = 0;
+            DataGridView_Color.AllowUserToAddRows = false;
+            DataGridView_Color.AllowUserToDeleteRows = false;
+            DataGridView_Color.AllowUserToResizeColumns = false;
+            DataGridView_Color.AllowUserToResizeRows = false;
+            DataGridView_Color.BackgroundColor = SystemColors.ButtonFace;
+            DataGridView_Color.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            DataGridView_Color.Columns.AddRange(new DataGridViewColumn[] { Pos, Color, RGB, HSV, Grayscale, OffColor, Check });
+            DataGridView_Color.Location = new Point(6, 20);
+            DataGridView_Color.Margin = new Padding(6);
+            DataGridView_Color.Name = "DataGridView_Color";
+            DataGridView_Color.RowHeadersVisible = false;
+            DataGridView_Color.Size = new Size(347, 373);
+            DataGridView_Color.TabIndex = 0;
             // 
             // Pos
             // 
@@ -437,9 +438,9 @@
             // 
             // groupBox9
             // 
-            groupBox9.Controls.Add(textBox1);
-            groupBox9.Controls.Add(checkBox2);
-            groupBox9.Controls.Add(dataGridView1);
+            groupBox9.Controls.Add(TextBox_Color);
+            groupBox9.Controls.Add(CheckBox_Bk);
+            groupBox9.Controls.Add(DataGridView_Color);
             groupBox9.Dock = DockStyle.Fill;
             groupBox9.Location = new Point(3, 149);
             groupBox9.Name = "groupBox9";
@@ -448,22 +449,26 @@
             groupBox9.TabStop = false;
             groupBox9.Text = "颜色信息";
             // 
-            // textBox1
+            // TextBox_Color
             // 
-            textBox1.Location = new Point(63, 402);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(290, 23);
-            textBox1.TabIndex = 16;
+            TextBox_Color.Location = new Point(63, 405);
+            TextBox_Color.Name = "TextBox_Color";
+            TextBox_Color.Size = new Size(290, 23);
+            TextBox_Color.TabIndex = 16;
+            TextBox_Color.Text = "@";
             // 
-            // checkBox2
+            // CheckBox_Bk
             // 
-            checkBox2.AutoSize = true;
-            checkBox2.Location = new Point(6, 407);
-            checkBox2.Name = "checkBox2";
-            checkBox2.Size = new Size(51, 21);
-            checkBox2.TabIndex = 8;
-            checkBox2.Text = "背景";
-            checkBox2.UseVisualStyleBackColor = true;
+            CheckBox_Bk.AutoSize = true;
+            CheckBox_Bk.Checked = true;
+            CheckBox_Bk.CheckState = CheckState.Checked;
+            CheckBox_Bk.Location = new Point(6, 407);
+            CheckBox_Bk.Name = "CheckBox_Bk";
+            CheckBox_Bk.Size = new Size(51, 21);
+            CheckBox_Bk.TabIndex = 8;
+            CheckBox_Bk.Text = "背景";
+            CheckBox_Bk.UseVisualStyleBackColor = true;
+            CheckBox_Bk.CheckedChanged += CheckBox_Bk_CheckedChanged;
             // 
             // panel1
             // 
@@ -501,7 +506,7 @@
             groupBox2.ResumeLayout(false);
             groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)DataGridView_Color).EndInit();
             groupBox5.ResumeLayout(false);
             groupBox5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();
@@ -536,7 +541,7 @@
         private Button Btn_FindChar;
         private Button Btn_Sort;
         private TextBox textBox2;
-        private DataGridView dataGridView1;
+        private DataGridView DataGridView_Color;
         private GroupBox groupBox5;
         private DataGridViewTextBoxColumn Pos;
         private DataGridViewImageColumn Color;
@@ -553,8 +558,8 @@
         private GroupBox groupBox3;
         private CheckBox CheckBox_Whole;
         private Button Btn_Extract;
-        private TextBox textBox1;
-        private CheckBox checkBox2;
+        private TextBox TextBox_Color;
+        private CheckBox CheckBox_Bk;
         private TextBox textBox3;
         private NumericUpDown numericUpDown1;
         private Label label2;
