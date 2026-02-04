@@ -1,7 +1,4 @@
-﻿using System.Drawing.Drawing2D;
-using static System.Runtime.InteropServices.JavaScript.JSType;
-
-namespace WordDictTool
+﻿namespace WordDictTool
 {
     public partial class GridControl : UserControl
     {
@@ -10,7 +7,7 @@ namespace WordDictTool
         const int offsetx = 0;
         const int max_height = 255;
 
-        WrodData data = null;
+        WordData data = null;
 
         Point p = new Point(2, 2);
         public GridControl()
@@ -66,7 +63,7 @@ namespace WordDictTool
 
         public void RefreshData(string wordCode)
         {
-            data = new WrodData(wordCode, false);
+            data = new WordData(wordCode, false);
             this.Refresh();
         }
     }

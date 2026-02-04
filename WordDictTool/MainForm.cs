@@ -1,7 +1,4 @@
-﻿using System.Drawing.Imaging;
-using System.Runtime.InteropServices;
-
-namespace WordDictTool
+﻿namespace WordDictTool
 {
     public partial class MainForm : Form
     {
@@ -15,8 +12,10 @@ namespace WordDictTool
         private void MainForm_Load(object sender, EventArgs e)
         {
             _opSoft.SetShowErrorMsg(0);
+#if DEBUG
             string file = $"C:\\无标题.bmp";
             LoadImage(file);
+#endif
         }
 
         private void Btn_CreateOrNewDict_Click(object sender, EventArgs e)
@@ -99,42 +98,7 @@ namespace WordDictTool
             _opSoft.SetDisplayInput($"pic:{file}");
             _opSoft.GetPicSize(file, out var width, out var height);
             pictureBox1.Image = _opSoft.GetScreenDataBmp(0, 0, width, height);
-            pictureBox2.Image = GrayImage(pictureBox1.Image);
-        }
-        private Image GrayImage(Image orgImage)
-        {
-            Bitmap bitmap = new Bitmap(orgImage);
-            BitmapData bitmapData = bitmap.LockBits(new Rectangle(0, 0, bitmap.Width, bitmap.Height), ImageLockMode.ReadWrite, PixelFormat.Format32bppArgb);
-            unsafe
-            {
-                int bytesPerPixel = Image.GetPixelFormatSize(bitmapData.PixelFormat) / 8;
-                int height = bitmap.Height;
-                int width = bitmap.Width;
-                int stride = bitmapData.Stride;
-                var scan = (byte*)bitmapData.Scan0;
-                int bytes = Math.Abs(bitmapData.Stride) * bitmap.Height;
-                byte[] rgbValues = new byte[bytes];
-                Marshal.Copy(new IntPtr(scan), rgbValues, 0, bytes);
-                for (int y = 0; y < height; y++)
-                {
-                    for (int x = 0; x < width; x++)
-                    {
-                        int i = y * width * bytesPerPixel + x * bytesPerPixel;
-                        fixed (byte* pData = &rgbValues[i])
-                        {
-                            byte a = rgbValues[i]; // Alpha (透明度)
-                            byte r = rgbValues[i + 1]; // Red (红色)
-                            byte g = rgbValues[i + 2]; // Green (绿色)
-                            byte b = rgbValues[i + 3]; // Blue (蓝色)
-                            *(int *)pData = (g * 299 + r * 587 + a * 114 + 500) / 1000;
-                        }
-                    }
-                }
-                //TODO
-                Marshal.Copy(rgbValues, 0, new IntPtr(scan), bytes);
-            }
-            bitmap.UnlockBits(bitmapData);
-            return bitmap;
+            pictureBox2.Image = GrayHelper.GrayImage(pictureBox1.Image, "@");
         }
     }
 }
