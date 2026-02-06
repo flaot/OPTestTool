@@ -28,6 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
             ListBox_Dict = new ListBox();
             groupBox1 = new GroupBox();
             button4 = new Button();
@@ -44,26 +48,23 @@
             label1 = new Label();
             Txt_DictFile = new TextBox();
             Txt_DictTip = new Label();
-            CheckBox_AutoSaveDict = new CheckBox();
-            Btn_DelAllChar = new Button();
             Btn_FindChar = new Button();
-            Btn_Sort = new Button();
-            textBox2 = new TextBox();
+            TextBox_FindWord = new TextBox();
             DataGridView_Color = new DataGridView();
-            Pos = new DataGridViewTextBoxColumn();
-            Color = new DataGridViewImageColumn();
-            RGB = new DataGridViewTextBoxColumn();
-            HSV = new DataGridViewTextBoxColumn();
-            Grayscale = new DataGridViewTextBoxColumn();
-            OffColor = new DataGridViewTextBoxColumn();
-            Check = new DataGridViewCheckBoxColumn();
+            vPos = new DataGridViewTextBoxColumn();
+            vColor = new DataGridViewButtonColumn();
+            vRGB = new DataGridViewTextBoxColumn();
+            vOffColor = new DataGridViewTextBoxColumn();
+            vCheck = new DataGridViewCheckBoxColumn();
             Grid_ShowWord = new GridControl();
             groupBox5 = new GroupBox();
-            textBox3 = new TextBox();
-            numericUpDown1 = new NumericUpDown();
+            Txt_FindSim = new TextBox();
+            TextBox_Ocr = new TextBox();
             label2 = new Label();
             tableLayoutPanel1 = new TableLayoutPanel();
             groupBox6 = new GroupBox();
+            label3 = new Label();
+            TextBox_DefWord = new TextBox();
             groupBox9 = new GroupBox();
             TextBox_Color = new TextBox();
             CheckBox_Bk = new CheckBox();
@@ -75,7 +76,6 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)DataGridView_Color).BeginInit();
             groupBox5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
             tableLayoutPanel1.SuspendLayout();
             groupBox6.SuspendLayout();
             groupBox9.SuspendLayout();
@@ -85,11 +85,12 @@
             // 
             // ListBox_Dict
             // 
+            ListBox_Dict.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             ListBox_Dict.FormattingEnabled = true;
             ListBox_Dict.ItemHeight = 17;
-            ListBox_Dict.Location = new Point(11, 147);
+            ListBox_Dict.Location = new Point(6, 96);
             ListBox_Dict.Name = "ListBox_Dict";
-            ListBox_Dict.Size = new Size(341, 361);
+            ListBox_Dict.Size = new Size(212, 412);
             ListBox_Dict.TabIndex = 0;
             ListBox_Dict.SelectedIndexChanged += ListBox_Dict_SelectedIndexChanged;
             // 
@@ -103,7 +104,7 @@
             groupBox1.Dock = DockStyle.Fill;
             groupBox1.Location = new Point(3, 3);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(359, 140);
+            groupBox1.Size = new Size(354, 140);
             groupBox1.TabIndex = 1;
             groupBox1.TabStop = false;
             groupBox1.Text = "原图";
@@ -134,6 +135,7 @@
             Btn_SaveImage.TabIndex = 3;
             Btn_SaveImage.Text = "保存";
             Btn_SaveImage.UseVisualStyleBackColor = true;
+            Btn_SaveImage.Click += Btn_SaveImage_Click;
             // 
             // Btn_LoadImage
             // 
@@ -160,9 +162,9 @@
             groupBox2.Controls.Add(Btn_Extract);
             groupBox2.Controls.Add(pictureBox2);
             groupBox2.Dock = DockStyle.Fill;
-            groupBox2.Location = new Point(368, 3);
+            groupBox2.Location = new Point(363, 3);
             groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(360, 140);
+            groupBox2.Size = new Size(502, 140);
             groupBox2.TabIndex = 6;
             groupBox2.TabStop = false;
             groupBox2.Text = "二值化";
@@ -198,19 +200,19 @@
             // 
             // Btn_CreateOrNewDict
             // 
-            Btn_CreateOrNewDict.Location = new Point(11, 21);
+            Btn_CreateOrNewDict.Location = new Point(10, 19);
             Btn_CreateOrNewDict.Name = "Btn_CreateOrNewDict";
-            Btn_CreateOrNewDict.Size = new Size(104, 37);
+            Btn_CreateOrNewDict.Size = new Size(100, 30);
             Btn_CreateOrNewDict.TabIndex = 2;
-            Btn_CreateOrNewDict.Text = "打开或新键字库";
+            Btn_CreateOrNewDict.Text = "打开字库";
             Btn_CreateOrNewDict.UseVisualStyleBackColor = true;
             Btn_CreateOrNewDict.Click += Btn_CreateOrNewDict_Click;
             // 
             // Btn_EditDict
             // 
-            Btn_EditDict.Location = new Point(248, 23);
+            Btn_EditDict.Location = new Point(116, 19);
             Btn_EditDict.Name = "Btn_EditDict";
-            Btn_EditDict.Size = new Size(104, 37);
+            Btn_EditDict.Size = new Size(100, 30);
             Btn_EditDict.TabIndex = 7;
             Btn_EditDict.Text = "编辑字库";
             Btn_EditDict.UseVisualStyleBackColor = true;
@@ -219,7 +221,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(11, 69);
+            label1.Location = new Point(11, 55);
             label1.Name = "label1";
             label1.Size = new Size(59, 17);
             label1.TabIndex = 8;
@@ -227,64 +229,43 @@
             // 
             // Txt_DictFile
             // 
-            Txt_DictFile.Location = new Point(76, 66);
+            Txt_DictFile.Location = new Point(76, 52);
             Txt_DictFile.Name = "Txt_DictFile";
-            Txt_DictFile.Size = new Size(276, 23);
+            Txt_DictFile.ReadOnly = true;
+            Txt_DictFile.Size = new Size(139, 23);
             Txt_DictFile.TabIndex = 9;
+            Txt_DictFile.TextChanged += Txt_DictFile_TextChanged;
             // 
             // Txt_DictTip
             // 
             Txt_DictTip.AutoSize = true;
-            Txt_DictTip.Location = new Point(11, 97);
+            Txt_DictTip.Font = new Font("Microsoft YaHei UI", 7.5F, FontStyle.Regular, GraphicsUnit.Point, 134);
+            Txt_DictTip.ForeColor = SystemColors.ControlDarkDark;
+            Txt_DictTip.Location = new Point(11, 76);
             Txt_DictTip.Name = "Txt_DictTip";
-            Txt_DictTip.Size = new Size(191, 17);
+            Txt_DictTip.Size = new Size(160, 16);
             Txt_DictTip.TabIndex = 10;
-            Txt_DictTip.Tag = "识别到的图形数量:{0},字库数量:{1}";
-            Txt_DictTip.Text = "识别到的图形数量:{0},字库数量:{1}";
-            // 
-            // CheckBox_AutoSaveDict
-            // 
-            CheckBox_AutoSaveDict.AutoSize = true;
-            CheckBox_AutoSaveDict.Location = new Point(248, 120);
-            CheckBox_AutoSaveDict.Name = "CheckBox_AutoSaveDict";
-            CheckBox_AutoSaveDict.Size = new Size(99, 21);
-            CheckBox_AutoSaveDict.TabIndex = 11;
-            CheckBox_AutoSaveDict.Text = "自动保存字库";
-            CheckBox_AutoSaveDict.UseVisualStyleBackColor = true;
-            // 
-            // Btn_DelAllChar
-            // 
-            Btn_DelAllChar.Location = new Point(210, 547);
-            Btn_DelAllChar.Name = "Btn_DelAllChar";
-            Btn_DelAllChar.Size = new Size(92, 31);
-            Btn_DelAllChar.TabIndex = 12;
-            Btn_DelAllChar.Text = "批量删除";
-            Btn_DelAllChar.UseVisualStyleBackColor = true;
+            Txt_DictTip.Tag = "识别到的图形数量:{0}, 字库数量:{1}";
+            Txt_DictTip.Text = "识别到的图形数量:{0}, 字库数量:{1}";
             // 
             // Btn_FindChar
             // 
-            Btn_FindChar.Location = new Point(248, 512);
+            Btn_FindChar.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            Btn_FindChar.Location = new Point(11, 541);
             Btn_FindChar.Name = "Btn_FindChar";
-            Btn_FindChar.Size = new Size(104, 31);
+            Btn_FindChar.Size = new Size(80, 30);
             Btn_FindChar.TabIndex = 13;
             Btn_FindChar.Text = "查找";
             Btn_FindChar.UseVisualStyleBackColor = true;
+            Btn_FindChar.Click += Btn_FindChar_Click;
             // 
-            // Btn_Sort
+            // TextBox_FindWord
             // 
-            Btn_Sort.Location = new Point(76, 548);
-            Btn_Sort.Name = "Btn_Sort";
-            Btn_Sort.Size = new Size(92, 31);
-            Btn_Sort.TabIndex = 14;
-            Btn_Sort.Text = "排序";
-            Btn_Sort.UseVisualStyleBackColor = true;
-            // 
-            // textBox2
-            // 
-            textBox2.Location = new Point(11, 520);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(231, 23);
-            textBox2.TabIndex = 15;
+            TextBox_FindWord.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            TextBox_FindWord.Location = new Point(102, 545);
+            TextBox_FindWord.Name = "TextBox_FindWord";
+            TextBox_FindWord.Size = new Size(113, 23);
+            TextBox_FindWord.TabIndex = 15;
             // 
             // DataGridView_Color
             // 
@@ -292,9 +273,18 @@
             DataGridView_Color.AllowUserToDeleteRows = false;
             DataGridView_Color.AllowUserToResizeColumns = false;
             DataGridView_Color.AllowUserToResizeRows = false;
+            DataGridView_Color.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             DataGridView_Color.BackgroundColor = SystemColors.ButtonFace;
+            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = SystemColors.Control;
+            dataGridViewCellStyle5.Font = new Font("Microsoft YaHei UI", 9F);
+            dataGridViewCellStyle5.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.True;
+            DataGridView_Color.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             DataGridView_Color.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            DataGridView_Color.Columns.AddRange(new DataGridViewColumn[] { Pos, Color, RGB, HSV, Grayscale, OffColor, Check });
+            DataGridView_Color.Columns.AddRange(new DataGridViewColumn[] { vPos, vColor, vRGB, vOffColor, vCheck });
             DataGridView_Color.Location = new Point(6, 20);
             DataGridView_Color.Margin = new Padding(6);
             DataGridView_Color.Name = "DataGridView_Color";
@@ -302,47 +292,42 @@
             DataGridView_Color.Size = new Size(347, 373);
             DataGridView_Color.TabIndex = 0;
             // 
-            // Pos
+            // vPos
             // 
-            Pos.HeaderText = "坐标";
-            Pos.Name = "Pos";
-            Pos.Width = 55;
+            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            vPos.DefaultCellStyle = dataGridViewCellStyle6;
+            vPos.HeaderText = "";
+            vPos.Name = "vPos";
+            vPos.ReadOnly = true;
+            vPos.Width = 30;
             // 
-            // Color
+            // vColor
             // 
-            Color.HeaderText = "";
-            Color.Name = "Color";
-            Color.Width = 20;
+            vColor.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            vColor.HeaderText = "颜色";
+            vColor.Name = "vColor";
             // 
-            // RGB
+            // vRGB
             // 
-            RGB.HeaderText = "RGB";
-            RGB.Name = "RGB";
-            RGB.Width = 55;
+            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            vRGB.DefaultCellStyle = dataGridViewCellStyle7;
+            vRGB.HeaderText = "RGB";
+            vRGB.Name = "vRGB";
+            vRGB.Width = 60;
             // 
-            // HSV
+            // vOffColor
             // 
-            HSV.HeaderText = "HSV";
-            HSV.Name = "HSV";
-            HSV.Width = 55;
+            dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            vOffColor.DefaultCellStyle = dataGridViewCellStyle8;
+            vOffColor.HeaderText = "偏色";
+            vOffColor.Name = "vOffColor";
+            vOffColor.Width = 60;
             // 
-            // Grayscale
+            // vCheck
             // 
-            Grayscale.HeaderText = "灰度";
-            Grayscale.Name = "Grayscale";
-            Grayscale.Width = 55;
-            // 
-            // OffColor
-            // 
-            OffColor.HeaderText = "偏色";
-            OffColor.Name = "OffColor";
-            OffColor.Width = 55;
-            // 
-            // Check
-            // 
-            Check.HeaderText = "";
-            Check.Name = "Check";
-            Check.Width = 20;
+            vCheck.HeaderText = "";
+            vCheck.Name = "vCheck";
+            vCheck.Width = 20;
             // 
             // Grid_ShowWord
             // 
@@ -350,40 +335,41 @@
             Grid_ShowWord.Dock = DockStyle.Fill;
             Grid_ShowWord.Location = new Point(3, 19);
             Grid_ShowWord.Name = "Grid_ShowWord";
-            Grid_ShowWord.Size = new Size(348, 302);
+            Grid_ShowWord.Size = new Size(490, 302);
             Grid_ShowWord.TabIndex = 19;
             // 
             // groupBox5
             // 
             groupBox5.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            groupBox5.Controls.Add(textBox3);
-            groupBox5.Controls.Add(numericUpDown1);
+            groupBox5.Controls.Add(Txt_FindSim);
+            groupBox5.Controls.Add(TextBox_Ocr);
             groupBox5.Controls.Add(label2);
             groupBox5.Location = new Point(6, 334);
             groupBox5.Name = "groupBox5";
             groupBox5.Padding = new Padding(6);
-            groupBox5.Size = new Size(354, 100);
+            groupBox5.Size = new Size(496, 100);
             groupBox5.TabIndex = 18;
             groupBox5.TabStop = false;
             groupBox5.Text = "Ocr测试";
             // 
-            // textBox3
+            // Txt_FindSim
             // 
-            textBox3.Location = new Point(97, 22);
-            textBox3.Multiline = true;
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(248, 66);
-            textBox3.TabIndex = 2;
+            Txt_FindSim.Location = new Point(37, 46);
+            Txt_FindSim.Name = "Txt_FindSim";
+            Txt_FindSim.Size = new Size(54, 23);
+            Txt_FindSim.TabIndex = 34;
+            Txt_FindSim.Text = "0.8";
+            Txt_FindSim.TextChanged += TextBoxFloatBar_TextChanged;
+            Txt_FindSim.KeyPress += TextBoxFloatBar_KeyPress;
             // 
-            // numericUpDown1
+            // TextBox_Ocr
             // 
-            numericUpDown1.Increment = new decimal(new int[] { 1, 0, 0, 65536 });
-            numericUpDown1.Location = new Point(43, 49);
-            numericUpDown1.Maximum = new decimal(new int[] { 1, 0, 0, 0 });
-            numericUpDown1.Name = "numericUpDown1";
-            numericUpDown1.Size = new Size(48, 23);
-            numericUpDown1.TabIndex = 1;
-            numericUpDown1.Value = new decimal(new int[] { 90, 0, 0, 131072 });
+            TextBox_Ocr.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            TextBox_Ocr.Location = new Point(97, 22);
+            TextBox_Ocr.Multiline = true;
+            TextBox_Ocr.Name = "TextBox_Ocr";
+            TextBox_Ocr.Size = new Size(390, 66);
+            TextBox_Ocr.TabIndex = 2;
             // 
             // label2
             // 
@@ -397,9 +383,9 @@
             // tableLayoutPanel1
             // 
             tableLayoutPanel1.ColumnCount = 3;
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 365F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 49.9999962F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50.0000076F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 360F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 230F));
             tableLayoutPanel1.Controls.Add(groupBox1, 0, 0);
             tableLayoutPanel1.Controls.Add(groupBox6, 2, 0);
             tableLayoutPanel1.Controls.Add(groupBox9, 0, 1);
@@ -416,25 +402,43 @@
             // 
             // groupBox6
             // 
+            groupBox6.Controls.Add(label3);
+            groupBox6.Controls.Add(TextBox_DefWord);
             groupBox6.Controls.Add(Btn_CreateOrNewDict);
-            groupBox6.Controls.Add(textBox2);
+            groupBox6.Controls.Add(TextBox_FindWord);
             groupBox6.Controls.Add(ListBox_Dict);
-            groupBox6.Controls.Add(Btn_Sort);
             groupBox6.Controls.Add(Btn_EditDict);
             groupBox6.Controls.Add(Btn_FindChar);
             groupBox6.Controls.Add(label1);
-            groupBox6.Controls.Add(Btn_DelAllChar);
             groupBox6.Controls.Add(Txt_DictFile);
-            groupBox6.Controls.Add(CheckBox_AutoSaveDict);
             groupBox6.Controls.Add(Txt_DictTip);
             groupBox6.Dock = DockStyle.Fill;
-            groupBox6.Location = new Point(734, 3);
+            groupBox6.Location = new Point(871, 3);
             groupBox6.Name = "groupBox6";
             tableLayoutPanel1.SetRowSpan(groupBox6, 2);
-            groupBox6.Size = new Size(361, 580);
+            groupBox6.Size = new Size(224, 580);
             groupBox6.TabIndex = 0;
             groupBox6.TabStop = false;
             groupBox6.Text = "字库";
+            // 
+            // label3
+            // 
+            label3.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            label3.AutoSize = true;
+            label3.Location = new Point(10, 517);
+            label3.Name = "label3";
+            label3.Size = new Size(160, 17);
+            label3.TabIndex = 17;
+            label3.Text = "定义文字(回车添加到字库)：";
+            // 
+            // TextBox_DefWord
+            // 
+            TextBox_DefWord.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            TextBox_DefWord.Location = new Point(176, 514);
+            TextBox_DefWord.Name = "TextBox_DefWord";
+            TextBox_DefWord.Size = new Size(41, 23);
+            TextBox_DefWord.TabIndex = 16;
+            TextBox_DefWord.KeyPress += TextBox_DefWord_KeyPress;
             // 
             // groupBox9
             // 
@@ -444,21 +448,24 @@
             groupBox9.Dock = DockStyle.Fill;
             groupBox9.Location = new Point(3, 149);
             groupBox9.Name = "groupBox9";
-            groupBox9.Size = new Size(359, 434);
+            groupBox9.Size = new Size(354, 434);
             groupBox9.TabIndex = 3;
             groupBox9.TabStop = false;
             groupBox9.Text = "颜色信息";
             // 
             // TextBox_Color
             // 
+            TextBox_Color.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             TextBox_Color.Location = new Point(63, 405);
             TextBox_Color.Name = "TextBox_Color";
+            TextBox_Color.ReadOnly = true;
             TextBox_Color.Size = new Size(290, 23);
             TextBox_Color.TabIndex = 16;
             TextBox_Color.Text = "@";
             // 
             // CheckBox_Bk
             // 
+            CheckBox_Bk.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             CheckBox_Bk.AutoSize = true;
             CheckBox_Bk.Checked = true;
             CheckBox_Bk.CheckState = CheckState.Checked;
@@ -475,10 +482,10 @@
             panel1.Controls.Add(groupBox3);
             panel1.Controls.Add(groupBox5);
             panel1.Dock = DockStyle.Fill;
-            panel1.Location = new Point(365, 146);
+            panel1.Location = new Point(360, 146);
             panel1.Margin = new Padding(0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(366, 440);
+            panel1.Size = new Size(508, 440);
             panel1.TabIndex = 4;
             // 
             // groupBox3
@@ -487,7 +494,7 @@
             groupBox3.Controls.Add(Grid_ShowWord);
             groupBox3.Location = new Point(6, 4);
             groupBox3.Name = "groupBox3";
-            groupBox3.Size = new Size(354, 324);
+            groupBox3.Size = new Size(496, 324);
             groupBox3.TabIndex = 4;
             groupBox3.TabStop = false;
             groupBox3.Text = "点阵";
@@ -500,6 +507,7 @@
             Controls.Add(tableLayoutPanel1);
             Name = "MainForm";
             Text = "字库制作工具";
+            FormClosing += MainForm_FormClosing;
             Load += MainForm_Load;
             groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
@@ -509,7 +517,6 @@
             ((System.ComponentModel.ISupportInitialize)DataGridView_Color).EndInit();
             groupBox5.ResumeLayout(false);
             groupBox5.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();
             tableLayoutPanel1.ResumeLayout(false);
             groupBox6.ResumeLayout(false);
             groupBox6.PerformLayout();
@@ -536,20 +543,10 @@
         private Label label1;
         private TextBox Txt_DictFile;
         private Label Txt_DictTip;
-        private CheckBox CheckBox_AutoSaveDict;
-        private Button Btn_DelAllChar;
         private Button Btn_FindChar;
-        private Button Btn_Sort;
-        private TextBox textBox2;
+        private TextBox TextBox_FindWord;
         private DataGridView DataGridView_Color;
         private GroupBox groupBox5;
-        private DataGridViewTextBoxColumn Pos;
-        private DataGridViewImageColumn Color;
-        private DataGridViewTextBoxColumn RGB;
-        private DataGridViewTextBoxColumn HSV;
-        private DataGridViewTextBoxColumn Grayscale;
-        private DataGridViewTextBoxColumn OffColor;
-        private DataGridViewCheckBoxColumn Check;
         private GridControl Grid_ShowWord;
         private TableLayoutPanel tableLayoutPanel1;
         private GroupBox groupBox6;
@@ -560,8 +557,15 @@
         private Button Btn_Extract;
         private TextBox TextBox_Color;
         private CheckBox CheckBox_Bk;
-        private TextBox textBox3;
-        private NumericUpDown numericUpDown1;
+        private TextBox TextBox_Ocr;
         private Label label2;
+        private TextBox TextBox_DefWord;
+        private Label label3;
+        private DataGridViewTextBoxColumn vPos;
+        private DataGridViewButtonColumn vColor;
+        private DataGridViewTextBoxColumn vRGB;
+        private DataGridViewTextBoxColumn vOffColor;
+        private DataGridViewCheckBoxColumn vCheck;
+        private TextBox Txt_FindSim;
     }
 }

@@ -1,3 +1,4 @@
+using Bluegrams.Application;
 using System.Text;
 
 namespace OPTestTool
@@ -10,6 +11,7 @@ namespace OPTestTool
         [STAThread]
         static void Main()
         {
+            PortableSettingsProvider.ApplyProvider(WordDictTool.Properties.Settings.Default);
             Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.

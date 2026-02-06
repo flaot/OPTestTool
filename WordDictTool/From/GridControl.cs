@@ -61,9 +61,9 @@
            
         }
 
-        public void RefreshData(string wordCode)
+        public void RefreshData(WordData wordData)
         {
-            data = new WordData(wordCode, false);
+            data = wordData;
             this.Refresh();
         }
     }

@@ -642,7 +642,7 @@ namespace OPTestTool
         {
             e.IsInputKey = true;
             Txt_KeyDown.Text = e.KeyValue.ToString();
-            Txt_KeyDownTip.Text = Utils.GetCharsFromKeys(e.KeyCode, e.Shift, e.Alt);
+            Txt_KeyDownTip.Text = GetCharsFromKeys(e.KeyCode, e.Shift, e.Alt);
         }
         private void Txt_KeyUp_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -652,7 +652,7 @@ namespace OPTestTool
         {
             e.IsInputKey = false;
             Txt_KeyUp.Text = e.KeyValue.ToString();
-            Txt_KeyUpTip.Text = Utils.GetCharsFromKeys(e.KeyCode, e.Shift, e.Alt);
+            Txt_KeyUpTip.Text = GetCharsFromKeys(e.KeyCode, e.Shift, e.Alt);
         }
         private void Txt_KeyPress_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -662,7 +662,7 @@ namespace OPTestTool
         {
             e.IsInputKey = false;
             Txt_KeyPress.Text = e.KeyValue.ToString();
-            Txt_KeyPressTip.Text = Utils.GetCharsFromKeys(e.KeyCode, e.Shift, e.Alt);
+            Txt_KeyPressTip.Text = GetCharsFromKeys(e.KeyCode, e.Shift, e.Alt);
         }
         #endregion
 
@@ -921,6 +921,20 @@ namespace OPTestTool
         private void TextBoxUInt_KeyPress(object sender, KeyPressEventArgs e) => Utils.TextBoxUInt_KeyPress(sender, e);
         private void TextBoxFloatBar_TextChanged(object sender, EventArgs e) => Utils.TextBoxFloatBar_TextChanged(sender, e);
         private void TextBoxFloatBar_KeyPress(object sender, KeyPressEventArgs e) => Utils.TextBoxFloatBar_KeyPress(sender, e);
+        public static string GetCharsFromKeys(Keys keys, bool shift, bool altGr)
+        {
+            var buf = new StringBuilder(256);
+            var keyboardState = new byte[256];
+            if (shift)
+                keyboardState[(int)Keys.ShiftKey] = 0xff;
+            if (altGr)
+            {
+                keyboardState[(int)Keys.ControlKey] = 0xff;
+                keyboardState[(int)Keys.Menu] = 0xff;
+            }
+            Win32.ToUnicode((uint)keys, 0, keyboardState, buf, 256, 0);
+            return buf.ToString();
+        }
         #endregion
 
         #region ²Ëµ¥À¸

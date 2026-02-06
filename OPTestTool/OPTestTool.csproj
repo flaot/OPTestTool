@@ -9,6 +9,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="PortableSettingsProvider" Version="0.2.5" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Common\Common.csproj" />
     <ProjectReference Include="..\WindowFinder\WindowFinder.csproj" />
     <ProjectReference Include="..\WordDictTool\WordDictTool.csproj" />

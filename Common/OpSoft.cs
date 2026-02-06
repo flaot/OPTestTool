@@ -595,6 +595,23 @@ public partial class OpSoft : IDisposable, IComparable<OpSoft>
     /// <param name="y"></param>
     public int GetCursorPos(out int x, out int y) => OP_GetCursorPos(_op, out x, out y);
     /// <summary>
+    /// 获取指定字库中指定条目的字库信息
+    /// </summary>
+    /// <param name="idx"></param>
+    /// <param name="font_index"></param>
+    public string GetDict(int idx, int font_index)
+    {
+        int _size = OP_GetDict(_op, idx, font_index, _pStr, _nSize);
+        if (_size > 0)
+        {
+            if (_nSize > 0) Marshal.FreeHGlobal(_pStr);
+            _pStr = Marshal.AllocHGlobal(_nSize = _size);
+            OP_GetDict(_op, idx, font_index, _pStr, _nSize);
+        }
+        string str = Marshal.PtrToStringUni(_pStr);
+        return str;
+    }
+    /// <summary>
     /// 获取指定的字库中的字符数量
     /// </summary>
     /// <param name="idx"></param>
@@ -1092,6 +1109,12 @@ public partial class OpSoft : IDisposable, IComparable<OpSoft>
     /// <param name="mode"></param>
     public int RunApp(string cmdline, int mode) => OP_RunApp(_op, cmdline, mode);
     /// <summary>
+    /// 保存指定的字库到指定的文件中
+    /// </summary>
+    /// <param name="idx"></param>
+    /// <param name="file_name"></param>
+    public int SaveDict(int idx, string file_name) => OP_SaveDict(_op, idx, file_name);
+    /// <summary>
     /// 把屏幕坐标转换为窗口坐标
     /// </summary>
     /// <param name="hwnd"></param>
@@ -1399,6 +1422,9 @@ public partial class OpSoft : IDisposable, IComparable<OpSoft>
     private static extern int OP_GetCursorPos(IntPtr _op, out int x, out int y);
 
     [DllImport(DLL_NAME, CharSet = CharSet.Unicode, CallingConvention = CallingConvention.Cdecl)]
+    private static extern int OP_GetDict(IntPtr _op, int idx, int font_index, IntPtr _pStr, int _nSize);
+
+    [DllImport(DLL_NAME, CharSet = CharSet.Unicode, CallingConvention = CallingConvention.Cdecl)]
     private static extern int OP_GetDictCount(IntPtr _op, int idx);
 
     [DllImport(DLL_NAME, CharSet = CharSet.Unicode, CallingConvention = CallingConvention.Cdecl)]
@@ -1577,6 +1603,9 @@ public partial class OpSoft : IDisposable, IComparable<OpSoft>
 
     [DllImport(DLL_NAME, CharSet = CharSet.Unicode, CallingConvention = CallingConvention.Cdecl)]
     private static extern int OP_RunApp(IntPtr _op, string cmdline, int mode);
+
+    [DllImport(DLL_NAME, CharSet = CharSet.Unicode, CallingConvention = CallingConvention.Cdecl)]
+    private static extern int OP_SaveDict(IntPtr _op, int idx, string file_name);
 
     [DllImport(DLL_NAME, CharSet = CharSet.Unicode, CallingConvention = CallingConvention.Cdecl)]
     private static extern int OP_ScreenToClient(IntPtr _op, int hwnd, ref int x, ref int y);

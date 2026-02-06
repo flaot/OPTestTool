@@ -1,38 +1,59 @@
-﻿
+﻿using System.Text;
+
 namespace WordDictTool
 {
+    /// <summary> 字特征结构 </summary>
     public class WordData
     {
-        public string name;
-        public readonly int w;
-        public readonly int h;
-        public readonly byte[] data;
-        public readonly int bitCnt;
-        public readonly string wordCode;
-        public bool addToDict;
-        public WordData(string wordCode, bool addToDict)
+        private string _name;
+        private int _w;
+        private int _h;
+        private byte[] _data;
+        private int _bitCnt;
+        private string _wordCode;
+
+        public string name => _name;
+        public int w => _w;
+        public int h => _h;
+        public byte[] data => _data;
+        public int bitCnt => _bitCnt;
+        public string wordCode => _wordCode;
+
+        public void SetChar(string ch)
         {
-            this.wordCode = wordCode;
-            this.addToDict = addToDict;
+            _name = ch;
+            _wordCode = UnPause();
+        }
+        public void Pause(string wordCode)
+        {
+            _wordCode = wordCode;
             var vstr = wordCode.Split('$');
             if (vstr.Length < 3)
                 return;
 
-            string name = vstr[0];
+            _name = vstr[0];
             string info = vstr[1];
             string dataStr = vstr[2];
             vstr = info.Split(',');
             if (vstr.Length < 3)
                 return;
 
-            int.TryParse(vstr[0], out h);
-            int.TryParse(vstr[1], out w);
-            int.TryParse(vstr[2], out bitCnt);
-            data = Hex2bin(dataStr);
+            int.TryParse(vstr[0], out _h);
+            int.TryParse(vstr[1], out _w);
+            int.TryParse(vstr[2], out _bitCnt);
+            _data = Hex2bin(dataStr);
+        }
+        private string UnPause()
+        {
+            string str = $"{name}${h},{w},{bitCnt}$";
+            StringBuilder sb = new StringBuilder(str, str.Length + data.Length * 2);
+            for (int i = 0; i < data.Length; i++)
+                sb.Append(data[i].ToString("X2"));
+            return sb.ToString();
         }
         public override string ToString()
         {
-            return wordCode;
+            return _wordCode;
         }
         public static byte[] Hex2bin(string hexString)
         {

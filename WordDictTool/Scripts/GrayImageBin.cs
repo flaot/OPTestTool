@@ -14,21 +14,48 @@ namespace WordDictTool
         public int width;
         public int height;
         public byte[] pixels;
-        public bool IsEmpty => width == 0;
-        public int Size => width * height;
+        private GrayImageBin() { }
+        public static Bitmap GrayImage(Image orgImage, string colorStr)
+        {
+            GrayImageBin binary = new GrayImageBin();
+            binary.Create(orgImage.Width, orgImage.Height);
+            if (Str2colordfs(colorStr, out var colors) == false)
+                binary.FromImageFK(orgImage, colors);
+            else
+                binary.FromImageBK(orgImage, colors);
+            return binary.GetImage();
+        }
         public void Create(int w, int h)
         {
             width = w;
             height = h;
             pixels = new byte[w * h];
         }
-        public void Clear()
+        private static bool Str2colordfs(string colorStr, out List<Color_Df> colors)
         {
-            width = height = 0;
-        }
-        public byte At(int y, int x)
-        {
-            return pixels[y * width + x];
+            colors = new List<Color_Df>();
+            bool ret = false;
+            if (string.IsNullOrEmpty(colorStr))
+            {   //default
+                return true;
+            }
+            if (colorStr[0] == '@')
+            { //bk color info
+                ret = true;
+            }
+            if (ret)
+                colorStr = colorStr.Substring(1);
+            string[] vstr = colorStr.Split('|', StringSplitOptions.RemoveEmptyEntries);
+            foreach (var it in vstr)
+            {
+                string[] vstr2 = it.Split('-', StringSplitOptions.RemoveEmptyEntries);
+                Color_Df cr = new Color_Df();
+                cr.color.Str2color(vstr2[0]);
+                if (vstr2.Length > 1)
+                    cr.df.Str2color(vstr2[1]);
+                colors.Add(cr);
+            }
+            return ret;
         }
         private void FromImageFK(Image img4, List<Color_Df> colors)
         {
@@ -41,11 +68,8 @@ namespace WordDictTool
                 for (int i = 0; i < pixels.Length; ++i)
                 {
                     var imIndex = i * bytesPerPixel;
-                    var b = pImage[imIndex];
-                    var g = pImage[imIndex + 1];
-                    var r = pImage[imIndex + 2];
-                    var a = pImage[imIndex + 3];
-                    pixels[i] = (byte)((r * 299 + g * 587 + b * 114 + 500) / 1000);
+                    Color_t* color = (Color_t*)&pImage[imIndex];
+                    pixels[i] = color->ToGray();
                 }
                 for (int i = 0; i < height; ++i)
                 {
@@ -53,14 +77,14 @@ namespace WordDictTool
                     Color_t* psrc = (Color_t*)&pImage[rowIndex];
                     for (int j = 0; j < width; ++j)
                     {
-                        byte g1 = psrc->toGray();
+                        byte g1 = psrc->ToGray();
                         int binIndex = i * width + j;
                         pixels[binIndex] = WORD_BKCOLOR;
                         for (int cIndex = 0; cIndex < colors.Count; cIndex++)
                         {
                             var it = colors[cIndex];
                             //对每个颜色描述
-                            if (Math.Abs(g1 - it.color.toGray()) <= it.df.toGray())
+                            if (Math.Abs(g1 - it.color.ToGray()) <= it.df.ToGray())
                             {
                                 pixels[binIndex] = WORD_COLOR;
                                 break;
@@ -86,11 +110,8 @@ namespace WordDictTool
                     for (int i = 0; i < pixels.Length; ++i)
                     {
                         var imIndex = i * bytesPerPixel;
-                        var b = pImage[imIndex];
-                        var g = pImage[imIndex + 1];
-                        var r = pImage[imIndex + 2];
-                        var a = pImage[imIndex + 3];
-                        grayTemp[i] = (byte)((r * 299 + g * 587 + b * 114 + 500) / 1000);
+                        Color_t* color = (Color_t*)&pImage[imIndex];
+                        grayTemp[i] = color->ToGray();
                     }
                     int bkcolor = GetBKColor(grayTemp);
                     for (int i = 0; i < width * height; ++i)
@@ -135,7 +156,7 @@ namespace WordDictTool
             }
             return m;
         }
-        public Image GetImage()
+        private Bitmap GetImage()
         {
             Bitmap bitmap = new Bitmap(width, height, PixelFormat.Format32bppArgb);
             BitmapData bitmapData = bitmap.LockBits(new Rectangle(0, 0, bitmap.Width, bitmap.Height), ImageLockMode.ReadWrite, PixelFormat.Format32bppArgb);
@@ -155,63 +176,28 @@ namespace WordDictTool
             bitmap.UnlockBits(bitmapData);
             return bitmap;
         }
-        public static Image GrayImage(Image orgImage, string colorStr)
-        {
-            GrayImageBin binary = new GrayImageBin();
-            binary.Create(orgImage.Width, orgImage.Height);
-            if (str2colordfs(colorStr, out var colors) == false)
-                binary.FromImageFK(orgImage, colors);
-            else
-                binary.FromImageBK(orgImage, colors);
-            return binary.GetImage();
-        }
-        private static bool str2colordfs(string colorStr, out List<Color_Df> colors)
-        {
-            colors = new List<Color_Df>();
-            bool ret = false;
-            if (string.IsNullOrEmpty(colorStr))
-            {   //default
-                return true;
-            }
-            if (colorStr[0] == '@')
-            { //bk color info
-                ret = true;
-            }
-            if (ret)
-                colorStr = colorStr.Substring(1);
-            string[] vstr = colorStr.Split('|', StringSplitOptions.RemoveEmptyEntries);
-            foreach (var it in vstr)
-            {
-                string[] vstr2 = it.Split('-', StringSplitOptions.RemoveEmptyEntries);
-                Color_Df cr = new Color_Df();
-                cr.color.str2color(vstr2[0]);
-                if (vstr2.Length > 1)
-                    cr.df.str2color(vstr2[1]);
-                colors.Add(cr);
-            }
-            return ret;
-        }
 
         [StructLayout(LayoutKind.Sequential, Pack = 1)]
-        public struct Color_t
+        private struct Color_t
         {
             public byte b;
             public byte g;
             public byte r;
             public byte a;
-            public void str2color(string s)
+            public void Str2color(string s)
             {
                 byte[] bytes = WordData.Hex2bin(s.ToUpper());
                 r = bytes[0];
                 g = bytes[1];
                 b = bytes[2];
             }
-            public byte toGray()
+            public byte ToGray()
             {
                 return (byte)((r * 299 + g * 587 + b * 114 + 500) / 1000);
             }
         }
-        public struct Color_Df
+        [StructLayout(LayoutKind.Sequential, Pack = 1)]
+        private struct Color_Df
         {
             public Color_t color;
             public Color_t df;
