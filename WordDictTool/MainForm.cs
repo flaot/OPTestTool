@@ -77,12 +77,23 @@ namespace WordDictTool
                 return;
             pictureBox1.Image.Save(dialog.FileName);
         }
+        private void Btn_Screenshot_Click(object sender, EventArgs e)
+        {
+            Bitmap bitmap = ScreenshotForm.ShowPanel();
+            if (bitmap != null)
+                LoadImage(bitmap);
+        }
         private void LoadImage(string file)
         {
             _opSoft.LoadPic(file);
             _opSoft.SetDisplayInput($"pic:{file}");
             _opSoft.GetPicSize(file, out var width, out var height);
             pictureBox1.Image = _opSoft.GetScreenDataBmp(0, 0, width, height);
+            pictureBox2.Image = GrayImageBin.GrayImage(pictureBox1.Image, TextBox_Color.Text);
+        }
+        private void LoadImage(Bitmap bitmap)
+        {
+            pictureBox1.Image = bitmap;
             pictureBox2.Image = GrayImageBin.GrayImage(pictureBox1.Image, TextBox_Color.Text);
         }
         #endregion

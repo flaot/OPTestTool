@@ -34,12 +34,13 @@
             DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             ListBox_Dict = new ListBox();
             groupBox1 = new GroupBox();
-            button4 = new Button();
+            Btn_Screenshot = new Button();
             Btn_EditImage = new Button();
             Btn_SaveImage = new Button();
             Btn_LoadImage = new Button();
             pictureBox1 = new PictureBox();
             groupBox2 = new GroupBox();
+            Btn_SaveBinImage = new Button();
             CheckBox_Whole = new CheckBox();
             Btn_Extract = new Button();
             pictureBox2 = new PictureBox();
@@ -71,7 +72,6 @@
             CheckBox_Bk = new CheckBox();
             panel1 = new Panel();
             groupBox3 = new GroupBox();
-            Btn_SaveBinImage = new Button();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             groupBox2.SuspendLayout();
@@ -98,7 +98,7 @@
             // 
             // groupBox1
             // 
-            groupBox1.Controls.Add(button4);
+            groupBox1.Controls.Add(Btn_Screenshot);
             groupBox1.Controls.Add(Btn_EditImage);
             groupBox1.Controls.Add(Btn_SaveImage);
             groupBox1.Controls.Add(Btn_LoadImage);
@@ -111,14 +111,15 @@
             groupBox1.TabStop = false;
             groupBox1.Text = "原图";
             // 
-            // button4
+            // Btn_Screenshot
             // 
-            button4.Location = new Point(278, 78);
-            button4.Name = "button4";
-            button4.Size = new Size(75, 23);
-            button4.TabIndex = 5;
-            button4.Text = "抓图";
-            button4.UseVisualStyleBackColor = true;
+            Btn_Screenshot.Location = new Point(278, 78);
+            Btn_Screenshot.Name = "Btn_Screenshot";
+            Btn_Screenshot.Size = new Size(75, 23);
+            Btn_Screenshot.TabIndex = 5;
+            Btn_Screenshot.Text = "抓图";
+            Btn_Screenshot.UseVisualStyleBackColor = true;
+            Btn_Screenshot.Click += Btn_Screenshot_Click;
             // 
             // Btn_EditImage
             // 
@@ -128,6 +129,7 @@
             Btn_EditImage.TabIndex = 4;
             Btn_EditImage.Text = "编辑";
             Btn_EditImage.UseVisualStyleBackColor = true;
+            Btn_EditImage.Visible = false;
             // 
             // Btn_SaveImage
             // 
@@ -171,6 +173,16 @@
             groupBox2.TabIndex = 6;
             groupBox2.TabStop = false;
             groupBox2.Text = "二值化";
+            // 
+            // Btn_SaveBinImage
+            // 
+            Btn_SaveBinImage.Location = new Point(273, 43);
+            Btn_SaveBinImage.Name = "Btn_SaveBinImage";
+            Btn_SaveBinImage.Size = new Size(75, 23);
+            Btn_SaveBinImage.TabIndex = 6;
+            Btn_SaveBinImage.Text = "保存";
+            Btn_SaveBinImage.UseVisualStyleBackColor = true;
+            Btn_SaveBinImage.Click += Btn_SaveBinImage_Click;
             // 
             // CheckBox_Whole
             // 
@@ -348,6 +360,7 @@
             // 
             // Btn_Ocr
             // 
+            Btn_Ocr.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             Btn_Ocr.Location = new Point(412, 65);
             Btn_Ocr.Name = "Btn_Ocr";
             Btn_Ocr.Size = new Size(75, 23);
@@ -358,6 +371,7 @@
             // 
             // Txt_FindSim
             // 
+            Txt_FindSim.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             Txt_FindSim.Location = new Point(433, 25);
             Txt_FindSim.Name = "Txt_FindSim";
             Txt_FindSim.Size = new Size(54, 23);
@@ -372,11 +386,13 @@
             TextBox_Ocr.Location = new Point(9, 22);
             TextBox_Ocr.Multiline = true;
             TextBox_Ocr.Name = "TextBox_Ocr";
+            TextBox_Ocr.ReadOnly = true;
             TextBox_Ocr.Size = new Size(390, 66);
             TextBox_Ocr.TabIndex = 2;
             // 
             // label2
             // 
+            label2.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             label2.AutoSize = true;
             label2.Location = new Point(405, 28);
             label2.Name = "label2";
@@ -513,16 +529,6 @@
             groupBox3.TabStop = false;
             groupBox3.Text = "点阵";
             // 
-            // Btn_SaveBinImage
-            // 
-            Btn_SaveBinImage.Location = new Point(273, 43);
-            Btn_SaveBinImage.Name = "Btn_SaveBinImage";
-            Btn_SaveBinImage.Size = new Size(75, 23);
-            Btn_SaveBinImage.TabIndex = 6;
-            Btn_SaveBinImage.Text = "保存";
-            Btn_SaveBinImage.UseVisualStyleBackColor = true;
-            Btn_SaveBinImage.Click += Btn_SaveBinImage_Click;
-            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 17F);
@@ -555,7 +561,7 @@
 
         private ListBox ListBox_Dict;
         private GroupBox groupBox1;
-        private Button button4;
+        private Button Btn_Screenshot;
         private Button Btn_EditImage;
         private Button Btn_SaveImage;
         private Button Btn_LoadImage;
