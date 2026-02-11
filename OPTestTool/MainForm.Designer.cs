@@ -191,6 +191,8 @@
             Btn_GenerateCode = new Button();
             splitContainer1 = new SplitContainer();
             MenuItemStrip = new MenuStrip();
+            工具ToolStripMenuItem = new ToolStripMenuItem();
+            MenuItem_WordDictTool = new ToolStripMenuItem();
             关于ToolStripMenuItem = new ToolStripMenuItem();
             相关链接ToolStripMenuItem = new ToolStripMenuItem();
             MenuItem_JumpOP = new ToolStripMenuItem();
@@ -205,8 +207,6 @@
             CheckBox_LogAutoScroll = new CheckBox();
             CheckBox_LogShowTime = new CheckBox();
             label1 = new Label();
-            工具ToolStripMenuItem = new ToolStripMenuItem();
-            MenuItem_WordDictTool = new ToolStripMenuItem();
             tabControl1.SuspendLayout();
             综合设置.SuspendLayout();
             groupBox2.SuspendLayout();
@@ -2077,6 +2077,20 @@
             MenuItemStrip.TabIndex = 1;
             MenuItemStrip.Text = "menuStrip1";
             // 
+            // 工具ToolStripMenuItem
+            // 
+            工具ToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { MenuItem_WordDictTool });
+            工具ToolStripMenuItem.Name = "工具ToolStripMenuItem";
+            工具ToolStripMenuItem.Size = new Size(44, 21);
+            工具ToolStripMenuItem.Text = "工具";
+            // 
+            // MenuItem_WordDictTool
+            // 
+            MenuItem_WordDictTool.Name = "MenuItem_WordDictTool";
+            MenuItem_WordDictTool.Size = new Size(124, 22);
+            MenuItem_WordDictTool.Text = "字库制作";
+            MenuItem_WordDictTool.Click += MenuItem_WordDictTool_Click;
+            // 
             // 关于ToolStripMenuItem
             // 
             关于ToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { 相关链接ToolStripMenuItem, MenuItem_CheckUpdate, toolStripMenuItem1, MenuItem_About });
@@ -2088,13 +2102,13 @@
             // 
             相关链接ToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { MenuItem_JumpOP, MenuItem_JumpOPDoc, toolStripMenuItem2, MenuItem_JumpOPExport });
             相关链接ToolStripMenuItem.Name = "相关链接ToolStripMenuItem";
-            相关链接ToolStripMenuItem.Size = new Size(180, 22);
+            相关链接ToolStripMenuItem.Size = new Size(124, 22);
             相关链接ToolStripMenuItem.Text = "相关链接";
             // 
             // MenuItem_JumpOP
             // 
             MenuItem_JumpOP.Name = "MenuItem_JumpOP";
-            MenuItem_JumpOP.Size = new Size(180, 22);
+            MenuItem_JumpOP.Size = new Size(141, 22);
             MenuItem_JumpOP.Tag = "https://github.com/WallBreaker2/op/releases";
             MenuItem_JumpOP.Text = "OP插件下载";
             MenuItem_JumpOP.Click += MenuItem_JumpLink_Click;
@@ -2102,7 +2116,7 @@
             // MenuItem_JumpOPDoc
             // 
             MenuItem_JumpOPDoc.Name = "MenuItem_JumpOPDoc";
-            MenuItem_JumpOPDoc.Size = new Size(180, 22);
+            MenuItem_JumpOPDoc.Size = new Size(141, 22);
             MenuItem_JumpOPDoc.Tag = "https://github.com/WallBreaker2/op/wiki";
             MenuItem_JumpOPDoc.Text = "OP在线文档";
             MenuItem_JumpOPDoc.Click += MenuItem_JumpLink_Click;
@@ -2110,12 +2124,12 @@
             // toolStripMenuItem2
             // 
             toolStripMenuItem2.Name = "toolStripMenuItem2";
-            toolStripMenuItem2.Size = new Size(177, 6);
+            toolStripMenuItem2.Size = new Size(138, 6);
             // 
             // MenuItem_JumpOPExport
             // 
             MenuItem_JumpOPExport.Name = "MenuItem_JumpOPExport";
-            MenuItem_JumpOPExport.Size = new Size(180, 22);
+            MenuItem_JumpOPExport.Size = new Size(141, 22);
             MenuItem_JumpOPExport.Tag = "https://github.com/flaot/OPExport";
             MenuItem_JumpOPExport.Text = "OPExport";
             MenuItem_JumpOPExport.Click += MenuItem_JumpLink_Click;
@@ -2123,7 +2137,7 @@
             // MenuItem_CheckUpdate
             // 
             MenuItem_CheckUpdate.Name = "MenuItem_CheckUpdate";
-            MenuItem_CheckUpdate.Size = new Size(180, 22);
+            MenuItem_CheckUpdate.Size = new Size(124, 22);
             MenuItem_CheckUpdate.Tag = "https://github.com/flaot/OPTestTool/releases/";
             MenuItem_CheckUpdate.Text = "检查更新";
             MenuItem_CheckUpdate.Click += MenuItem_JumpLink_Click;
@@ -2131,12 +2145,12 @@
             // toolStripMenuItem1
             // 
             toolStripMenuItem1.Name = "toolStripMenuItem1";
-            toolStripMenuItem1.Size = new Size(177, 6);
+            toolStripMenuItem1.Size = new Size(121, 6);
             // 
             // MenuItem_About
             // 
             MenuItem_About.Name = "MenuItem_About";
-            MenuItem_About.Size = new Size(180, 22);
+            MenuItem_About.Size = new Size(124, 22);
             MenuItem_About.Text = "关于";
             MenuItem_About.Click += MenuItem_About_Click;
             // 
@@ -2144,7 +2158,7 @@
             // 
             TxtBox_Log.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             TxtBox_Log.BackColor = Color.LightGray;
-            TxtBox_Log.Font = new Font("Microsoft YaHei UI", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            TxtBox_Log.Font = new Font("Microsoft YaHei UI", 8.25F);
             TxtBox_Log.Location = new Point(0, 35);
             TxtBox_Log.Name = "TxtBox_Log";
             TxtBox_Log.Size = new Size(330, 456);
@@ -2192,20 +2206,6 @@
             label1.Size = new Size(32, 17);
             label1.TabIndex = 0;
             label1.Text = "日志";
-            // 
-            // 工具ToolStripMenuItem
-            // 
-            工具ToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { MenuItem_WordDictTool });
-            工具ToolStripMenuItem.Name = "工具ToolStripMenuItem";
-            工具ToolStripMenuItem.Size = new Size(44, 21);
-            工具ToolStripMenuItem.Text = "工具";
-            // 
-            // MenuItem_WordDictTool
-            // 
-            MenuItem_WordDictTool.Name = "MenuItem_WordDictTool";
-            MenuItem_WordDictTool.Size = new Size(180, 22);
-            MenuItem_WordDictTool.Text = "字库制作";
-            MenuItem_WordDictTool.Click += MenuItem_WordDictTool_Click;
             // 
             // MainForm
             // 

@@ -2,6 +2,7 @@ using OPTestTool.Properties;
 using System.Collections.Concurrent;
 using System.Diagnostics;
 using System.Text;
+using System.Text.RegularExpressions;
 using WindowFinder;
 using Timer = System.Windows.Forms.Timer;
 
@@ -14,7 +15,6 @@ namespace OPTestTool
         private static bool _showLogTime;
         private OpSoft opSoft = new OpSoft();
         private GetScreenDataBmpForm _getScreenDataBmpForm;
-        private WordDictTool.MainForm _wordDictTool;
 
         public MainForm()
         {
@@ -24,8 +24,73 @@ namespace OPTestTool
         private void MainForm_Load(object sender, EventArgs e)
         {
             opSoft.SetShowErrorMsg(0);
-            ComboBox_MouseAction.SelectedIndex = 0;
-            ComboBox_CodeLang.SelectedIndex = 0;
+
+            //应用上次退出时的设置
+            var setting = Settings.Default;
+            //综合设置
+            CheckBox_ExcludeHide.Checked = setting.ExcludeHide;
+
+            //绑定参数
+            Txt_BindDisplayMode.Text = setting.BindDisplayMode;
+            Txt_BindMouseMode.Text = setting.BindMouseMode;
+            Txt_BindKeypadMode.Text = setting.BindKeypadMode;
+            Txt_BindMode.SelectedIndex = setting.BindModeIndex;
+            CheckBox_BindMoveWendow.Checked = setting.BindMoveWendow;
+            CheckBox_BindMessage.Checked = setting.BindMessage;
+
+            //测试图色
+            Txt_CaptureX1.Text = setting.CaptureX1;
+            Txt_CaptureY1.Text = setting.CaptureY1;
+            Txt_CaptureX2.Text = setting.CaptureX2;
+            Txt_CaptureY2.Text = setting.CaptureY2;
+            CheckBox_GetScreenDataBmp.Checked = setting.GetScreenDataBmp;
+            Txt_GetColorX.Text = setting.GetColorX;
+            Txt_GetColorY.Text = setting.GetColorY;
+            Txt_FindPicX1.Text = setting.FindPicX1;
+            Txt_FindPicY1.Text = setting.FindPicY1;
+            Txt_FindPicX2.Text = setting.FindPicX2;
+            Txt_FindPicY2.Text = setting.FindPicY2;
+            Txt_FindPicDelta.Text = setting.FindPicDelta;
+            Txt_FindPicDir.Text = setting.FindPicDir;
+            Txt_FindPicFile.Text = setting.FindPicFile;
+            Txt_FindPicSim.Text = setting.FindPicSim.ToString();
+
+            //测试鼠标
+            Txt_MoveToX.Text = setting.MoveToX;
+            Txt_MoveToY.Text = setting.MoveToY;
+            Txt_MoveRX.Text = setting.MoveRX;
+            Txt_MoveRY.Text = setting.MoveRY;
+            CheckBox_MoveAndSend.Checked = setting.MoveAndSend;
+            ComboBox_MouseAction.SelectedIndex = setting.MouseActionIndex;
+            CheckBox_MousePreActionWindow.Checked = setting.MousePreActionWindow;
+
+            //测试键盘
+            Txt_KeyDown.Text = setting.KeyDown;
+            Txt_KeyUp.Text = setting.KeyUp;
+            Txt_KeyPress.Text = setting.KeyPress;
+            Txt_KeyPressStr.Text = setting.KeyPressStr;
+            Txt_KeyPressStrDelay.Text = setting.KeyPressStrDelay.ToString();
+            CheckBox_KeyPreActive.Checked = setting.KeyPreActive;
+
+            //文本输入
+            Txt_SendText.Text = setting.SendText;
+            CheckBox_SendPreActive.Checked = setting.SendPreActive;
+
+            //内存汇编
+            Txt_ReadAddress.Text = setting.ReadAddress;
+            Txt_WriteAddress.Text = setting.WriteAddress;
+
+            //OPExport
+            ComboBox_CodeLang.SelectedIndex = setting.CodeLangIndex;
+            CheckBox_UseOutProject.Checked = setting.UseOutProject;
+            Txt_OPFolder.Text = setting.OPFolder;
+            CheckBox_AddWifiDoc.Checked = setting.AddWifiDoc;
+            CheckBox_OpenGenCodeFolder.Checked = setting.OpenGenCodeFolder;
+
+            //日志
+            CheckBox_LogShowTime.Checked = setting.LogShowTime;
+            CheckBox_LogAutoScroll.Checked = setting.LogAutoScroll;
+
             _timerTick = new Timer();
             _timerTick.Interval = 20;
             _timerTick.Tick += EventTimer_Tick;
@@ -34,6 +99,71 @@ namespace OPTestTool
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             _timerTick.Stop();
+            var setting = Settings.Default;
+            //综合设置
+            setting.ExcludeHide = CheckBox_ExcludeHide.Checked;
+
+            //绑定参数
+            setting.BindDisplayMode = Txt_BindDisplayMode.Text;
+            setting.BindMouseMode = Txt_BindMouseMode.Text;
+            setting.BindKeypadMode = Txt_BindKeypadMode.Text;
+            setting.BindModeIndex = Txt_BindMode.SelectedIndex;
+            setting.BindMoveWendow = CheckBox_BindMoveWendow.Checked;
+            setting.BindMessage = CheckBox_BindMessage.Checked;
+
+            //测试图色
+            setting.CaptureX1 = Txt_CaptureX1.Text;
+            setting.CaptureY1 = Txt_CaptureY1.Text;
+            setting.CaptureX2 = Txt_CaptureX2.Text;
+            setting.CaptureY2 = Txt_CaptureY2.Text;
+            setting.GetScreenDataBmp = CheckBox_GetScreenDataBmp.Checked;
+            setting.GetColorX = Txt_GetColorX.Text;
+            setting.GetColorY = Txt_GetColorY.Text;
+            setting.FindPicX1 = Txt_FindPicX1.Text;
+            setting.FindPicY1 = Txt_FindPicY1.Text;
+            setting.FindPicX2 = Txt_FindPicX2.Text;
+            setting.FindPicY2 = Txt_FindPicY2.Text;
+            setting.FindPicDelta = Txt_FindPicDelta.Text;
+            setting.FindPicDir = Txt_FindPicDir.Text;
+            setting.FindPicFile = Txt_FindPicFile.Text;
+            setting.FindPicSim = float.Parse(Txt_FindPicSim.Text);
+
+            //测试鼠标
+            setting.MoveToX = Txt_MoveToX.Text;
+            setting.MoveToY = Txt_MoveToY.Text;
+            setting.MoveRX = Txt_MoveRX.Text;
+            setting.MoveRY = Txt_MoveRY.Text;
+            setting.MouseActionIndex = ComboBox_MouseAction.SelectedIndex;
+            setting.MoveAndSend = CheckBox_MoveAndSend.Checked;
+            setting.MousePreActionWindow = CheckBox_MousePreActionWindow.Checked;
+
+            //测试键盘
+            setting.KeyDown = Txt_KeyDown.Text;
+            setting.KeyUp = Txt_KeyUp.Text;
+            setting.KeyPress = Txt_KeyPress.Text;
+            setting.KeyPressStr = Txt_KeyPressStr.Text;
+            setting.KeyPressStrDelay = int.Parse(Txt_KeyPressStrDelay.Text);
+            setting.KeyPreActive = CheckBox_KeyPreActive.Checked;
+
+            //文本输入
+            setting.SendText = Txt_SendText.Text;
+            setting.SendPreActive = CheckBox_SendPreActive.Checked;
+
+            //内存汇编
+            setting.ReadAddress = Txt_ReadAddress.Text;
+            setting.WriteAddress = Txt_WriteAddress.Text;
+
+            //OPExport
+            setting.CodeLangIndex = ComboBox_CodeLang.SelectedIndex;
+            setting.UseOutProject = CheckBox_UseOutProject.Checked;
+            setting.OPFolder = Txt_OPFolder.Text;
+            setting.AddWifiDoc = CheckBox_AddWifiDoc.Checked;
+            setting.OpenGenCodeFolder = CheckBox_OpenGenCodeFolder.Checked;
+
+            //日志
+            setting.LogShowTime = CheckBox_LogShowTime.Checked;
+            setting.LogAutoScroll = CheckBox_LogAutoScroll.Checked;
+            setting.Save();
         }
 
         #region 日志
@@ -940,12 +1070,7 @@ namespace OPTestTool
         #region 菜单栏
         private void MenuItem_WordDictTool_Click(object sender, EventArgs e)
         {
-            if (_wordDictTool == null)
-                _wordDictTool = new WordDictTool.MainForm();
-            if (_wordDictTool.Visible)
-                _wordDictTool.Focus();
-            else
-                _wordDictTool.Show();
+            WordDictTool.MainForm.ShowPanel();
         }
         private void MenuItem_JumpLink_Click(object sender, EventArgs e)
         {

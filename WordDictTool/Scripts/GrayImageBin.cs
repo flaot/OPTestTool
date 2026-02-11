@@ -190,6 +190,7 @@ namespace WordDictTool
                 r = bytes[0];
                 g = bytes[1];
                 b = bytes[2];
+                a = 0xFF;
             }
             public byte ToGray()
             {

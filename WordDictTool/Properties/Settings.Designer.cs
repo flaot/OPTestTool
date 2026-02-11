@@ -34,5 +34,41 @@ namespace WordDictTool.Properties {
                 this["Path"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string Colors {
+            get {
+                return ((string)(this["Colors"]));
+            }
+            set {
+                this["Colors"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool IsBK {
+            get {
+                return ((bool)(this["IsBK"]));
+            }
+            set {
+                this["IsBK"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0.8")]
+        public float Sim {
+            get {
+                return ((float)(this["Sim"]));
+            }
+            set {
+                this["Sim"] = value;
+            }
+        }
     }
 }

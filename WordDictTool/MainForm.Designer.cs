@@ -40,8 +40,8 @@
             Btn_LoadImage = new Button();
             pictureBox1 = new PictureBox();
             groupBox2 = new GroupBox();
+            Btn_ExtractWhole = new Button();
             Btn_SaveBinImage = new Button();
-            CheckBox_Whole = new CheckBox();
             Btn_Extract = new Button();
             pictureBox2 = new PictureBox();
             Btn_CreateOrNewDict = new Button();
@@ -93,7 +93,7 @@
             ListBox_Dict.Location = new Point(6, 96);
             ListBox_Dict.Name = "ListBox_Dict";
             ListBox_Dict.Size = new Size(212, 412);
-            ListBox_Dict.TabIndex = 0;
+            ListBox_Dict.TabIndex = 5;
             ListBox_Dict.SelectedIndexChanged += ListBox_Dict_SelectedIndexChanged;
             // 
             // groupBox1
@@ -107,7 +107,7 @@
             groupBox1.Location = new Point(3, 3);
             groupBox1.Name = "groupBox1";
             groupBox1.Size = new Size(354, 140);
-            groupBox1.TabIndex = 1;
+            groupBox1.TabIndex = 0;
             groupBox1.TabStop = false;
             groupBox1.Text = "原图";
             // 
@@ -116,7 +116,7 @@
             Btn_Screenshot.Location = new Point(278, 78);
             Btn_Screenshot.Name = "Btn_Screenshot";
             Btn_Screenshot.Size = new Size(75, 23);
-            Btn_Screenshot.TabIndex = 5;
+            Btn_Screenshot.TabIndex = 2;
             Btn_Screenshot.Text = "抓图";
             Btn_Screenshot.UseVisualStyleBackColor = true;
             Btn_Screenshot.Click += Btn_Screenshot_Click;
@@ -126,7 +126,7 @@
             Btn_EditImage.Location = new Point(278, 106);
             Btn_EditImage.Name = "Btn_EditImage";
             Btn_EditImage.Size = new Size(75, 23);
-            Btn_EditImage.TabIndex = 4;
+            Btn_EditImage.TabIndex = 3;
             Btn_EditImage.Text = "编辑";
             Btn_EditImage.UseVisualStyleBackColor = true;
             Btn_EditImage.Visible = false;
@@ -136,7 +136,7 @@
             Btn_SaveImage.Location = new Point(278, 49);
             Btn_SaveImage.Name = "Btn_SaveImage";
             Btn_SaveImage.Size = new Size(75, 23);
-            Btn_SaveImage.TabIndex = 3;
+            Btn_SaveImage.TabIndex = 1;
             Btn_SaveImage.Text = "保存";
             Btn_SaveImage.UseVisualStyleBackColor = true;
             Btn_SaveImage.Click += Btn_SaveImage_Click;
@@ -146,7 +146,7 @@
             Btn_LoadImage.Location = new Point(278, 19);
             Btn_LoadImage.Name = "Btn_LoadImage";
             Btn_LoadImage.Size = new Size(75, 23);
-            Btn_LoadImage.TabIndex = 2;
+            Btn_LoadImage.TabIndex = 0;
             Btn_LoadImage.Text = "加载";
             Btn_LoadImage.UseVisualStyleBackColor = true;
             Btn_LoadImage.Click += Btn_LoadImage_Click;
@@ -162,44 +162,44 @@
             // 
             // groupBox2
             // 
+            groupBox2.Controls.Add(Btn_ExtractWhole);
             groupBox2.Controls.Add(Btn_SaveBinImage);
-            groupBox2.Controls.Add(CheckBox_Whole);
             groupBox2.Controls.Add(Btn_Extract);
             groupBox2.Controls.Add(pictureBox2);
             groupBox2.Dock = DockStyle.Fill;
             groupBox2.Location = new Point(363, 3);
             groupBox2.Name = "groupBox2";
             groupBox2.Size = new Size(502, 140);
-            groupBox2.TabIndex = 6;
+            groupBox2.TabIndex = 1;
             groupBox2.TabStop = false;
             groupBox2.Text = "二值化";
+            // 
+            // Btn_ExtractWhole
+            // 
+            Btn_ExtractWhole.Location = new Point(273, 72);
+            Btn_ExtractWhole.Name = "Btn_ExtractWhole";
+            Btn_ExtractWhole.Size = new Size(75, 23);
+            Btn_ExtractWhole.TabIndex = 1;
+            Btn_ExtractWhole.Text = "整体提取";
+            Btn_ExtractWhole.UseVisualStyleBackColor = true;
+            Btn_ExtractWhole.Click += Btn_ExtractWhole_Click;
             // 
             // Btn_SaveBinImage
             // 
             Btn_SaveBinImage.Location = new Point(273, 43);
             Btn_SaveBinImage.Name = "Btn_SaveBinImage";
             Btn_SaveBinImage.Size = new Size(75, 23);
-            Btn_SaveBinImage.TabIndex = 6;
+            Btn_SaveBinImage.TabIndex = 0;
             Btn_SaveBinImage.Text = "保存";
             Btn_SaveBinImage.UseVisualStyleBackColor = true;
             Btn_SaveBinImage.Click += Btn_SaveBinImage_Click;
-            // 
-            // CheckBox_Whole
-            // 
-            CheckBox_Whole.AutoSize = true;
-            CheckBox_Whole.Location = new Point(273, 77);
-            CheckBox_Whole.Name = "CheckBox_Whole";
-            CheckBox_Whole.Size = new Size(75, 21);
-            CheckBox_Whole.TabIndex = 7;
-            CheckBox_Whole.Text = "整体提取";
-            CheckBox_Whole.UseVisualStyleBackColor = true;
             // 
             // Btn_Extract
             // 
             Btn_Extract.Location = new Point(273, 102);
             Btn_Extract.Name = "Btn_Extract";
             Btn_Extract.Size = new Size(75, 23);
-            Btn_Extract.TabIndex = 6;
+            Btn_Extract.TabIndex = 2;
             Btn_Extract.Text = "提取点阵";
             Btn_Extract.UseVisualStyleBackColor = true;
             Btn_Extract.Click += Btn_Extract_Click;
@@ -218,7 +218,7 @@
             Btn_CreateOrNewDict.Location = new Point(10, 19);
             Btn_CreateOrNewDict.Name = "Btn_CreateOrNewDict";
             Btn_CreateOrNewDict.Size = new Size(100, 30);
-            Btn_CreateOrNewDict.TabIndex = 2;
+            Btn_CreateOrNewDict.TabIndex = 0;
             Btn_CreateOrNewDict.Text = "打开字库";
             Btn_CreateOrNewDict.UseVisualStyleBackColor = true;
             Btn_CreateOrNewDict.Click += Btn_CreateOrNewDict_Click;
@@ -228,7 +228,7 @@
             Btn_EditDict.Location = new Point(116, 19);
             Btn_EditDict.Name = "Btn_EditDict";
             Btn_EditDict.Size = new Size(100, 30);
-            Btn_EditDict.TabIndex = 7;
+            Btn_EditDict.TabIndex = 1;
             Btn_EditDict.Text = "编辑字库";
             Btn_EditDict.UseVisualStyleBackColor = true;
             Btn_EditDict.Click += Btn_EditDict_Click;
@@ -239,7 +239,7 @@
             label1.Location = new Point(11, 55);
             label1.Name = "label1";
             label1.Size = new Size(59, 17);
-            label1.TabIndex = 8;
+            label1.TabIndex = 2;
             label1.Text = "字库文件:";
             // 
             // Txt_DictFile
@@ -248,7 +248,7 @@
             Txt_DictFile.Name = "Txt_DictFile";
             Txt_DictFile.ReadOnly = true;
             Txt_DictFile.Size = new Size(139, 23);
-            Txt_DictFile.TabIndex = 9;
+            Txt_DictFile.TabIndex = 3;
             Txt_DictFile.TextChanged += Txt_DictFile_TextChanged;
             // 
             // Txt_DictTip
@@ -259,7 +259,7 @@
             Txt_DictTip.Location = new Point(11, 76);
             Txt_DictTip.Name = "Txt_DictTip";
             Txt_DictTip.Size = new Size(160, 16);
-            Txt_DictTip.TabIndex = 10;
+            Txt_DictTip.TabIndex = 4;
             Txt_DictTip.Tag = "识别到的图形数量:{0}, 字库数量:{1}";
             Txt_DictTip.Text = "识别到的图形数量:{0}, 字库数量:{1}";
             // 
@@ -269,7 +269,7 @@
             TextBox_FindWord.Location = new Point(116, 545);
             TextBox_FindWord.Name = "TextBox_FindWord";
             TextBox_FindWord.Size = new Size(99, 23);
-            TextBox_FindWord.TabIndex = 15;
+            TextBox_FindWord.TabIndex = 9;
             TextBox_FindWord.KeyPress += TextBox_FindWord_KeyPress;
             // 
             // DataGridView_Color
@@ -341,7 +341,7 @@
             Grid_ShowWord.Location = new Point(3, 19);
             Grid_ShowWord.Name = "Grid_ShowWord";
             Grid_ShowWord.Size = new Size(490, 302);
-            Grid_ShowWord.TabIndex = 19;
+            Grid_ShowWord.TabIndex = 0;
             // 
             // groupBox5
             // 
@@ -354,7 +354,7 @@
             groupBox5.Name = "groupBox5";
             groupBox5.Padding = new Padding(6);
             groupBox5.Size = new Size(496, 100);
-            groupBox5.TabIndex = 18;
+            groupBox5.TabIndex = 1;
             groupBox5.TabStop = false;
             groupBox5.Text = "Ocr测试";
             // 
@@ -364,7 +364,7 @@
             Btn_Ocr.Location = new Point(412, 65);
             Btn_Ocr.Name = "Btn_Ocr";
             Btn_Ocr.Size = new Size(75, 23);
-            Btn_Ocr.TabIndex = 35;
+            Btn_Ocr.TabIndex = 3;
             Btn_Ocr.Text = "Ocr";
             Btn_Ocr.UseVisualStyleBackColor = true;
             Btn_Ocr.Click += Btn_Ocr_Click;
@@ -375,7 +375,7 @@
             Txt_FindSim.Location = new Point(433, 25);
             Txt_FindSim.Name = "Txt_FindSim";
             Txt_FindSim.Size = new Size(54, 23);
-            Txt_FindSim.TabIndex = 34;
+            Txt_FindSim.TabIndex = 2;
             Txt_FindSim.Text = "0.8";
             Txt_FindSim.TextChanged += TextBoxFloatBar_TextChanged;
             Txt_FindSim.KeyPress += TextBoxFloatBar_KeyPress;
@@ -388,7 +388,7 @@
             TextBox_Ocr.Name = "TextBox_Ocr";
             TextBox_Ocr.ReadOnly = true;
             TextBox_Ocr.Size = new Size(390, 66);
-            TextBox_Ocr.TabIndex = 2;
+            TextBox_Ocr.TabIndex = 0;
             // 
             // label2
             // 
@@ -397,7 +397,7 @@
             label2.Location = new Point(405, 28);
             label2.Name = "label2";
             label2.Size = new Size(28, 17);
-            label2.TabIndex = 0;
+            label2.TabIndex = 1;
             label2.Text = "sim";
             // 
             // tableLayoutPanel1
@@ -437,7 +437,7 @@
             groupBox6.Name = "groupBox6";
             tableLayoutPanel1.SetRowSpan(groupBox6, 2);
             groupBox6.Size = new Size(224, 580);
-            groupBox6.TabIndex = 0;
+            groupBox6.TabIndex = 4;
             groupBox6.TabStop = false;
             groupBox6.Text = "字库";
             // 
@@ -448,7 +448,7 @@
             label4.Location = new Point(10, 548);
             label4.Name = "label4";
             label4.Size = new Size(100, 17);
-            label4.TabIndex = 18;
+            label4.TabIndex = 8;
             label4.Text = "查找文字(回车)：";
             // 
             // label3
@@ -458,7 +458,7 @@
             label3.Location = new Point(10, 517);
             label3.Name = "label3";
             label3.Size = new Size(160, 17);
-            label3.TabIndex = 17;
+            label3.TabIndex = 6;
             label3.Text = "定义文字(回车添加到字库)：";
             // 
             // TextBox_DefWord
@@ -467,7 +467,7 @@
             TextBox_DefWord.Location = new Point(176, 514);
             TextBox_DefWord.Name = "TextBox_DefWord";
             TextBox_DefWord.Size = new Size(41, 23);
-            TextBox_DefWord.TabIndex = 16;
+            TextBox_DefWord.TabIndex = 7;
             TextBox_DefWord.KeyPress += TextBox_DefWord_KeyPress;
             // 
             // groupBox9
@@ -479,7 +479,7 @@
             groupBox9.Location = new Point(3, 149);
             groupBox9.Name = "groupBox9";
             groupBox9.Size = new Size(354, 434);
-            groupBox9.TabIndex = 3;
+            groupBox9.TabIndex = 2;
             groupBox9.TabStop = false;
             groupBox9.Text = "颜色信息";
             // 
@@ -490,7 +490,7 @@
             TextBox_Color.Name = "TextBox_Color";
             TextBox_Color.ReadOnly = true;
             TextBox_Color.Size = new Size(290, 23);
-            TextBox_Color.TabIndex = 16;
+            TextBox_Color.TabIndex = 2;
             TextBox_Color.Text = "@";
             // 
             // CheckBox_Bk
@@ -502,7 +502,7 @@
             CheckBox_Bk.Location = new Point(6, 407);
             CheckBox_Bk.Name = "CheckBox_Bk";
             CheckBox_Bk.Size = new Size(51, 21);
-            CheckBox_Bk.TabIndex = 8;
+            CheckBox_Bk.TabIndex = 1;
             CheckBox_Bk.Text = "背景";
             CheckBox_Bk.UseVisualStyleBackColor = true;
             CheckBox_Bk.CheckedChanged += CheckBox_Bk_CheckedChanged;
@@ -516,7 +516,7 @@
             panel1.Margin = new Padding(0);
             panel1.Name = "panel1";
             panel1.Size = new Size(508, 440);
-            panel1.TabIndex = 4;
+            panel1.TabIndex = 3;
             // 
             // groupBox3
             // 
@@ -525,7 +525,7 @@
             groupBox3.Location = new Point(6, 4);
             groupBox3.Name = "groupBox3";
             groupBox3.Size = new Size(496, 324);
-            groupBox3.TabIndex = 4;
+            groupBox3.TabIndex = 0;
             groupBox3.TabStop = false;
             groupBox3.Text = "点阵";
             // 
@@ -542,7 +542,6 @@
             groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             groupBox2.ResumeLayout(false);
-            groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)DataGridView_Color).EndInit();
             groupBox5.ResumeLayout(false);
@@ -582,7 +581,6 @@
         private GroupBox groupBox9;
         private Panel panel1;
         private GroupBox groupBox3;
-        private CheckBox CheckBox_Whole;
         private Button Btn_Extract;
         private TextBox TextBox_Color;
         private CheckBox CheckBox_Bk;
@@ -599,5 +597,6 @@
         private Label label4;
         private Button Btn_Ocr;
         private Button Btn_SaveBinImage;
+        private Button Btn_ExtractWhole;
     }
 }
