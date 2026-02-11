@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using System.Windows.Forms;
 
 namespace WordDictTool
 {
@@ -17,7 +18,10 @@ namespace WordDictTool
         public int h => _h;
         public byte[] data => _data;
         public int bitCnt => _bitCnt;
+        /// <summary> 特征（含字) </summary>
         public string wordCode => _wordCode;
+        /// <summary> 仅特征（不含字) </summary>
+        public string feature { get; private set; }
 
         public void SetChar(string ch)
         {
@@ -31,6 +35,7 @@ namespace WordDictTool
             if (vstr.Length < 3)
                 return;
 
+            feature = $"${vstr[1]}${vstr[2]}";
             _name = vstr[0];
             string info = vstr[1];
             string dataStr = vstr[2];

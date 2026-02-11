@@ -196,6 +196,75 @@ public class Utils
         }
     }
 
+    //-------  允许输入:16进制x6
+    public static void TextBoxColorHex_KeyPress(object sender, KeyPressEventArgs e)
+    {
+        bool handled = true;
+        if (e.KeyChar >= 'a' && e.KeyChar <= 'f')
+            handled = false;
+        else if (e.KeyChar >= 'A' && e.KeyChar <= 'F')
+            handled = false;
+        else if (char.IsDigit(e.KeyChar))
+            handled = false;
+        e.Handled = handled;
+    }
+    public static void TextBoxColorHex_TextChanged(object sender, EventArgs e)
+    {
+        // 对粘贴值进行验证
+        var textbox = (TextBox)sender;
+        var reg = new Regex("^#?[A-Fa-f0-9]{6}$");
+        var str = textbox.Text.Trim();
+        var sb = new StringBuilder();
+        if (!reg.IsMatch(str) || string.IsNullOrEmpty(str))
+        {
+            for (int i = 0; i < str.Length; i++)
+            {
+                if (str[i] >= 'a' && str[i] <= 'f')
+                    sb.Append(str[i]);
+                else if (str[i] >= 'A' && str[i] <= 'F')
+                    sb.Append(str[i]);
+                else if (char.IsDigit(str[i]))
+                    sb.Append(str[i]);
+            }
+            if (sb.Length <= 0)
+                textbox.Text = "000000";
+            for (int i = sb.Length - 1; i < 6; i++)
+                sb.Append('0');
+            if (sb.Length > 6)
+                sb.Remove(6, sb.Length - 6);
+            textbox.Text = sb.ToString().ToUpper();
+            //定义输入焦点在最后一个字符
+            textbox.SelectionStart = textbox.Text.Length;
+        }
+    }
+    public static void DataGridViewTextBoxCellColorHex_TextChanged(DataGridViewTextBoxCell boxCell)
+    {
+        // 对粘贴值进行验证
+        if (boxCell == null)
+            return;
+        var reg = new Regex("^#?[A-Fa-f0-9]{6}$");
+        var str = boxCell.Value.ToString().Trim();
+        var sb = new StringBuilder();
+        if (!reg.IsMatch(str) || string.IsNullOrEmpty(str))
+        {
+            for (int i = 0; i < str.Length; i++)
+            {
+                if (str[i] >= 'a' && str[i] <= 'f')
+                    sb.Append(str[i]);
+                else if (str[i] >= 'A' && str[i] <= 'F')
+                    sb.Append(str[i]);
+                else if (char.IsDigit(str[i]))
+                    sb.Append(str[i]);
+            }
+            if (sb.Length <= 0)
+                boxCell.Value = "000000";
+            for (int i = sb.Length - 1; i < 6; i++)
+                sb.Append('0');
+            if (sb.Length > 6)
+                sb.Remove(6, sb.Length - 6);
+            boxCell.Value = sb.ToString().ToUpper();
+        }
+    }
     private class MouseDataInt
     {
         /// <summary> 目标文本控件 </summary>

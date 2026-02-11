@@ -32,9 +32,10 @@ namespace WordDictTool
                 var rowColor = Color.Black;
                 rowObj.Tag = rowColor;
                 rowObj.Cells[Head_Name.Pos].Value = (row + 1).ToString();
-                ((DataGridViewButtonCell)rowObj.Cells[Head_Name.Color]).FlatStyle = FlatStyle.Flat;
-                ((DataGridViewButtonCell)rowObj.Cells[Head_Name.Color]).Style.BackColor = rowColor;
-                ((DataGridViewButtonCell)rowObj.Cells[Head_Name.Color]).Style.SelectionBackColor = rowColor;
+                var buttonCell = (DataGridViewButtonCell)rowObj.Cells[Head_Name.Color];
+                buttonCell.FlatStyle = FlatStyle.Flat;
+                buttonCell.Style.BackColor = rowColor;
+                buttonCell.Style.SelectionBackColor = rowColor;
                 rowObj.Cells[Head_Name.RGB].Value = ColorToHex(rowColor);
                 rowObj.Cells[Head_Name.OffColor].Value = ColorToHex(rowColor);
                 rowObj.Cells[Head_Name.Check].Value = false;
@@ -67,36 +68,14 @@ namespace WordDictTool
         }
         private void Btn_SaveImage_Click(object sender, EventArgs e)
         {
+            if (pictureBox1.Image == null)
+                return;
             SaveFileDialog dialog = new SaveFileDialog();
             dialog.Title = "保存为bmp文件";
             dialog.Filter = "图像文件(*.bmp)|*.bmp";
             if (dialog.ShowDialog() != DialogResult.OK)
                 return;
             pictureBox1.Image.Save(dialog.FileName);
-        }
-        private void Btn_Extract_Click(object sender, EventArgs e)
-        {
-            _showDict = _tempDict;
-            _tempDict.Clear();
-            if (CheckBox_Whole.Checked)
-            {
-                var dictInfo = _opSoft.FetchWord(0, 0, pictureBox1.Image.Width, pictureBox1.Image.Height, TextBox_Color.Text, "");
-                _tempDict.Add(dictInfo);
-            }
-            else
-            {
-                string result = _opSoft.GetWordsNoDict(0, 0, pictureBox1.Image.Width, pictureBox1.Image.Height, TextBox_Color.Text);
-                var count = _opSoft.GetWordResultCount(result);
-                for (int i = 0; i < count; i++)
-                {
-                    var dictInfo = _opSoft.GetWordResultStr(result, i);
-                    _tempDict.Add(dictInfo);
-                }
-            }
-            RefreshListBox();
-            float sim = float.Parse(Txt_FindSim.Text);
-            string ocrText = _opSoft.Ocr(0, 0, pictureBox1.Image.Width, pictureBox1.Image.Height, TextBox_Color.Text, sim);
-            TextBox_Ocr.Text = ocrText;
         }
         private void LoadImage(string file)
         {
@@ -105,6 +84,49 @@ namespace WordDictTool
             _opSoft.GetPicSize(file, out var width, out var height);
             pictureBox1.Image = _opSoft.GetScreenDataBmp(0, 0, width, height);
             pictureBox2.Image = GrayImageBin.GrayImage(pictureBox1.Image, TextBox_Color.Text);
+        }
+        #endregion
+
+        #region 二值图
+        private void Btn_SaveBinImage_Click(object sender, EventArgs e)
+        {
+            if (pictureBox2.Image == null)
+                return;
+            SaveFileDialog dialog = new SaveFileDialog();
+            dialog.Title = "保存为bmp文件";
+            dialog.Filter = "图像文件(*.bmp)|*.bmp";
+            if (dialog.ShowDialog() != DialogResult.OK)
+                return;
+            pictureBox2.Image.Save(dialog.FileName);
+        }
+        private void Btn_Extract_Click(object sender, EventArgs e)
+        {
+            _showDict = _tempDict;
+            _tempDict.Clear();
+            if (CheckBox_Whole.Checked)
+            {
+                var dictInfo = _opSoft.FetchWord(0, 0, pictureBox1.Image.Width, pictureBox1.Image.Height, TextBox_Color.Text, "");
+                var findWord = _wordDict.FindByFeature(dictInfo);
+                if (findWord != null)
+                    _tempDict.Add(findWord.wordCode);
+                else
+                    _tempDict.Add(dictInfo);
+            }
+            else
+            {
+                string result = _opSoft.GetWordsNoDict(0, 0, pictureBox1.Image.Width, pictureBox1.Image.Height, TextBox_Color.Text);
+                var count = _opSoft.GetWordResultCount(result);
+                for (int i = 0; i < count; i++)
+                {
+                    var dictInfo = _opSoft.GetWordResultStr(result, i);
+                    var findWord = _wordDict.FindByFeature(dictInfo);
+                    if (findWord != null)
+                        _tempDict.Add(findWord.wordCode);
+                    else
+                        _tempDict.Add(dictInfo);
+                }
+            }
+            RefreshListBox();
         }
         #endregion
 
@@ -122,8 +144,9 @@ namespace WordDictTool
                 Color newColor = colorDialog.Color;
                 var rowObj = DataGridView_Color.Rows[e.RowIndex];
                 rowObj.Tag = newColor;
-                ((DataGridViewButtonCell)rowObj.Cells[Head_Name.Color]).Style.BackColor = newColor;
-                ((DataGridViewButtonCell)rowObj.Cells[Head_Name.Color]).Style.SelectionBackColor = newColor;
+                var buttonCell = (DataGridViewButtonCell)rowObj.Cells[Head_Name.Color];
+                buttonCell.Style.BackColor = newColor;
+                buttonCell.Style.SelectionBackColor = newColor;
                 rowObj.Cells[Head_Name.RGB].Value = ColorToHex(newColor);
                 RefreshColor();
             }
@@ -136,8 +159,27 @@ namespace WordDictTool
         {
             if (e.ColumnIndex < 0)
                 return;
-            if (DataGridView_Color.Columns[e.ColumnIndex] is DataGridViewCheckBoxColumn)
+            var rowObj = DataGridView_Color.Rows[e.RowIndex];
+            string columnName = DataGridView_Color.Columns[e.ColumnIndex].Name;
+            var cell = rowObj.Cells[e.ColumnIndex];
+            if (cell is DataGridViewCheckBoxCell)
                 RefreshColor();
+            if (columnName == Head_Name.OffColor)
+                Utils.DataGridViewTextBoxCellColorHex_TextChanged(cell as DataGridViewTextBoxCell);
+            if (columnName == Head_Name.RGB)
+            {
+                var color = (Color)rowObj.Tag;
+                if (ColorToHex(color) == cell.Value.ToString())
+                    return;
+                Utils.DataGridViewTextBoxCellColorHex_TextChanged(cell as DataGridViewTextBoxCell);
+                var newColor = HexToColor(cell.Value.ToString());
+                var buttonCell = (DataGridViewButtonCell)rowObj.Cells[Head_Name.Color];
+                rowObj.Tag = newColor;
+                buttonCell.Style.BackColor = newColor;
+                buttonCell.Style.SelectionBackColor = newColor;
+                DataGridView_Color.Refresh();
+                RefreshColor();
+            }
         }
         private void CheckBox_Bk_CheckedChanged(object sender, EventArgs e)
         {
@@ -208,8 +250,10 @@ namespace WordDictTool
             _showDict.ReplaceChar(selectedItem, inputChar);
             RefreshListBox();
         }
-        private void Btn_FindChar_Click(object sender, EventArgs e)
+        private void TextBox_FindWord_KeyPress(object sender, KeyPressEventArgs e)
         {
+            if (e.KeyChar != 13) //回车键
+                return;
             string findWord = TextBox_FindWord.Text;
             for (int i = 0; i < _showDict.wrods.Count; i++)
             {
@@ -260,6 +304,15 @@ namespace WordDictTool
         }
         #endregion
 
+        #region Ocr测试
+        private void Btn_Ocr_Click(object sender, EventArgs e)
+        {
+            float sim = float.Parse(Txt_FindSim.Text);
+            string ocrText = _opSoft.Ocr(0, 0, pictureBox1.Image.Width, pictureBox1.Image.Height, TextBox_Color.Text, sim);
+            TextBox_Ocr.Text = ocrText;
+        }
+        #endregion
+
         #region 控件-输入限制
         private void TextBoxFloatBar_TextChanged(object sender, EventArgs e) => Utils.TextBoxFloatBar_TextChanged(sender, e);
         private void TextBoxFloatBar_KeyPress(object sender, KeyPressEventArgs e) => Utils.TextBoxFloatBar_KeyPress(sender, e);
@@ -276,6 +329,12 @@ namespace WordDictTool
         private static string ColorToHex(Color color)
         {
             return string.Format("{0:X2}{1:X2}{2:X2}", color.R, color.G, color.B);
+        }
+        private static Color HexToColor(string hex)
+        {
+            return Color.FromArgb(0xFF, Convert.ToInt32(hex.Substring(0, 2), 16),
+                                   Convert.ToInt32(hex.Substring(2, 2), 16),
+                                   Convert.ToInt32(hex.Substring(4, 2), 16));
         }
     }
 }
