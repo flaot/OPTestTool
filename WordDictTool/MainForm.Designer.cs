@@ -72,6 +72,29 @@
             CheckBox_Bk = new CheckBox();
             panel1 = new Panel();
             groupBox3 = new GroupBox();
+            menuStrip1 = new MenuStrip();
+            ToolStripMenuItem_File = new ToolStripMenuItem();
+            ToolStripMenuItem_LoadImage = new ToolStripMenuItem();
+            ToolStripMenuItem_SaveImage = new ToolStripMenuItem();
+            ToolStripMenuItem_Screenshot = new ToolStripMenuItem();
+            toolStripMenuItem1 = new ToolStripSeparator();
+            ToolStripMenuItem_SaveGrayImage = new ToolStripMenuItem();
+            ToolStripMenuItem_Exit = new ToolStripMenuItem();
+            ToolStripMenuItem_Tool = new ToolStripMenuItem();
+            ToolStripMenuItem_ExtractWhole = new ToolStripMenuItem();
+            ToolStripMenuItem_Extract = new ToolStripMenuItem();
+            提取点阵ToolStripMenuItem = new ToolStripSeparator();
+            ToolStripMenuItem_ResetColorConfig = new ToolStripMenuItem();
+            ToolStripMenuItem_Dict = new ToolStripMenuItem();
+            ToolStripMenuItem_OpenDict = new ToolStripMenuItem();
+            ToolStripMenuItem_EditDict = new ToolStripMenuItem();
+            ToolStripMenuItem_SaveDict = new ToolStripMenuItem();
+            toolStripMenuItem2 = new ToolStripSeparator();
+            ToolStripMenuItem_PreviewDict = new ToolStripMenuItem();
+            ToolStripMenuItem_Help = new ToolStripMenuItem();
+            ToolStripMenuItem_Guide = new ToolStripMenuItem();
+            ToolStripMenuItem_About = new ToolStripMenuItem();
+            ToolStripMenuItem_CheckUpdate = new ToolStripMenuItem();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             groupBox2.SuspendLayout();
@@ -83,6 +106,7 @@
             groupBox9.SuspendLayout();
             panel1.SuspendLayout();
             groupBox3.SuspendLayout();
+            menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // ListBox_Dict
@@ -412,12 +436,13 @@
             tableLayoutPanel1.Controls.Add(panel1, 1, 1);
             tableLayoutPanel1.Controls.Add(groupBox2, 1, 0);
             tableLayoutPanel1.Dock = DockStyle.Fill;
-            tableLayoutPanel1.Location = new Point(0, 0);
+            tableLayoutPanel1.Location = new Point(0, 25);
+            tableLayoutPanel1.Margin = new Padding(0);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.RowCount = 1;
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 146F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle());
-            tableLayoutPanel1.Size = new Size(1098, 586);
+            tableLayoutPanel1.Size = new Size(1098, 576);
             tableLayoutPanel1.TabIndex = 19;
             // 
             // groupBox6
@@ -529,12 +554,186 @@
             groupBox3.TabStop = false;
             groupBox3.Text = "点阵";
             // 
+            // menuStrip1
+            // 
+            menuStrip1.Items.AddRange(new ToolStripItem[] { ToolStripMenuItem_File, ToolStripMenuItem_Tool, ToolStripMenuItem_Dict, ToolStripMenuItem_Help });
+            menuStrip1.Location = new Point(0, 0);
+            menuStrip1.Name = "menuStrip1";
+            menuStrip1.Size = new Size(1098, 25);
+            menuStrip1.TabIndex = 20;
+            menuStrip1.Text = "menuStrip1";
+            // 
+            // ToolStripMenuItem_File
+            // 
+            ToolStripMenuItem_File.DropDownItems.AddRange(new ToolStripItem[] { ToolStripMenuItem_LoadImage, ToolStripMenuItem_SaveImage, ToolStripMenuItem_Screenshot, toolStripMenuItem1, ToolStripMenuItem_SaveGrayImage, ToolStripMenuItem_Exit });
+            ToolStripMenuItem_File.Name = "ToolStripMenuItem_File";
+            ToolStripMenuItem_File.Size = new Size(58, 21);
+            ToolStripMenuItem_File.Text = "文件(&F)";
+            // 
+            // ToolStripMenuItem_LoadImage
+            // 
+            ToolStripMenuItem_LoadImage.Name = "ToolStripMenuItem_LoadImage";
+            ToolStripMenuItem_LoadImage.ShortcutKeys = Keys.Control | Keys.Alt | Keys.O;
+            ToolStripMenuItem_LoadImage.Size = new Size(281, 22);
+            ToolStripMenuItem_LoadImage.Text = "加载原图文件(&O)";
+            ToolStripMenuItem_LoadImage.Click += ToolStripMenuItem_LoadImage_Click;
+            // 
+            // ToolStripMenuItem_SaveImage
+            // 
+            ToolStripMenuItem_SaveImage.Name = "ToolStripMenuItem_SaveImage";
+            ToolStripMenuItem_SaveImage.ShortcutKeys = Keys.Control | Keys.Alt | Keys.S;
+            ToolStripMenuItem_SaveImage.Size = new Size(281, 22);
+            ToolStripMenuItem_SaveImage.Text = "保存原图为文件(&S)";
+            ToolStripMenuItem_SaveImage.Click += ToolStripMenuItem_SaveImage_Click;
+            // 
+            // ToolStripMenuItem_Screenshot
+            // 
+            ToolStripMenuItem_Screenshot.Name = "ToolStripMenuItem_Screenshot";
+            ToolStripMenuItem_Screenshot.ShortcutKeys = Keys.Control | Keys.Shift | Keys.P;
+            ToolStripMenuItem_Screenshot.Size = new Size(281, 22);
+            ToolStripMenuItem_Screenshot.Text = "抓图(&P)";
+            ToolStripMenuItem_Screenshot.Click += ToolStripMenuItem_Screenshot_Click;
+            // 
+            // toolStripMenuItem1
+            // 
+            toolStripMenuItem1.Name = "toolStripMenuItem1";
+            toolStripMenuItem1.Size = new Size(278, 6);
+            // 
+            // ToolStripMenuItem_SaveGrayImage
+            // 
+            ToolStripMenuItem_SaveGrayImage.Name = "ToolStripMenuItem_SaveGrayImage";
+            ToolStripMenuItem_SaveGrayImage.ShortcutKeys = Keys.Control | Keys.Shift | Keys.D;
+            ToolStripMenuItem_SaveGrayImage.Size = new Size(281, 22);
+            ToolStripMenuItem_SaveGrayImage.Text = "保存二值化图为文件(&D)";
+            ToolStripMenuItem_SaveGrayImage.Click += ToolStripMenuItem_SaveGrayImage_Click;
+            // 
+            // ToolStripMenuItem_Exit
+            // 
+            ToolStripMenuItem_Exit.Name = "ToolStripMenuItem_Exit";
+            ToolStripMenuItem_Exit.ShortcutKeyDisplayString = "Alt+F4";
+            ToolStripMenuItem_Exit.Size = new Size(281, 22);
+            ToolStripMenuItem_Exit.Text = "退出(&X)";
+            ToolStripMenuItem_Exit.Click += ToolStripMenuItem_Exit_Click;
+            // 
+            // ToolStripMenuItem_Tool
+            // 
+            ToolStripMenuItem_Tool.DropDownItems.AddRange(new ToolStripItem[] { ToolStripMenuItem_ExtractWhole, ToolStripMenuItem_Extract, 提取点阵ToolStripMenuItem, ToolStripMenuItem_ResetColorConfig });
+            ToolStripMenuItem_Tool.Name = "ToolStripMenuItem_Tool";
+            ToolStripMenuItem_Tool.Size = new Size(59, 21);
+            ToolStripMenuItem_Tool.Text = "工具(&T)";
+            // 
+            // ToolStripMenuItem_ExtractWhole
+            // 
+            ToolStripMenuItem_ExtractWhole.Name = "ToolStripMenuItem_ExtractWhole";
+            ToolStripMenuItem_ExtractWhole.ShortcutKeys = Keys.Control | Keys.B;
+            ToolStripMenuItem_ExtractWhole.Size = new Size(219, 22);
+            ToolStripMenuItem_ExtractWhole.Text = "整体提取(&B)";
+            ToolStripMenuItem_ExtractWhole.Click += ToolStripMenuItem_ExtractWhole_Click;
+            // 
+            // ToolStripMenuItem_Extract
+            // 
+            ToolStripMenuItem_Extract.Name = "ToolStripMenuItem_Extract";
+            ToolStripMenuItem_Extract.ShortcutKeys = Keys.Control | Keys.Shift | Keys.B;
+            ToolStripMenuItem_Extract.Size = new Size(219, 22);
+            ToolStripMenuItem_Extract.Text = "批量提取(&C)";
+            ToolStripMenuItem_Extract.Click += ToolStripMenuItem_Extract_Click;
+            // 
+            // 提取点阵ToolStripMenuItem
+            // 
+            提取点阵ToolStripMenuItem.Name = "提取点阵ToolStripMenuItem";
+            提取点阵ToolStripMenuItem.Size = new Size(216, 6);
+            // 
+            // ToolStripMenuItem_ResetColorConfig
+            // 
+            ToolStripMenuItem_ResetColorConfig.Name = "ToolStripMenuItem_ResetColorConfig";
+            ToolStripMenuItem_ResetColorConfig.ShortcutKeys = Keys.Control | Keys.R;
+            ToolStripMenuItem_ResetColorConfig.Size = new Size(219, 22);
+            ToolStripMenuItem_ResetColorConfig.Text = "重置颜色配置(&R)";
+            ToolStripMenuItem_ResetColorConfig.Click += ToolStripMenuItem_ResetColorConfig_Click;
+            // 
+            // ToolStripMenuItem_Dict
+            // 
+            ToolStripMenuItem_Dict.DropDownItems.AddRange(new ToolStripItem[] { ToolStripMenuItem_OpenDict, ToolStripMenuItem_EditDict, ToolStripMenuItem_SaveDict, toolStripMenuItem2, ToolStripMenuItem_PreviewDict });
+            ToolStripMenuItem_Dict.Name = "ToolStripMenuItem_Dict";
+            ToolStripMenuItem_Dict.Size = new Size(61, 21);
+            ToolStripMenuItem_Dict.Text = "字库(&D)";
+            // 
+            // ToolStripMenuItem_OpenDict
+            // 
+            ToolStripMenuItem_OpenDict.Name = "ToolStripMenuItem_OpenDict";
+            ToolStripMenuItem_OpenDict.ShortcutKeys = Keys.Control | Keys.L;
+            ToolStripMenuItem_OpenDict.Size = new Size(217, 22);
+            ToolStripMenuItem_OpenDict.Text = "打开字库(&L)";
+            ToolStripMenuItem_OpenDict.Click += ToolStripMenuItem_OpenDict_Click;
+            // 
+            // ToolStripMenuItem_EditDict
+            // 
+            ToolStripMenuItem_EditDict.Name = "ToolStripMenuItem_EditDict";
+            ToolStripMenuItem_EditDict.ShortcutKeys = Keys.Control | Keys.E;
+            ToolStripMenuItem_EditDict.Size = new Size(217, 22);
+            ToolStripMenuItem_EditDict.Text = "编辑字库(&E)";
+            ToolStripMenuItem_EditDict.Click += ToolStripMenuItem_EditDict_Click;
+            // 
+            // ToolStripMenuItem_SaveDict
+            // 
+            ToolStripMenuItem_SaveDict.Name = "ToolStripMenuItem_SaveDict";
+            ToolStripMenuItem_SaveDict.ShortcutKeys = Keys.Control | Keys.Shift | Keys.S;
+            ToolStripMenuItem_SaveDict.Size = new Size(217, 22);
+            ToolStripMenuItem_SaveDict.Text = "保存字库(&S)";
+            ToolStripMenuItem_SaveDict.Click += ToolStripMenuItem_SaveDict_Click;
+            // 
+            // toolStripMenuItem2
+            // 
+            toolStripMenuItem2.Name = "toolStripMenuItem2";
+            toolStripMenuItem2.Size = new Size(214, 6);
+            // 
+            // ToolStripMenuItem_PreviewDict
+            // 
+            ToolStripMenuItem_PreviewDict.Name = "ToolStripMenuItem_PreviewDict";
+            ToolStripMenuItem_PreviewDict.ShortcutKeys = Keys.F9;
+            ToolStripMenuItem_PreviewDict.Size = new Size(217, 22);
+            ToolStripMenuItem_PreviewDict.Text = "预览字库效果(&P)";
+            ToolStripMenuItem_PreviewDict.Click += ToolStripMenuItem_PreviewDict_Click;
+            // 
+            // ToolStripMenuItem_Help
+            // 
+            ToolStripMenuItem_Help.DropDownItems.AddRange(new ToolStripItem[] { ToolStripMenuItem_Guide, ToolStripMenuItem_About, ToolStripMenuItem_CheckUpdate });
+            ToolStripMenuItem_Help.Name = "ToolStripMenuItem_Help";
+            ToolStripMenuItem_Help.Size = new Size(61, 21);
+            ToolStripMenuItem_Help.Text = "帮助(&H)";
+            // 
+            // ToolStripMenuItem_Guide
+            // 
+            ToolStripMenuItem_Guide.Name = "ToolStripMenuItem_Guide";
+            ToolStripMenuItem_Guide.ShortcutKeys = Keys.F1;
+            ToolStripMenuItem_Guide.Size = new Size(232, 22);
+            ToolStripMenuItem_Guide.Text = "使用指南(&H)";
+            ToolStripMenuItem_Guide.Click += ToolStripMenuItem_Guide_Click;
+            // 
+            // ToolStripMenuItem_About
+            // 
+            ToolStripMenuItem_About.Name = "ToolStripMenuItem_About";
+            ToolStripMenuItem_About.ShortcutKeys = Keys.Control | Keys.Shift | Keys.H;
+            ToolStripMenuItem_About.Size = new Size(232, 22);
+            ToolStripMenuItem_About.Text = "关于本工具(&A)";
+            ToolStripMenuItem_About.Click += ToolStripMenuItem_About_Click;
+            // 
+            // ToolStripMenuItem_CheckUpdate
+            // 
+            ToolStripMenuItem_CheckUpdate.Name = "ToolStripMenuItem_CheckUpdate";
+            ToolStripMenuItem_CheckUpdate.ShortcutKeys = Keys.Control | Keys.U;
+            ToolStripMenuItem_CheckUpdate.Size = new Size(232, 22);
+            ToolStripMenuItem_CheckUpdate.Tag = "https://github.com/flaot/OPTestTool/releases/";
+            ToolStripMenuItem_CheckUpdate.Text = "检查更新(&U)";
+            ToolStripMenuItem_CheckUpdate.Click += MenuItem_JumpLink_Click;
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1098, 586);
+            ClientSize = new Size(1098, 601);
             Controls.Add(tableLayoutPanel1);
+            Controls.Add(menuStrip1);
             KeyPreview = true;
             Name = "MainForm";
             Text = "字库制作工具";
@@ -555,7 +754,10 @@
             groupBox9.PerformLayout();
             panel1.ResumeLayout(false);
             groupBox3.ResumeLayout(false);
+            menuStrip1.ResumeLayout(false);
+            menuStrip1.PerformLayout();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -600,5 +802,28 @@
         private Button Btn_Ocr;
         private Button Btn_SaveBinImage;
         private Button Btn_ExtractWhole;
+        private MenuStrip menuStrip1;
+        private ToolStripMenuItem ToolStripMenuItem_File;
+        private ToolStripMenuItem ToolStripMenuItem_LoadImage;
+        private ToolStripMenuItem ToolStripMenuItem_SaveImage;
+        private ToolStripMenuItem ToolStripMenuItem_Dict;
+        private ToolStripMenuItem ToolStripMenuItem_OpenDict;
+        private ToolStripMenuItem ToolStripMenuItem_Tool;
+        private ToolStripMenuItem ToolStripMenuItem_ExtractWhole;
+        private ToolStripMenuItem ToolStripMenuItem_Extract;
+        private ToolStripMenuItem ToolStripMenuItem_EditDict;
+        private ToolStripMenuItem ToolStripMenuItem_SaveDict;
+        private ToolStripMenuItem ToolStripMenuItem_Screenshot;
+        private ToolStripSeparator toolStripMenuItem1;
+        private ToolStripMenuItem ToolStripMenuItem_SaveGrayImage;
+        private ToolStripMenuItem ToolStripMenuItem_Exit;
+        private ToolStripSeparator 提取点阵ToolStripMenuItem;
+        private ToolStripMenuItem ToolStripMenuItem_ResetColorConfig;
+        private ToolStripSeparator toolStripMenuItem2;
+        private ToolStripMenuItem ToolStripMenuItem_PreviewDict;
+        private ToolStripMenuItem ToolStripMenuItem_Help;
+        private ToolStripMenuItem ToolStripMenuItem_Guide;
+        private ToolStripMenuItem ToolStripMenuItem_About;
+        private ToolStripMenuItem ToolStripMenuItem_CheckUpdate;
     }
 }

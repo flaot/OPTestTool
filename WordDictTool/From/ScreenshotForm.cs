@@ -157,12 +157,17 @@
         }
         private void ScreenshotForm_MouseDown(object sender, MouseEventArgs e)
         {
+            if (e.Button != MouseButtons.Left && e.Button != MouseButtons.Right)
+                return;
             if (getColor)
             {
-                resultColor = background.GetPixel(e.Location.X, e.Location.Y);
-                DialogResult = DialogResult.OK;
-                Close();
-                return;
+                if (e.Button == MouseButtons.Left)
+                {
+                    resultColor = background.GetPixel(e.Location.X, e.Location.Y);
+                    DialogResult = DialogResult.OK;
+                    Close();
+                    return;
+                }
             }
             lastMousePoint = e.Location;
             if (e.Button == MouseButtons.Left)

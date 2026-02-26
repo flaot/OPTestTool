@@ -96,8 +96,9 @@ namespace WordDictTool
             Properties.Settings.Default.Save();
         }
 
-        #region 原图
-        private void Btn_LoadImage_Click(object sender, EventArgs e)
+        #region MainMenuItem
+        //文件
+        private void ToolStripMenuItem_LoadImage_Click(object sender, EventArgs e)
         {
             OpenFileDialog dialog = new OpenFileDialog();
             dialog.Title = "请选择bmp文件";
@@ -107,7 +108,7 @@ namespace WordDictTool
             string file = dialog.FileName;
             LoadImage(file);
         }
-        private void Btn_SaveImage_Click(object sender, EventArgs e)
+        private void ToolStripMenuItem_SaveImage_Click(object sender, EventArgs e)
         {
             if (pictureBox1.Image == null)
                 return;
@@ -118,7 +119,7 @@ namespace WordDictTool
                 return;
             pictureBox1.Image.Save(dialog.FileName);
         }
-        private void Btn_Screenshot_Click(object sender, EventArgs e)
+        private void ToolStripMenuItem_Screenshot_Click(object sender, EventArgs e)
         {
             Bitmap bitmap = ScreenshotForm.ShowDialogGetBitmap();
             if (bitmap != null)
@@ -128,29 +129,24 @@ namespace WordDictTool
                 LoadImage(path);
             }
         }
-        private void LoadImage(string file)
-        {
-            _opSoft.LoadPic(file);
-            _opSoft.SetDisplayInput($"pic:{file}");
-            _opSoft.GetPicSize(file, out var width, out var height);
-            pictureBox1.Image = _opSoft.GetScreenDataBmp(0, 0, width, height);
-            pictureBox2.Image = GrayImageBin.GrayImage(pictureBox1.Image, TextBox_Color.Text);
-        }
-        #endregion
-
-        #region 二值图
-        private void Btn_SaveBinImage_Click(object sender, EventArgs e)
+        private void ToolStripMenuItem_SaveGrayImage_Click(object sender, EventArgs e)
         {
             if (pictureBox2.Image == null)
                 return;
             SaveFileDialog dialog = new SaveFileDialog();
-            dialog.Title = "保存为bmp文件";
+            dialog.Title = "保存二值化图为bmp文件";
             dialog.Filter = "图像文件(*.bmp)|*.bmp";
             if (dialog.ShowDialog() != DialogResult.OK)
                 return;
             pictureBox2.Image.Save(dialog.FileName);
         }
-        private void Btn_ExtractWhole_Click(object sender, EventArgs e)
+        private void ToolStripMenuItem_Exit_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        //工具
+        private void ToolStripMenuItem_ExtractWhole_Click(object sender, EventArgs e)
         {
             _showDict = _tempDict;
             _tempDict.Clear();
@@ -162,7 +158,7 @@ namespace WordDictTool
                 _tempDict.Add(dictInfo);
             RefreshListBox();
         }
-        private void Btn_Extract_Click(object sender, EventArgs e)
+        private void ToolStripMenuItem_Extract_Click(object sender, EventArgs e)
         {
             _showDict = _tempDict;
             _tempDict.Clear();
@@ -179,6 +175,95 @@ namespace WordDictTool
             }
             RefreshListBox();
         }
+        private void ToolStripMenuItem_ResetColorConfig_Click(object sender, EventArgs e)
+        {
+            for (int row = 0; row < DataGridView_Color.RowCount; row++)
+            {
+                KeyValuePair<string, string> colordf = new KeyValuePair<string, string>("000000", "000000");
+                var rowObj = DataGridView_Color.Rows[row];
+                var rowColor = FuncHelper.HexToColor(colordf.Key);
+                rowObj.Tag = rowColor;
+                rowObj.Cells[Head_Name.RGB].Value = colordf.Key;
+                rowObj.Cells[Head_Name.OffColor].Value = colordf.Value;
+                rowObj.Cells[Head_Name.Check].Value = false;
+            }
+        }
+
+        //字库
+        private void ToolStripMenuItem_OpenDict_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog dialog = new OpenFileDialog();
+            dialog.Title = "请选择字库文件";
+            dialog.Filter = "字库文件(*.dict)|*.dict";
+            if (dialog.ShowDialog() != DialogResult.OK)
+                return;
+            string file = dialog.FileName;
+            Directory.CreateDirectory(Path.GetDirectoryName(file));
+            if (!File.Exists(file))
+                File.Create(file).Close();
+            Txt_DictFile.Text = file;
+        }
+        private void ToolStripMenuItem_EditDict_Click(object sender, EventArgs e)
+        {
+            _showDict = _wordDict;
+            _tempDict.Clear();
+            RefreshListBox();
+        }
+        private void ToolStripMenuItem_SaveDict_Click(object sender, EventArgs e)
+        {
+            _opSoft.ClearDict(DICT_FILE);
+            foreach (var item in _wordDict.wrods)
+                _opSoft.AddDict(DICT_FILE, item.wordCode);
+            _opSoft.SaveDict(DICT_FILE, Txt_DictFile.Text);
+        }
+        private void ToolStripMenuItem_PreviewDict_Click(object sender, EventArgs e)
+        {
+            float sim = float.Parse(Txt_FindSim.Text);
+            string ocrText = _opSoft.Ocr(0, 0, pictureBox1.Image.Width, pictureBox1.Image.Height, TextBox_Color.Text, sim);
+            TextBox_Ocr.Text = ocrText;
+        }
+        
+        //帮助
+        private void ToolStripMenuItem_Guide_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("截图模式：小键盘方向键可控制鼠标每次移动1像素，加Shift可每次移动10像素\n\n"+
+                "取色模式：鼠标左键确定取当前鼠标所在像素颜色\n" +
+                "   Alt+1 为颜色配置1取色\n" +
+                "   Alt+2 为颜色配置2取色\n" +
+                "   ...\n" +
+                "   Alt+9 为颜色配置9取色\n\n" +
+                "其余快捷键可看菜单栏子项");
+        }
+        private void ToolStripMenuItem_About_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("仅用于编辑\"OP\"所使用字库\n\n                                  --flaot");
+        }
+        private void MenuItem_JumpLink_Click(object sender, EventArgs e)
+        {
+            var linkLabel = (ToolStripMenuItem)sender;
+            var url = (string)linkLabel.Tag;
+            Process.Start(new ProcessStartInfo(url) { UseShellExecute = true });
+        }
+        #endregion
+
+        #region 原图
+        private void Btn_LoadImage_Click(object sender, EventArgs _) => ToolStripMenuItem_LoadImage.PerformClick();
+        private void Btn_SaveImage_Click(object sender, EventArgs e) => ToolStripMenuItem_SaveImage.PerformClick();
+        private void Btn_Screenshot_Click(object sender, EventArgs e) => ToolStripMenuItem_Screenshot.PerformClick();
+        private void LoadImage(string file)
+        {
+            _opSoft.LoadPic(file);
+            _opSoft.SetDisplayInput($"pic:{file}");
+            _opSoft.GetPicSize(file, out var width, out var height);
+            pictureBox1.Image = _opSoft.GetScreenDataBmp(0, 0, width, height);
+            pictureBox2.Image = GrayImageBin.GrayImage(pictureBox1.Image, TextBox_Color.Text);
+        }
+        #endregion
+
+        #region 二值图
+        private void Btn_SaveBinImage_Click(object sender, EventArgs e) => ToolStripMenuItem_SaveGrayImage.PerformClick();
+        private void Btn_ExtractWhole_Click(object sender, EventArgs e)=> ToolStripMenuItem_ExtractWhole.PerformClick();
+        private void Btn_Extract_Click(object sender, EventArgs e) => ToolStripMenuItem_Extract.PerformClick();
         #endregion
 
         #region 颜色信息
@@ -262,25 +347,8 @@ namespace WordDictTool
         #endregion
 
         #region 字库
-        private void Btn_CreateOrNewDict_Click(object sender, EventArgs e)
-        {
-            OpenFileDialog dialog = new OpenFileDialog();
-            dialog.Title = "请选择字库文件";
-            dialog.Filter = "字库文件(*.dict)|*.dict";
-            if (dialog.ShowDialog() != DialogResult.OK)
-                return;
-            string file = dialog.FileName;
-            Directory.CreateDirectory(Path.GetDirectoryName(file));
-            if (!File.Exists(file))
-                File.Create(file).Close();
-            Txt_DictFile.Text = file;
-        }
-        private void Btn_EditDict_Click(object sender, EventArgs e)
-        {
-            _showDict = _wordDict;
-            _tempDict.Clear();
-            RefreshListBox();
-        }
+        private void Btn_CreateOrNewDict_Click(object sender, EventArgs e) => ToolStripMenuItem_OpenDict.PerformClick();
+        private void Btn_EditDict_Click(object sender, EventArgs e) => ToolStripMenuItem_EditDict.PerformClick();
         private void ListBox_Dict_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (ListBox_Dict.SelectedIndex < 0)
@@ -340,13 +408,7 @@ namespace WordDictTool
         {
             Txt_DictTip.Text = string.Format((string)Txt_DictTip.Tag, _tempDict.wrods.Count, _wordDict.wrods.Count);
         }
-        private void Dict_OnChangeToSave(WordDict dict)
-        {
-            _opSoft.ClearDict(DICT_FILE);
-            foreach (var item in dict.wrods)
-                _opSoft.AddDict(DICT_FILE, item.wordCode);
-            _opSoft.SaveDict(DICT_FILE, Txt_DictFile.Text);
-        }
+        private void Dict_OnChangeToSave(WordDict dict) => ToolStripMenuItem_SaveDict.PerformClick();
         private void RefreshListBox()
         {
             ListBox_Dict.Items.Clear();
@@ -356,12 +418,7 @@ namespace WordDictTool
         #endregion
 
         #region Ocr测试
-        private void Btn_Ocr_Click(object sender, EventArgs e)
-        {
-            float sim = float.Parse(Txt_FindSim.Text);
-            string ocrText = _opSoft.Ocr(0, 0, pictureBox1.Image.Width, pictureBox1.Image.Height, TextBox_Color.Text, sim);
-            TextBox_Ocr.Text = ocrText;
-        }
+        private void Btn_Ocr_Click(object sender, EventArgs e) => ToolStripMenuItem_PreviewDict.PerformClick();
         #endregion
 
         #region 控件-输入限制
@@ -433,6 +490,8 @@ namespace WordDictTool
         }
         private void SetColor(int index)
         {
+            if (index >= COLOR_MAX)
+                return;
             var color = ScreenshotForm.ShowPanelGetColor();
             if (color.IsEmpty)
                 return;

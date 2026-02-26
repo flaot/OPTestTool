@@ -2081,77 +2081,83 @@
             // 
             工具ToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { MenuItem_WordDictTool });
             工具ToolStripMenuItem.Name = "工具ToolStripMenuItem";
-            工具ToolStripMenuItem.Size = new Size(44, 21);
-            工具ToolStripMenuItem.Text = "工具";
+            工具ToolStripMenuItem.Size = new Size(59, 21);
+            工具ToolStripMenuItem.Text = "工具(&T)";
             // 
             // MenuItem_WordDictTool
             // 
             MenuItem_WordDictTool.Name = "MenuItem_WordDictTool";
-            MenuItem_WordDictTool.Size = new Size(124, 22);
-            MenuItem_WordDictTool.Text = "字库制作";
+            MenuItem_WordDictTool.ShortcutKeys = Keys.Control | Keys.D;
+            MenuItem_WordDictTool.Size = new Size(187, 22);
+            MenuItem_WordDictTool.Text = "字库制作(&D)";
             MenuItem_WordDictTool.Click += MenuItem_WordDictTool_Click;
             // 
             // 关于ToolStripMenuItem
             // 
             关于ToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { 相关链接ToolStripMenuItem, MenuItem_CheckUpdate, toolStripMenuItem1, MenuItem_About });
             关于ToolStripMenuItem.Name = "关于ToolStripMenuItem";
-            关于ToolStripMenuItem.Size = new Size(44, 21);
-            关于ToolStripMenuItem.Text = "帮助";
+            关于ToolStripMenuItem.Size = new Size(61, 21);
+            关于ToolStripMenuItem.Text = "帮助(&H)";
             // 
             // 相关链接ToolStripMenuItem
             // 
             相关链接ToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { MenuItem_JumpOP, MenuItem_JumpOPDoc, toolStripMenuItem2, MenuItem_JumpOPExport });
             相关链接ToolStripMenuItem.Name = "相关链接ToolStripMenuItem";
-            相关链接ToolStripMenuItem.Size = new Size(124, 22);
-            相关链接ToolStripMenuItem.Text = "相关链接";
+            相关链接ToolStripMenuItem.Size = new Size(196, 22);
+            相关链接ToolStripMenuItem.Text = "相关链接(&L)";
             // 
             // MenuItem_JumpOP
             // 
             MenuItem_JumpOP.Name = "MenuItem_JumpOP";
-            MenuItem_JumpOP.Size = new Size(141, 22);
+            MenuItem_JumpOP.ShortcutKeys = Keys.Control | Keys.Alt | Keys.D;
+            MenuItem_JumpOP.Size = new Size(229, 22);
             MenuItem_JumpOP.Tag = "https://github.com/WallBreaker2/op/releases";
-            MenuItem_JumpOP.Text = "OP插件下载";
+            MenuItem_JumpOP.Text = "OP插件下载(&O)";
             MenuItem_JumpOP.Click += MenuItem_JumpLink_Click;
             // 
             // MenuItem_JumpOPDoc
             // 
             MenuItem_JumpOPDoc.Name = "MenuItem_JumpOPDoc";
-            MenuItem_JumpOPDoc.Size = new Size(141, 22);
+            MenuItem_JumpOPDoc.ShortcutKeys = Keys.F1;
+            MenuItem_JumpOPDoc.Size = new Size(229, 22);
             MenuItem_JumpOPDoc.Tag = "https://github.com/WallBreaker2/op/wiki";
-            MenuItem_JumpOPDoc.Text = "OP在线文档";
+            MenuItem_JumpOPDoc.Text = "OP在线文档(&D)";
             MenuItem_JumpOPDoc.Click += MenuItem_JumpLink_Click;
             // 
             // toolStripMenuItem2
             // 
             toolStripMenuItem2.Name = "toolStripMenuItem2";
-            toolStripMenuItem2.Size = new Size(138, 6);
+            toolStripMenuItem2.Size = new Size(177, 6);
             // 
             // MenuItem_JumpOPExport
             // 
             MenuItem_JumpOPExport.Name = "MenuItem_JumpOPExport";
-            MenuItem_JumpOPExport.Size = new Size(141, 22);
+            MenuItem_JumpOPExport.ShortcutKeys = Keys.Control | Keys.E;
+            MenuItem_JumpOPExport.Size = new Size(229, 22);
             MenuItem_JumpOPExport.Tag = "https://github.com/flaot/OPExport";
-            MenuItem_JumpOPExport.Text = "OPExport";
+            MenuItem_JumpOPExport.Text = "OP&Export";
             MenuItem_JumpOPExport.Click += MenuItem_JumpLink_Click;
             // 
             // MenuItem_CheckUpdate
             // 
             MenuItem_CheckUpdate.Name = "MenuItem_CheckUpdate";
-            MenuItem_CheckUpdate.Size = new Size(124, 22);
+            MenuItem_CheckUpdate.ShortcutKeys = Keys.Control | Keys.U;
+            MenuItem_CheckUpdate.Size = new Size(196, 22);
             MenuItem_CheckUpdate.Tag = "https://github.com/flaot/OPTestTool/releases/";
-            MenuItem_CheckUpdate.Text = "检查更新";
+            MenuItem_CheckUpdate.Text = "检查更新(&U)";
             MenuItem_CheckUpdate.Click += MenuItem_JumpLink_Click;
             // 
             // toolStripMenuItem1
             // 
             toolStripMenuItem1.Name = "toolStripMenuItem1";
-            toolStripMenuItem1.Size = new Size(121, 6);
+            toolStripMenuItem1.Size = new Size(177, 6);
             // 
             // MenuItem_About
             // 
             MenuItem_About.Name = "MenuItem_About";
-            MenuItem_About.Size = new Size(124, 22);
-            MenuItem_About.Text = "关于";
+            MenuItem_About.ShortcutKeys = Keys.Control | Keys.Shift | Keys.H;
+            MenuItem_About.Size = new Size(196, 22);
+            MenuItem_About.Text = "关于(&A)";
             MenuItem_About.Click += MenuItem_About_Click;
             // 
             // TxtBox_Log
