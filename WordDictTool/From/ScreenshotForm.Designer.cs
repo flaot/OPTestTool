@@ -28,28 +28,30 @@
         /// </summary>
         private void InitializeComponent()
         {
-            magnifier = new WordDictTool.MagnifierControl();
             sizeLabel = new Label();
+            magnifier = new MagnifierControl();
             SuspendLayout();
-            // 
-            // magnifier
-            // 
-            magnifier.Location = new Point(441, 219);
-            magnifier.Name = "magnifier";
-            magnifier.Size = new Size(100, 167);
-            magnifier.TabIndex = 0;
             // 
             // sizeLabel
             // 
             sizeLabel.AutoSize = true;
             sizeLabel.BackColor = Color.White;
             sizeLabel.BorderStyle = BorderStyle.FixedSingle;
-            sizeLabel.Location = new Point(126, 103);
+            sizeLabel.Location = new Point(149, 155);
             sizeLabel.Name = "sizeLabel";
             sizeLabel.Padding = new Padding(5);
             sizeLabel.Size = new Size(76, 29);
             sizeLabel.TabIndex = 1;
             sizeLabel.Text = "100 x 100";
+            // 
+            // magnifierControl1
+            // 
+            magnifier.BorderStyle = BorderStyle.FixedSingle;
+            magnifier.Location = new Point(302, 232);
+            magnifier.Magnification = 8;
+            magnifier.Name = "magnifierControl1";
+            magnifier.Size = new Size(128, 188);
+            magnifier.TabIndex = 2;
             // 
             // ScreenshotForm
             // 
@@ -57,8 +59,8 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 600);
             ControlBox = false;
-            Controls.Add(sizeLabel);
             Controls.Add(magnifier);
+            Controls.Add(sizeLabel);
             Cursor = Cursors.Cross;
             DoubleBuffered = true;
             FormBorderStyle = FormBorderStyle.None;
@@ -83,8 +85,7 @@
         }
 
         #endregion
-
-        private MagnifierControl magnifier;
         private Label sizeLabel;
+        private MagnifierControl magnifier;
     }
 }

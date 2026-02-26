@@ -4,6 +4,8 @@
     {
         private Bitmap background;
         private Bitmap result;
+        private Color resultColor;
+        private bool getColor;
         private Point startPoint;
         private Point endPoint;
         private bool isDrawing = false;
@@ -20,6 +22,7 @@
         private bool isHoveringOverRectangle = false;
         private const int MouseMoveStep = 1; // 鼠标移动步长
         private const int MouseShiftMoveStep = 10;
+        private Point _startPoint;
         public ScreenshotForm()
         {
             InitializeComponent();
@@ -27,10 +30,12 @@
 
         private void ScreenshotForm_Load(object sender, EventArgs e)
         {
-            magnifier.Visible = false;
+
             sizeLabel.Visible = false;
-            Rectangle bounds = Screen.PrimaryScreen.Bounds; //主显示器
-            //Rectangle bounds = SystemInformation.VirtualScreen; //所有显示器
+            Rectangle bounds = SystemInformation.VirtualScreen; //所有显示器
+#if DEBUG
+            bounds = Screen.PrimaryScreen.Bounds; //主显示器
+#endif
             Size = bounds.Size;
             Location = bounds.Location;
 
@@ -39,7 +44,8 @@
             {
                 g.CopyFromScreen(bounds.X, bounds.Y, 0, 0, bounds.Size);
             }
-            BackgroundImage = background;
+            _startPoint = new Point(bounds.X, bounds.Y);
+            magnifier.SetBackground(_startPoint, background);
         }
         private void ScreenshotForm_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -49,7 +55,7 @@
         }
         protected override void OnPaint(PaintEventArgs e)
         {
-            base.OnPaint(e);
+            e.Graphics.DrawImage(background, new Point(0, 0));
 
             //绘制框选区
             if (!rect.IsEmpty)
@@ -80,6 +86,15 @@
             {
                 DialogResult = DialogResult.Cancel;
                 Close();
+                return;
+            }
+            //按C键复制颜色值到剪贴板
+            if (e.KeyCode == Keys.C)
+            {
+                Point mousePos = Cursor.Position;
+                Point localMousePos = new Point(mousePos.X - _startPoint.X, mousePos.Y - _startPoint.Y);
+                Color color = background.GetPixel(localMousePos.X, localMousePos.Y);
+                Clipboard.SetText($"{color.R:X2}{color.G:X2}{color.B:X2}");
                 return;
             }
             //移动鼠标位置快捷键
@@ -142,6 +157,13 @@
         }
         private void ScreenshotForm_MouseDown(object sender, MouseEventArgs e)
         {
+            if (getColor)
+            {
+                resultColor = background.GetPixel(e.Location.X, e.Location.Y);
+                DialogResult = DialogResult.OK;
+                Close();
+                return;
+            }
             lastMousePoint = e.Location;
             if (e.Button == MouseButtons.Left)
             {
@@ -267,11 +289,6 @@
                     }
                     this.Invalidate();
                 }
-            }
-            if (magnifier.Visible)
-            { 
-                magnifier.UpdatePanel();
-                this.Refresh();
             }
         }
         private void ScreenshotForm_MouseLeave(object sender, EventArgs e)
@@ -477,15 +494,28 @@
             }
         }
 
-        public static Bitmap ShowPanel()
+        public static Bitmap ShowDialogGetBitmap()
         {
             using (ScreenshotForm form = new ScreenshotForm())
             {
+                form.getColor = false;
                 DialogResult dialogResult = form.ShowDialog();
                 if (dialogResult == DialogResult.Cancel)
                     return null;
                 else
                     return form.result;
+            }
+        }
+        public static Color ShowPanelGetColor()
+        {
+            using (ScreenshotForm form = new ScreenshotForm())
+            {
+                form.getColor = true;
+                DialogResult dialogResult = form.ShowDialog();
+                if (dialogResult == DialogResult.Cancel)
+                    return Color.Empty;
+                else
+                    return form.resultColor;
             }
         }
     }

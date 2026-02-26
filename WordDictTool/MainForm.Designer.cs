@@ -535,10 +535,12 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1098, 586);
             Controls.Add(tableLayoutPanel1);
+            KeyPreview = true;
             Name = "MainForm";
             Text = "字库制作工具";
             FormClosing += MainForm_FormClosing;
             Load += MainForm_Load;
+            KeyDown += MainForm_KeyDown;
             groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             groupBox2.ResumeLayout(false);

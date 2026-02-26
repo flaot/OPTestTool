@@ -28,82 +28,85 @@
         /// </summary>
         private void InitializeComponent()
         {
-            label1 = new Label();
-            label2 = new Label();
+            components = new System.ComponentModel.Container();
+            coordinateLabel = new Label();
             splitContainer1 = new SplitContainer();
-            Panel_Image = new Panel();
+            pictureBox = new PictureBox();
+            timer1 = new System.Windows.Forms.Timer(components);
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
             splitContainer1.Panel1.SuspendLayout();
             splitContainer1.Panel2.SuspendLayout();
             splitContainer1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox).BeginInit();
             SuspendLayout();
             // 
-            // label1
+            // coordinateLabel
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(5, 5);
-            label1.Name = "label1";
-            label1.Size = new Size(32, 17);
-            label1.TabIndex = 1;
-            label1.Text = "坐标";
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Location = new Point(4, 27);
-            label2.Name = "label2";
-            label2.Size = new Size(32, 17);
-            label2.TabIndex = 2;
-            label2.Text = "色值";
+            coordinateLabel.AutoSize = true;
+            coordinateLabel.Location = new Point(8, 5);
+            coordinateLabel.Name = "coordinateLabel";
+            coordinateLabel.Size = new Size(86, 51);
+            coordinateLabel.TabIndex = 1;
+            coordinateLabel.Text = "坐标：(0, 0)\r\n色值：000000\r\n按C复制色号";
             // 
             // splitContainer1
             // 
             splitContainer1.Dock = DockStyle.Fill;
             splitContainer1.FixedPanel = FixedPanel.Panel1;
+            splitContainer1.IsSplitterFixed = true;
             splitContainer1.Location = new Point(0, 0);
             splitContainer1.Name = "splitContainer1";
             splitContainer1.Orientation = Orientation.Horizontal;
             // 
             // splitContainer1.Panel1
             // 
-            splitContainer1.Panel1.Controls.Add(Panel_Image);
+            splitContainer1.Panel1.Controls.Add(pictureBox);
             // 
             // splitContainer1.Panel2
             // 
-            splitContainer1.Panel2.Controls.Add(label1);
-            splitContainer1.Panel2.Controls.Add(label2);
-            splitContainer1.Size = new Size(100, 167);
-            splitContainer1.SplitterDistance = 100;
+            splitContainer1.Panel2.Controls.Add(coordinateLabel);
+            splitContainer1.Size = new Size(128, 188);
+            splitContainer1.SplitterDistance = 128;
+            splitContainer1.SplitterWidth = 1;
             splitContainer1.TabIndex = 3;
             // 
-            // Panel_Image
+            // pictureBox
             // 
-            Panel_Image.BackColor = SystemColors.ActiveCaptionText;
-            Panel_Image.Dock = DockStyle.Fill;
-            Panel_Image.Location = new Point(0, 0);
-            Panel_Image.Name = "Panel_Image";
-            Panel_Image.Size = new Size(100, 100);
-            Panel_Image.TabIndex = 0;
+            pictureBox.BackColor = SystemColors.ActiveCaptionText;
+            pictureBox.BorderStyle = BorderStyle.FixedSingle;
+            pictureBox.Dock = DockStyle.Fill;
+            pictureBox.Location = new Point(0, 0);
+            pictureBox.Name = "pictureBox";
+            pictureBox.Size = new Size(128, 128);
+            pictureBox.TabIndex = 0;
+            pictureBox.TabStop = false;
+            // 
+            // timer1
+            // 
+            timer1.Interval = 20;
+            timer1.Tick += Timer_Tick;
             // 
             // MagnifierControl
             // 
             AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
+            BorderStyle = BorderStyle.FixedSingle;
             Controls.Add(splitContainer1);
             Name = "MagnifierControl";
-            Size = new Size(100, 167);
+            Size = new Size(128, 188);
             splitContainer1.Panel1.ResumeLayout(false);
             splitContainer1.Panel2.ResumeLayout(false);
             splitContainer1.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).EndInit();
             splitContainer1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)pictureBox).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
-        private Label label1;
-        private Label label2;
+        private Label coordinateLabel;
         private SplitContainer splitContainer1;
-        private Panel Panel_Image;
+        private PictureBox pictureBox;
+        private System.Windows.Forms.Timer timer1;
     }
 }

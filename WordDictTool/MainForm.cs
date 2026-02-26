@@ -1,4 +1,4 @@
-﻿using System.IO;
+﻿using System.Diagnostics;
 using System.Text;
 
 namespace WordDictTool
@@ -55,7 +55,7 @@ namespace WordDictTool
                     if (row < colorList.Count)
                         colordf = colorList[row];
                     var rowObj = DataGridView_Color.Rows[row];
-                    var rowColor = HexToColor(colordf.Key);
+                    var rowColor = FuncHelper.HexToColor(colordf.Key);
                     rowObj.Tag = rowColor;
                     rowObj.Cells[Head_Name.Pos].Value = (row + 1).ToString();
                     var buttonCell = (DataGridViewButtonCell)rowObj.Cells[Head_Name.Color];
@@ -120,7 +120,7 @@ namespace WordDictTool
         }
         private void Btn_Screenshot_Click(object sender, EventArgs e)
         {
-            Bitmap bitmap = ScreenshotForm.ShowPanel();
+            Bitmap bitmap = ScreenshotForm.ShowDialogGetBitmap();
             if (bitmap != null)
             {
                 var path = TempFile;
@@ -198,7 +198,7 @@ namespace WordDictTool
                 var buttonCell = (DataGridViewButtonCell)rowObj.Cells[Head_Name.Color];
                 buttonCell.Style.BackColor = newColor;
                 buttonCell.Style.SelectionBackColor = newColor;
-                rowObj.Cells[Head_Name.RGB].Value = ColorToHex(newColor);
+                rowObj.Cells[Head_Name.RGB].Value = FuncHelper.ColorToHex(newColor);
                 RefreshColor();
             }
         }
@@ -220,10 +220,10 @@ namespace WordDictTool
             if (columnName == Head_Name.RGB)
             {
                 var color = (Color)rowObj.Tag;
-                if (ColorToHex(color) == cell.Value.ToString())
+                if (FuncHelper.ColorToHex(color) == cell.Value.ToString())
                     return;
                 Utils.DataGridViewTextBoxCellColorHex_TextChanged(cell as DataGridViewTextBoxCell);
-                var newColor = HexToColor(cell.Value.ToString());
+                var newColor = FuncHelper.HexToColor(cell.Value.ToString());
                 var buttonCell = (DataGridViewButtonCell)rowObj.Cells[Head_Name.Color];
                 rowObj.Tag = newColor;
                 buttonCell.Style.BackColor = newColor;
@@ -377,17 +377,6 @@ namespace WordDictTool
             public const string OffColor = "vOffColor";
             public const string Check = "vCheck";
         }
-        private static string ColorToHex(Color color)
-        {
-            return string.Format("{0:X2}{1:X2}{2:X2}", color.R, color.G, color.B);
-        }
-        private static Color HexToColor(string hex)
-        {
-            return Color.FromArgb(0xFF, Convert.ToInt32(hex.Substring(0, 2), 16),
-                                   Convert.ToInt32(hex.Substring(2, 2), 16),
-                                   Convert.ToInt32(hex.Substring(4, 2), 16));
-        }
-
 
         private static MainForm _wordDictTool;
         public static void ShowPanel()
@@ -398,6 +387,57 @@ namespace WordDictTool
                 _wordDictTool.Focus();
             else
                 _wordDictTool.Show();
+        }
+
+        private void MainForm_KeyDown(object sender, KeyEventArgs e)
+        {
+            // Alt + 1
+            if (e.Alt && e.KeyCode == Keys.D1)
+                SetColor(0);
+            // Alt + 2
+            if (e.Alt && e.KeyCode == Keys.D2)
+                SetColor(1);
+            // Alt + 3
+            if (e.Alt && e.KeyCode == Keys.D3)
+                SetColor(2);
+            // Alt + 4
+            if (e.Alt && e.KeyCode == Keys.D4)
+                SetColor(3);
+            // Alt + 5
+            if (e.Alt && e.KeyCode == Keys.D5)
+                SetColor(4);
+            // Alt + 6
+            if (e.Alt && e.KeyCode == Keys.D6)
+                SetColor(6);
+            // Alt + 7
+            if (e.Alt && e.KeyCode == Keys.D7)
+                SetColor(7);
+            // Alt + 8
+            if (e.Alt && e.KeyCode == Keys.D8)
+                SetColor(8);
+            // Alt + 9
+            if (e.Alt && e.KeyCode == Keys.D9)
+                SetColor(9);
+            // Alt + 0
+            if (e.Alt && e.KeyCode == Keys.D0)
+            {
+                Point mousePos = Cursor.Position;
+                Rectangle screenBounds = Screen.GetWorkingArea(mousePos);
+                Debug.WriteLine("");
+                Debug.WriteLine("mousePos:" + mousePos);
+                Debug.WriteLine("screenBounds:" + screenBounds);
+                Debug.WriteLine("Location:" + this.Location);
+                Debug.WriteLine("PointToClient:" + this.PointToClient(mousePos));
+                Debug.WriteLine("PointToScreen:" + this.PointToScreen(this.Location));
+            }
+        }
+        private void SetColor(int index)
+        {
+            var color = ScreenshotForm.ShowPanelGetColor();
+            if (color.IsEmpty)
+                return;
+            var rowObj = DataGridView_Color.Rows[index];
+            rowObj.Cells[Head_Name.RGB].Value = FuncHelper.ColorToHex(color);
         }
     }
 }

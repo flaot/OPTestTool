@@ -58,7 +58,7 @@
                     }
                 }
             }
-           
+
         }
 
         public void RefreshData(WordData wordData)

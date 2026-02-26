@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace WordDictTool
+﻿namespace WordDictTool
 {
     /// <summary> 字库 </summary>
     public class WordDict
@@ -87,13 +85,13 @@ namespace WordDictTool
             var oldHash = oldCode.GetHashCode();
             //不存在旧数据
             if (!_hashWord.TryGetValue(oldHash, out var wordData))
-            { 
+            {
                 WordData wordData1 = new WordData();
                 wordData1.Pause(oldCode);
                 wordData1.SetChar(newChar);
                 var newHashTemp = wordData1.wordCode.GetHashCode();
                 if (!_hashWord.ContainsKey(newHashTemp))
-                { 
+                {
                     wrods.Add(wordData1);
                     _hashWord.Add(newHashTemp, wordData1);
                     _featureWord.Add(wordData1.feature.GetHashCode(), wordData1);
