@@ -429,6 +429,16 @@ namespace WordDictTool
         }
         private void DictListMenuItem_Import_Click(object sender, EventArgs e) => ToolStripMenuItem_Import.PerformClick();
         private void DictListMenuItem_Export_Click(object sender, EventArgs e) => ToolStripMenuItem_Export.PerformClick();
+        private void DictListMenuItem_CharSort_Click(object sender, EventArgs e)
+        {
+            _showDict.SortByChar();
+            RefreshListBox();
+        }
+        private void DictListMenuItem_BitCountSort_Click(object sender, EventArgs e)
+        {
+            _showDict.SortByBitCnt();
+            RefreshListBox();
+        }
         private void ListBox_Dict_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (ListBox_Dict.SelectedIndex < 0)

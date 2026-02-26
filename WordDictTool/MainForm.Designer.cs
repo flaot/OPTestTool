@@ -29,13 +29,14 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
             ListBox_Dict = new ListBox();
             DictListContextMenuStrip = new ContextMenuStrip(components);
             DictListMenuItem_Copy = new ToolStripMenuItem();
+            DictListMenuItem_Delete = new ToolStripMenuItem();
             toolStripMenuItem3 = new ToolStripSeparator();
             DictListMenuItem_Import = new ToolStripMenuItem();
             DictListMenuItem_Export = new ToolStripMenuItem();
@@ -105,7 +106,9 @@
             ToolStripMenuItem_Guide = new ToolStripMenuItem();
             ToolStripMenuItem_About = new ToolStripMenuItem();
             ToolStripMenuItem_CheckUpdate = new ToolStripMenuItem();
-            DictListMenuItem_Delete = new ToolStripMenuItem();
+            toolStripMenuItem5 = new ToolStripSeparator();
+            DictListMenuItem_CharSort = new ToolStripMenuItem();
+            DictListMenuItem_BitCountSort = new ToolStripMenuItem();
             DictListContextMenuStrip.SuspendLayout();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -136,9 +139,9 @@
             // 
             // DictListContextMenuStrip
             // 
-            DictListContextMenuStrip.Items.AddRange(new ToolStripItem[] { DictListMenuItem_Copy, DictListMenuItem_Delete, toolStripMenuItem3, DictListMenuItem_Import, DictListMenuItem_Export });
+            DictListContextMenuStrip.Items.AddRange(new ToolStripItem[] { DictListMenuItem_Copy, DictListMenuItem_Delete, toolStripMenuItem3, DictListMenuItem_Import, DictListMenuItem_Export, toolStripMenuItem5, DictListMenuItem_CharSort, DictListMenuItem_BitCountSort });
             DictListContextMenuStrip.Name = "DictListContextMenuStrip";
-            DictListContextMenuStrip.Size = new Size(199, 120);
+            DictListContextMenuStrip.Size = new Size(199, 170);
             // 
             // DictListMenuItem_Copy
             // 
@@ -147,6 +150,14 @@
             DictListMenuItem_Copy.Size = new Size(198, 22);
             DictListMenuItem_Copy.Text = "复制选中项(&C)";
             DictListMenuItem_Copy.Click += DictListMenuItem_Copy_Click;
+            // 
+            // DictListMenuItem_Delete
+            // 
+            DictListMenuItem_Delete.Name = "DictListMenuItem_Delete";
+            DictListMenuItem_Delete.ShortcutKeys = Keys.Delete;
+            DictListMenuItem_Delete.Size = new Size(198, 22);
+            DictListMenuItem_Delete.Text = "删除选中项(&D)";
+            DictListMenuItem_Delete.Click += DictListMenuItem_Delete_Click;
             // 
             // toolStripMenuItem3
             // 
@@ -351,14 +362,14 @@
             DataGridView_Color.AllowUserToResizeRows = false;
             DataGridView_Color.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             DataGridView_Color.BackgroundColor = SystemColors.ButtonFace;
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = SystemColors.Control;
-            dataGridViewCellStyle1.Font = new Font("Microsoft YaHei UI", 9F);
-            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-            DataGridView_Color.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = SystemColors.Control;
+            dataGridViewCellStyle5.Font = new Font("Microsoft YaHei UI", 9F);
+            dataGridViewCellStyle5.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.True;
+            DataGridView_Color.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             DataGridView_Color.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             DataGridView_Color.Columns.AddRange(new DataGridViewColumn[] { vPos, vColor, vRGB, vOffColor, vCheck });
             DataGridView_Color.Location = new Point(6, 20);
@@ -370,8 +381,8 @@
             // 
             // vPos
             // 
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            vPos.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            vPos.DefaultCellStyle = dataGridViewCellStyle6;
             vPos.HeaderText = "";
             vPos.Name = "vPos";
             vPos.ReadOnly = true;
@@ -385,16 +396,16 @@
             // 
             // vRGB
             // 
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            vRGB.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            vRGB.DefaultCellStyle = dataGridViewCellStyle7;
             vRGB.HeaderText = "RGB";
             vRGB.Name = "vRGB";
             vRGB.Width = 60;
             // 
             // vOffColor
             // 
-            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            vOffColor.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            vOffColor.DefaultCellStyle = dataGridViewCellStyle8;
             vOffColor.HeaderText = "偏色";
             vOffColor.Name = "vOffColor";
             vOffColor.Width = 60;
@@ -803,13 +814,24 @@
             ToolStripMenuItem_CheckUpdate.Text = "检查更新(&U)";
             ToolStripMenuItem_CheckUpdate.Click += MenuItem_JumpLink_Click;
             // 
-            // DictListMenuItem_Delete
+            // toolStripMenuItem5
             // 
-            DictListMenuItem_Delete.Name = "DictListMenuItem_Delete";
-            DictListMenuItem_Delete.ShortcutKeys = Keys.Delete;
-            DictListMenuItem_Delete.Size = new Size(198, 22);
-            DictListMenuItem_Delete.Text = "删除选中项(&D)";
-            DictListMenuItem_Delete.Click += DictListMenuItem_Delete_Click;
+            toolStripMenuItem5.Name = "toolStripMenuItem5";
+            toolStripMenuItem5.Size = new Size(195, 6);
+            // 
+            // DictListMenuItem_CharSort
+            // 
+            DictListMenuItem_CharSort.Name = "DictListMenuItem_CharSort";
+            DictListMenuItem_CharSort.Size = new Size(198, 22);
+            DictListMenuItem_CharSort.Text = "按字符排序(&C)";
+            DictListMenuItem_CharSort.Click += DictListMenuItem_CharSort_Click;
+            // 
+            // DictListMenuItem_BitCountSort
+            // 
+            DictListMenuItem_BitCountSort.Name = "DictListMenuItem_BitCountSort";
+            DictListMenuItem_BitCountSort.Size = new Size(198, 22);
+            DictListMenuItem_BitCountSort.Text = "按点阵数排序(&P)";
+            DictListMenuItem_BitCountSort.Click += DictListMenuItem_BitCountSort_Click;
             // 
             // MainForm
             // 
@@ -920,5 +942,8 @@
         private ToolStripMenuItem ToolStripMenuItem_Import;
         private ToolStripMenuItem ToolStripMenuItem_Export;
         private ToolStripMenuItem DictListMenuItem_Delete;
+        private ToolStripSeparator toolStripMenuItem5;
+        private ToolStripMenuItem DictListMenuItem_CharSort;
+        private ToolStripMenuItem DictListMenuItem_BitCountSort;
     }
 }
