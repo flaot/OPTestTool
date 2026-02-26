@@ -1,6 +1,5 @@
 ﻿using System.Diagnostics;
 using System.Text;
-using WordDictTool.Properties;
 
 namespace WordDictTool
 {
@@ -23,7 +22,7 @@ namespace WordDictTool
             _wordDict.OnChange += Dict_OnChange;
             _tempDict.OnChange += Dict_OnChange;
             _showDict = _wordDict;
-        
+
         }
         private void MainForm_Load(object sender, EventArgs e)
         {
@@ -239,6 +238,38 @@ namespace WordDictTool
             else
                 _wordDict.OnChange -= Dict_OnChangeToSave;
         }
+        private void ToolStripMenuItem_Import_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog dialog = new OpenFileDialog();
+            dialog.Title = "导入明码OP字库文件";
+            dialog.Filter = "明码字库文件(*.txt)|*.txt";
+            if (dialog.ShowDialog() != DialogResult.OK)
+                return;
+            string file = dialog.FileName;
+            string[] allLine = File.ReadAllLines(file);
+            for (int i = 0; i < allLine.Length; i++)
+            {
+                string line = allLine[i];
+                if (string.IsNullOrWhiteSpace(line))
+                    continue;
+                string wordCode = line.Trim();
+                _showDict.Add(wordCode);
+            }
+            RefreshListBox();
+        }
+        private void ToolStripMenuItem_Export_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog dialog = new SaveFileDialog();
+            dialog.Title = "导出明码OP字库文件";
+            dialog.Filter = "明码字库文件(*.txt)|*.txt";
+            if (dialog.ShowDialog() != DialogResult.OK)
+                return;
+            string file = dialog.FileName;
+            StringBuilder sb = new StringBuilder();
+            foreach (string item in ListBox_Dict.Items)
+                sb.AppendLine(item);
+            File.WriteAllText(file, sb.ToString());
+        }
         private void ToolStripMenuItem_PreviewDict_Click(object sender, EventArgs e)
         {
             float sim = float.Parse(Txt_FindSim.Text);
@@ -372,6 +403,32 @@ namespace WordDictTool
         #region 字库
         private void Btn_CreateOrNewDict_Click(object sender, EventArgs e) => ToolStripMenuItem_OpenDict.PerformClick();
         private void Btn_EditDict_Click(object sender, EventArgs e) => ToolStripMenuItem_EditDict.PerformClick();
+        private void DictListMenuItem_Copy_Click(object sender, EventArgs e)
+        {
+            if (ListBox_Dict.SelectedIndex < 0)
+                return;
+            StringBuilder sb = new StringBuilder();
+            foreach (string item in ListBox_Dict.SelectedItems)
+            {
+                if (sb.Length > 0)
+                    sb.AppendLine();
+                sb.Append(item);
+            }
+            Clipboard.SetText(sb.ToString());
+        }
+        private void DictListMenuItem_Delete_Click(object sender, EventArgs e)
+        {
+            if (ListBox_Dict.SelectedIndex < 0)
+                return;
+            foreach (int index in ListBox_Dict.SelectedIndices)
+            {
+                string selectedItem = (string)ListBox_Dict.Items[index];
+                _showDict.Remove(selectedItem);
+            }
+            RefreshListBox();
+        }
+        private void DictListMenuItem_Import_Click(object sender, EventArgs e) => ToolStripMenuItem_Import.PerformClick();
+        private void DictListMenuItem_Export_Click(object sender, EventArgs e) => ToolStripMenuItem_Export.PerformClick();
         private void ListBox_Dict_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (ListBox_Dict.SelectedIndex < 0)
@@ -401,6 +458,7 @@ namespace WordDictTool
             {
                 if (string.Equals(_showDict.wrods[i].name, findWord))
                 {
+                    ListBox_Dict.ClearSelected();
                     ListBox_Dict.SelectedIndex = i;
                     return;
                 }

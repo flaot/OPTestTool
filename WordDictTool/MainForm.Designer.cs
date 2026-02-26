@@ -28,11 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             ListBox_Dict = new ListBox();
+            DictListContextMenuStrip = new ContextMenuStrip(components);
+            DictListMenuItem_Copy = new ToolStripMenuItem();
+            toolStripMenuItem3 = new ToolStripSeparator();
+            DictListMenuItem_Import = new ToolStripMenuItem();
+            DictListMenuItem_Export = new ToolStripMenuItem();
             groupBox1 = new GroupBox();
             Btn_Screenshot = new Button();
             Btn_EditImage = new Button();
@@ -72,7 +78,7 @@
             CheckBox_Bk = new CheckBox();
             panel1 = new Panel();
             groupBox3 = new GroupBox();
-            menuStrip1 = new MenuStrip();
+            MenuItemStrip = new MenuStrip();
             ToolStripMenuItem_File = new ToolStripMenuItem();
             ToolStripMenuItem_LoadImage = new ToolStripMenuItem();
             ToolStripMenuItem_SaveImage = new ToolStripMenuItem();
@@ -89,13 +95,18 @@
             ToolStripMenuItem_OpenDict = new ToolStripMenuItem();
             ToolStripMenuItem_EditDict = new ToolStripMenuItem();
             ToolStripMenuItem_SaveDict = new ToolStripMenuItem();
+            ToolStripMenuItem_AutoSaveDict = new ToolStripMenuItem();
+            toolStripMenuItem4 = new ToolStripSeparator();
+            ToolStripMenuItem_Import = new ToolStripMenuItem();
+            ToolStripMenuItem_Export = new ToolStripMenuItem();
             toolStripMenuItem2 = new ToolStripSeparator();
             ToolStripMenuItem_PreviewDict = new ToolStripMenuItem();
             ToolStripMenuItem_Help = new ToolStripMenuItem();
             ToolStripMenuItem_Guide = new ToolStripMenuItem();
             ToolStripMenuItem_About = new ToolStripMenuItem();
             ToolStripMenuItem_CheckUpdate = new ToolStripMenuItem();
-            ToolStripMenuItem_AutoSaveDict = new ToolStripMenuItem();
+            DictListMenuItem_Delete = new ToolStripMenuItem();
+            DictListContextMenuStrip.SuspendLayout();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             groupBox2.SuspendLayout();
@@ -107,19 +118,54 @@
             groupBox9.SuspendLayout();
             panel1.SuspendLayout();
             groupBox3.SuspendLayout();
-            menuStrip1.SuspendLayout();
+            MenuItemStrip.SuspendLayout();
             SuspendLayout();
             // 
             // ListBox_Dict
             // 
             ListBox_Dict.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            ListBox_Dict.ContextMenuStrip = DictListContextMenuStrip;
             ListBox_Dict.FormattingEnabled = true;
             ListBox_Dict.ItemHeight = 17;
             ListBox_Dict.Location = new Point(6, 96);
             ListBox_Dict.Name = "ListBox_Dict";
+            ListBox_Dict.SelectionMode = SelectionMode.MultiExtended;
             ListBox_Dict.Size = new Size(212, 412);
             ListBox_Dict.TabIndex = 5;
             ListBox_Dict.SelectedIndexChanged += ListBox_Dict_SelectedIndexChanged;
+            // 
+            // DictListContextMenuStrip
+            // 
+            DictListContextMenuStrip.Items.AddRange(new ToolStripItem[] { DictListMenuItem_Copy, DictListMenuItem_Delete, toolStripMenuItem3, DictListMenuItem_Import, DictListMenuItem_Export });
+            DictListContextMenuStrip.Name = "DictListContextMenuStrip";
+            DictListContextMenuStrip.Size = new Size(199, 120);
+            // 
+            // DictListMenuItem_Copy
+            // 
+            DictListMenuItem_Copy.Name = "DictListMenuItem_Copy";
+            DictListMenuItem_Copy.ShortcutKeys = Keys.Control | Keys.C;
+            DictListMenuItem_Copy.Size = new Size(198, 22);
+            DictListMenuItem_Copy.Text = "复制选中项(&C)";
+            DictListMenuItem_Copy.Click += DictListMenuItem_Copy_Click;
+            // 
+            // toolStripMenuItem3
+            // 
+            toolStripMenuItem3.Name = "toolStripMenuItem3";
+            toolStripMenuItem3.Size = new Size(195, 6);
+            // 
+            // DictListMenuItem_Import
+            // 
+            DictListMenuItem_Import.Name = "DictListMenuItem_Import";
+            DictListMenuItem_Import.Size = new Size(198, 22);
+            DictListMenuItem_Import.Text = "导入明码字库(&I)";
+            DictListMenuItem_Import.Click += DictListMenuItem_Import_Click;
+            // 
+            // DictListMenuItem_Export
+            // 
+            DictListMenuItem_Export.Name = "DictListMenuItem_Export";
+            DictListMenuItem_Export.Size = new Size(198, 22);
+            DictListMenuItem_Export.Text = "导出明码字库(&E)";
+            DictListMenuItem_Export.Click += DictListMenuItem_Export_Click;
             // 
             // groupBox1
             // 
@@ -555,14 +601,14 @@
             groupBox3.TabStop = false;
             groupBox3.Text = "点阵";
             // 
-            // menuStrip1
+            // MenuItemStrip
             // 
-            menuStrip1.Items.AddRange(new ToolStripItem[] { ToolStripMenuItem_File, ToolStripMenuItem_Tool, ToolStripMenuItem_Dict, ToolStripMenuItem_Help });
-            menuStrip1.Location = new Point(0, 0);
-            menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(1098, 25);
-            menuStrip1.TabIndex = 20;
-            menuStrip1.Text = "menuStrip1";
+            MenuItemStrip.Items.AddRange(new ToolStripItem[] { ToolStripMenuItem_File, ToolStripMenuItem_Tool, ToolStripMenuItem_Dict, ToolStripMenuItem_Help });
+            MenuItemStrip.Location = new Point(0, 0);
+            MenuItemStrip.Name = "MenuItemStrip";
+            MenuItemStrip.Size = new Size(1098, 25);
+            MenuItemStrip.TabIndex = 20;
+            MenuItemStrip.Text = "menuStrip1";
             // 
             // ToolStripMenuItem_File
             // 
@@ -654,7 +700,7 @@
             // 
             // ToolStripMenuItem_Dict
             // 
-            ToolStripMenuItem_Dict.DropDownItems.AddRange(new ToolStripItem[] { ToolStripMenuItem_OpenDict, ToolStripMenuItem_EditDict, ToolStripMenuItem_SaveDict, ToolStripMenuItem_AutoSaveDict, toolStripMenuItem2, ToolStripMenuItem_PreviewDict });
+            ToolStripMenuItem_Dict.DropDownItems.AddRange(new ToolStripItem[] { ToolStripMenuItem_OpenDict, ToolStripMenuItem_EditDict, ToolStripMenuItem_SaveDict, ToolStripMenuItem_AutoSaveDict, toolStripMenuItem4, ToolStripMenuItem_Import, ToolStripMenuItem_Export, toolStripMenuItem2, ToolStripMenuItem_PreviewDict });
             ToolStripMenuItem_Dict.Name = "ToolStripMenuItem_Dict";
             ToolStripMenuItem_Dict.Size = new Size(61, 21);
             ToolStripMenuItem_Dict.Text = "字库(&D)";
@@ -682,6 +728,35 @@
             ToolStripMenuItem_SaveDict.Size = new Size(242, 22);
             ToolStripMenuItem_SaveDict.Text = "保存字库(&S)";
             ToolStripMenuItem_SaveDict.Click += ToolStripMenuItem_SaveDict_Click;
+            // 
+            // ToolStripMenuItem_AutoSaveDict
+            // 
+            ToolStripMenuItem_AutoSaveDict.Name = "ToolStripMenuItem_AutoSaveDict";
+            ToolStripMenuItem_AutoSaveDict.ShortcutKeys = Keys.Control | Keys.Shift | Keys.S;
+            ToolStripMenuItem_AutoSaveDict.Size = new Size(242, 22);
+            ToolStripMenuItem_AutoSaveDict.Text = "自动保存字库(&A)";
+            ToolStripMenuItem_AutoSaveDict.Click += ToolStripMenuItem_AutoSaveDict_Click;
+            // 
+            // toolStripMenuItem4
+            // 
+            toolStripMenuItem4.Name = "toolStripMenuItem4";
+            toolStripMenuItem4.Size = new Size(239, 6);
+            // 
+            // ToolStripMenuItem_Import
+            // 
+            ToolStripMenuItem_Import.Name = "ToolStripMenuItem_Import";
+            ToolStripMenuItem_Import.ShortcutKeys = Keys.Control | Keys.Shift | Keys.E;
+            ToolStripMenuItem_Import.Size = new Size(242, 22);
+            ToolStripMenuItem_Import.Text = "导入明码字库(&I)";
+            ToolStripMenuItem_Import.Click += ToolStripMenuItem_Import_Click;
+            // 
+            // ToolStripMenuItem_Export
+            // 
+            ToolStripMenuItem_Export.Name = "ToolStripMenuItem_Export";
+            ToolStripMenuItem_Export.ShortcutKeys = Keys.Control | Keys.Shift | Keys.I;
+            ToolStripMenuItem_Export.Size = new Size(242, 22);
+            ToolStripMenuItem_Export.Text = "导出明码字库(&E)";
+            ToolStripMenuItem_Export.Click += ToolStripMenuItem_Export_Click;
             // 
             // toolStripMenuItem2
             // 
@@ -728,13 +803,13 @@
             ToolStripMenuItem_CheckUpdate.Text = "检查更新(&U)";
             ToolStripMenuItem_CheckUpdate.Click += MenuItem_JumpLink_Click;
             // 
-            // ToolStripMenuItem_AutoSaveDict
+            // DictListMenuItem_Delete
             // 
-            ToolStripMenuItem_AutoSaveDict.Name = "ToolStripMenuItem_AutoSaveDict";
-            ToolStripMenuItem_AutoSaveDict.ShortcutKeys = Keys.Control | Keys.Shift | Keys.S;
-            ToolStripMenuItem_AutoSaveDict.Size = new Size(242, 22);
-            ToolStripMenuItem_AutoSaveDict.Text = "自动保存字库(&A)";
-            ToolStripMenuItem_AutoSaveDict.Click += ToolStripMenuItem_AutoSaveDict_Click;
+            DictListMenuItem_Delete.Name = "DictListMenuItem_Delete";
+            DictListMenuItem_Delete.ShortcutKeys = Keys.Delete;
+            DictListMenuItem_Delete.Size = new Size(198, 22);
+            DictListMenuItem_Delete.Text = "删除选中项(&D)";
+            DictListMenuItem_Delete.Click += DictListMenuItem_Delete_Click;
             // 
             // MainForm
             // 
@@ -742,13 +817,14 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1098, 611);
             Controls.Add(tableLayoutPanel1);
-            Controls.Add(menuStrip1);
+            Controls.Add(MenuItemStrip);
             KeyPreview = true;
             Name = "MainForm";
             Text = "字库制作工具";
             FormClosing += MainForm_FormClosing;
             Load += MainForm_Load;
             KeyDown += MainForm_KeyDown;
+            DictListContextMenuStrip.ResumeLayout(false);
             groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             groupBox2.ResumeLayout(false);
@@ -763,8 +839,8 @@
             groupBox9.PerformLayout();
             panel1.ResumeLayout(false);
             groupBox3.ResumeLayout(false);
-            menuStrip1.ResumeLayout(false);
-            menuStrip1.PerformLayout();
+            MenuItemStrip.ResumeLayout(false);
+            MenuItemStrip.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -811,7 +887,7 @@
         private Button Btn_Ocr;
         private Button Btn_SaveBinImage;
         private Button Btn_ExtractWhole;
-        private MenuStrip menuStrip1;
+        private MenuStrip MenuItemStrip;
         private ToolStripMenuItem ToolStripMenuItem_File;
         private ToolStripMenuItem ToolStripMenuItem_LoadImage;
         private ToolStripMenuItem ToolStripMenuItem_SaveImage;
@@ -835,5 +911,14 @@
         private ToolStripMenuItem ToolStripMenuItem_About;
         private ToolStripMenuItem ToolStripMenuItem_CheckUpdate;
         private ToolStripMenuItem ToolStripMenuItem_AutoSaveDict;
+        private ContextMenuStrip DictListContextMenuStrip;
+        private ToolStripMenuItem DictListMenuItem_Copy;
+        private ToolStripSeparator toolStripMenuItem3;
+        private ToolStripMenuItem DictListMenuItem_Export;
+        private ToolStripMenuItem DictListMenuItem_Import;
+        private ToolStripSeparator toolStripMenuItem4;
+        private ToolStripMenuItem ToolStripMenuItem_Import;
+        private ToolStripMenuItem ToolStripMenuItem_Export;
+        private ToolStripMenuItem DictListMenuItem_Delete;
     }
 }
