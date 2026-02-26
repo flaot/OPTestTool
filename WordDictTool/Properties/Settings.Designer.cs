@@ -70,5 +70,17 @@ namespace WordDictTool.Properties {
                 this["Sim"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool AutoSaveDict {
+            get {
+                return ((bool)(this["AutoSaveDict"]));
+            }
+            set {
+                this["AutoSaveDict"] = value;
+            }
+        }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics;
 using System.Text;
+using WordDictTool.Properties;
 
 namespace WordDictTool
 {
@@ -22,22 +23,32 @@ namespace WordDictTool
             _wordDict.OnChange += Dict_OnChange;
             _tempDict.OnChange += Dict_OnChange;
             _showDict = _wordDict;
-            _wordDict.OnChange += Dict_OnChangeToSave;
+        
         }
         private void MainForm_Load(object sender, EventArgs e)
         {
             _opSoft.SetShowErrorMsg(0);
+            var setting = Properties.Settings.Default;
             //初始化字库路径
             {
-                string path = Properties.Settings.Default.Path;
+                string path = setting.Path;
                 if (string.IsNullOrWhiteSpace(path))
                     path = DictFile;
                 Txt_DictFile.Text = path;
             }
 
+            //自动保存字库
+            {
+                var autoSaveDict = setting.AutoSaveDict;
+                ToolStripMenuItem_AutoSaveDict.Checked = autoSaveDict;
+                ToolStripMenuItem_AutoSaveDict.CheckedChanged += ToolStripMenuItem_AutoSaveDict_CheckedChanged;
+                if (autoSaveDict)
+                    _wordDict.OnChange += Dict_OnChangeToSave;
+            }
+
             //初始化颜色信息
             {
-                string colors = Properties.Settings.Default.Colors;
+                string colors = setting.Colors;
                 List<KeyValuePair<string, string>> colorList = new List<KeyValuePair<string, string>>();
                 if (!string.IsNullOrWhiteSpace(colors))
                 {
@@ -69,8 +80,8 @@ namespace WordDictTool
                 DataGridView_Color.CellValueChanged += DataGridView_Color_CellValueChanged;
                 DataGridView_Color.CellContentClick += DataGridView_Color_CellContentClick;
                 DataGridView_Color.CurrentCellDirtyStateChanged += DataGridView_Color_CurrentCellDirtyStateChanged;
-                CheckBox_Bk.Checked = Properties.Settings.Default.IsBK;
-                Txt_FindSim.Text = Properties.Settings.Default.Sim.ToString();
+                CheckBox_Bk.Checked = setting.IsBK;
+                Txt_FindSim.Text = setting.Sim.ToString();
                 RefreshColor();
             }
 
@@ -78,9 +89,11 @@ namespace WordDictTool
             if (File.Exists(TempFile))
                 LoadImage(TempFile);
         }
+
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             _wordDictTool = null;
+            var setting = Properties.Settings.Default;
             List<KeyValuePair<string, string>> colorList = new List<KeyValuePair<string, string>>();
             for (int row = 0; row < DataGridView_Color.RowCount; row++)
             {
@@ -89,11 +102,12 @@ namespace WordDictTool
                 var value = rowObj.Cells[Head_Name.OffColor].Value.ToString();
                 colorList.Add(new KeyValuePair<string, string>(key, value));
             }
-            Properties.Settings.Default.Colors = string.Join("|", colorList.ConvertAll(item => $"{item.Key}-{item.Value}"));
-            Properties.Settings.Default.IsBK = CheckBox_Bk.Checked;
-            Properties.Settings.Default.Sim = float.Parse(Txt_FindSim.Text);
-            Properties.Settings.Default.Path = Txt_DictFile.Text;
-            Properties.Settings.Default.Save();
+            setting.Colors = string.Join("|", colorList.ConvertAll(item => $"{item.Key}-{item.Value}"));
+            setting.IsBK = CheckBox_Bk.Checked;
+            setting.Sim = float.Parse(Txt_FindSim.Text);
+            setting.Path = Txt_DictFile.Text;
+            setting.AutoSaveDict = ToolStripMenuItem_AutoSaveDict.Checked;
+            setting.Save();
         }
 
         #region MainMenuItem
@@ -181,8 +195,6 @@ namespace WordDictTool
             {
                 KeyValuePair<string, string> colordf = new KeyValuePair<string, string>("000000", "000000");
                 var rowObj = DataGridView_Color.Rows[row];
-                var rowColor = FuncHelper.HexToColor(colordf.Key);
-                rowObj.Tag = rowColor;
                 rowObj.Cells[Head_Name.RGB].Value = colordf.Key;
                 rowObj.Cells[Head_Name.OffColor].Value = colordf.Value;
                 rowObj.Cells[Head_Name.Check].Value = false;
@@ -216,17 +228,28 @@ namespace WordDictTool
                 _opSoft.AddDict(DICT_FILE, item.wordCode);
             _opSoft.SaveDict(DICT_FILE, Txt_DictFile.Text);
         }
+        private void ToolStripMenuItem_AutoSaveDict_Click(object sender, EventArgs e)
+        {
+            ToolStripMenuItem_AutoSaveDict.Checked = !ToolStripMenuItem_AutoSaveDict.Checked;
+        }
+        private void ToolStripMenuItem_AutoSaveDict_CheckedChanged(object sender, EventArgs e)
+        {
+            if (ToolStripMenuItem_AutoSaveDict.Checked)
+                _wordDict.OnChange += Dict_OnChangeToSave;
+            else
+                _wordDict.OnChange -= Dict_OnChangeToSave;
+        }
         private void ToolStripMenuItem_PreviewDict_Click(object sender, EventArgs e)
         {
             float sim = float.Parse(Txt_FindSim.Text);
             string ocrText = _opSoft.Ocr(0, 0, pictureBox1.Image.Width, pictureBox1.Image.Height, TextBox_Color.Text, sim);
             TextBox_Ocr.Text = ocrText;
         }
-        
+
         //帮助
         private void ToolStripMenuItem_Guide_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("截图模式：小键盘方向键可控制鼠标每次移动1像素，加Shift可每次移动10像素\n\n"+
+            MessageBox.Show("截图模式：小键盘方向键可控制鼠标每次移动1像素，加Shift可每次移动10像素\n\n" +
                 "取色模式：鼠标左键确定取当前鼠标所在像素颜色\n" +
                 "   Alt+1 为颜色配置1取色\n" +
                 "   Alt+2 为颜色配置2取色\n" +
@@ -262,7 +285,7 @@ namespace WordDictTool
 
         #region 二值图
         private void Btn_SaveBinImage_Click(object sender, EventArgs e) => ToolStripMenuItem_SaveGrayImage.PerformClick();
-        private void Btn_ExtractWhole_Click(object sender, EventArgs e)=> ToolStripMenuItem_ExtractWhole.PerformClick();
+        private void Btn_ExtractWhole_Click(object sender, EventArgs e) => ToolStripMenuItem_ExtractWhole.PerformClick();
         private void Btn_Extract_Click(object sender, EventArgs e) => ToolStripMenuItem_Extract.PerformClick();
         #endregion
 

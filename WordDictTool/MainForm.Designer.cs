@@ -95,6 +95,7 @@
             ToolStripMenuItem_Guide = new ToolStripMenuItem();
             ToolStripMenuItem_About = new ToolStripMenuItem();
             ToolStripMenuItem_CheckUpdate = new ToolStripMenuItem();
+            ToolStripMenuItem_AutoSaveDict = new ToolStripMenuItem();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             groupBox2.SuspendLayout();
@@ -442,7 +443,7 @@
             tableLayoutPanel1.RowCount = 1;
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 146F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle());
-            tableLayoutPanel1.Size = new Size(1098, 576);
+            tableLayoutPanel1.Size = new Size(1098, 586);
             tableLayoutPanel1.TabIndex = 19;
             // 
             // groupBox6
@@ -653,7 +654,7 @@
             // 
             // ToolStripMenuItem_Dict
             // 
-            ToolStripMenuItem_Dict.DropDownItems.AddRange(new ToolStripItem[] { ToolStripMenuItem_OpenDict, ToolStripMenuItem_EditDict, ToolStripMenuItem_SaveDict, toolStripMenuItem2, ToolStripMenuItem_PreviewDict });
+            ToolStripMenuItem_Dict.DropDownItems.AddRange(new ToolStripItem[] { ToolStripMenuItem_OpenDict, ToolStripMenuItem_EditDict, ToolStripMenuItem_SaveDict, ToolStripMenuItem_AutoSaveDict, toolStripMenuItem2, ToolStripMenuItem_PreviewDict });
             ToolStripMenuItem_Dict.Name = "ToolStripMenuItem_Dict";
             ToolStripMenuItem_Dict.Size = new Size(61, 21);
             ToolStripMenuItem_Dict.Text = "字库(&D)";
@@ -662,7 +663,7 @@
             // 
             ToolStripMenuItem_OpenDict.Name = "ToolStripMenuItem_OpenDict";
             ToolStripMenuItem_OpenDict.ShortcutKeys = Keys.Control | Keys.L;
-            ToolStripMenuItem_OpenDict.Size = new Size(217, 22);
+            ToolStripMenuItem_OpenDict.Size = new Size(242, 22);
             ToolStripMenuItem_OpenDict.Text = "打开字库(&L)";
             ToolStripMenuItem_OpenDict.Click += ToolStripMenuItem_OpenDict_Click;
             // 
@@ -670,28 +671,28 @@
             // 
             ToolStripMenuItem_EditDict.Name = "ToolStripMenuItem_EditDict";
             ToolStripMenuItem_EditDict.ShortcutKeys = Keys.Control | Keys.E;
-            ToolStripMenuItem_EditDict.Size = new Size(217, 22);
+            ToolStripMenuItem_EditDict.Size = new Size(242, 22);
             ToolStripMenuItem_EditDict.Text = "编辑字库(&E)";
             ToolStripMenuItem_EditDict.Click += ToolStripMenuItem_EditDict_Click;
             // 
             // ToolStripMenuItem_SaveDict
             // 
             ToolStripMenuItem_SaveDict.Name = "ToolStripMenuItem_SaveDict";
-            ToolStripMenuItem_SaveDict.ShortcutKeys = Keys.Control | Keys.Shift | Keys.S;
-            ToolStripMenuItem_SaveDict.Size = new Size(217, 22);
+            ToolStripMenuItem_SaveDict.ShortcutKeys = Keys.Control | Keys.S;
+            ToolStripMenuItem_SaveDict.Size = new Size(242, 22);
             ToolStripMenuItem_SaveDict.Text = "保存字库(&S)";
             ToolStripMenuItem_SaveDict.Click += ToolStripMenuItem_SaveDict_Click;
             // 
             // toolStripMenuItem2
             // 
             toolStripMenuItem2.Name = "toolStripMenuItem2";
-            toolStripMenuItem2.Size = new Size(214, 6);
+            toolStripMenuItem2.Size = new Size(239, 6);
             // 
             // ToolStripMenuItem_PreviewDict
             // 
             ToolStripMenuItem_PreviewDict.Name = "ToolStripMenuItem_PreviewDict";
             ToolStripMenuItem_PreviewDict.ShortcutKeys = Keys.F9;
-            ToolStripMenuItem_PreviewDict.Size = new Size(217, 22);
+            ToolStripMenuItem_PreviewDict.Size = new Size(242, 22);
             ToolStripMenuItem_PreviewDict.Text = "预览字库效果(&P)";
             ToolStripMenuItem_PreviewDict.Click += ToolStripMenuItem_PreviewDict_Click;
             // 
@@ -727,11 +728,19 @@
             ToolStripMenuItem_CheckUpdate.Text = "检查更新(&U)";
             ToolStripMenuItem_CheckUpdate.Click += MenuItem_JumpLink_Click;
             // 
+            // ToolStripMenuItem_AutoSaveDict
+            // 
+            ToolStripMenuItem_AutoSaveDict.Name = "ToolStripMenuItem_AutoSaveDict";
+            ToolStripMenuItem_AutoSaveDict.ShortcutKeys = Keys.Control | Keys.Shift | Keys.S;
+            ToolStripMenuItem_AutoSaveDict.Size = new Size(242, 22);
+            ToolStripMenuItem_AutoSaveDict.Text = "自动保存字库(&A)";
+            ToolStripMenuItem_AutoSaveDict.Click += ToolStripMenuItem_AutoSaveDict_Click;
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1098, 601);
+            ClientSize = new Size(1098, 611);
             Controls.Add(tableLayoutPanel1);
             Controls.Add(menuStrip1);
             KeyPreview = true;
@@ -825,5 +834,6 @@
         private ToolStripMenuItem ToolStripMenuItem_Guide;
         private ToolStripMenuItem ToolStripMenuItem_About;
         private ToolStripMenuItem ToolStripMenuItem_CheckUpdate;
+        private ToolStripMenuItem ToolStripMenuItem_AutoSaveDict;
     }
 }

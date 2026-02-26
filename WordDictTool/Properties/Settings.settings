@@ -14,5 +14,8 @@
     <Setting Name="Sim" Type="System.Single" Scope="User">
       <Value Profile="(Default)">0.8</Value>
     </Setting>
+    <Setting Name="AutoSaveDict" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
