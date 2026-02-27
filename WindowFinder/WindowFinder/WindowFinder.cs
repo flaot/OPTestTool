@@ -28,6 +28,7 @@ namespace WindowFinder
     public sealed partial class WindowFinder : UserControl
     {
         private Timer _timer;
+        HighlightOverlayForm overlay = null;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="WindowFinder"/> class.
@@ -195,8 +196,12 @@ namespace WindowFinder
             isTargeting = false;
 
             // Unhighlight window
-            if (targetWindow != IntPtr.Zero)
-                Win32.HighlightWindow(targetWindow);
+            if (overlay != null)
+            { 
+                overlay.SetTarget(targetWindow);
+                overlay.DelayDestry(300);
+                overlay = null;
+            }
             targetWindow = IntPtr.Zero;
 
             // Reset capture image and cursor
@@ -216,7 +221,17 @@ namespace WindowFinder
         {
             if (targetWindow != IntPtr.Zero)
             {
-                Win32.HighlightWindow(targetWindow);
+                // 创建并显示高亮覆盖窗口
+                if (overlay == null)
+                {
+                    overlay = new HighlightOverlayForm();
+                    overlay.SetTarget(targetWindow);
+                    overlay.Show();
+                }
+                else
+                {
+                    overlay.SetTarget(targetWindow);
+                }
             }
             else
             {

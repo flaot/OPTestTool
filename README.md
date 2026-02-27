@@ -15,6 +15,6 @@ OPTestTool是为OP在不同环境下的快捷测试工具，不局限于某个AP
 ## 编译
 
 ### 编译环境
-* 操作系统: Visual Studio 2022
-* 目标框架：.NET 7.0
+* 操作系统: Visual Studio 2026
+* 目标框架：.NET 10.0
  

@@ -1,4 +1,6 @@
-﻿namespace WordDictTool
+﻿using System.ComponentModel;
+
+namespace WordDictTool
 {
     public partial class MagnifierControl : UserControl
     {
@@ -10,6 +12,7 @@
         /// <summary>
         /// 放大倍数
         /// </summary>
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public int Magnification
         {
             get => _magnification;

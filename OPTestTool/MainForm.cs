@@ -266,7 +266,10 @@ namespace OPTestTool
         private void TreeView_Window_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
         {
             var hWnd = (IntPtr)e.Node.Tag;
-            Win32.HighlightWindow(hWnd);
+            var form = new HighlightOverlayForm();
+            form.Show();
+            form.SetTarget(hWnd);
+            form.DelayDestry(300);
         }
         private void TreeView_Window_AfterSelect(object sender, TreeViewEventArgs e)
         {
