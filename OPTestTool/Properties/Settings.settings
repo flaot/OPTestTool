@@ -11,8 +11,8 @@
     <Setting Name="LogAutoScroll" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
-    <Setting Name="CodeLangIndex" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">0</Value>
+    <Setting Name="CodeLang" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
     </Setting>
     <Setting Name="MouseActionIndex" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">0</Value>

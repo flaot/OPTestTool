@@ -1,4 +1,5 @@
 using OPTestTool.Properties;
+using System;
 using System.Collections.Concurrent;
 using System.Diagnostics;
 using System.Text;
@@ -14,6 +15,8 @@ namespace OPTestTool
         private static bool _showLogTime;
         private OpSoft opSoft = new OpSoft();
         private GetScreenDataBmpForm _getScreenDataBmpForm;
+
+        private List<string> _exportLangs = new List<string>();
 
         public MainForm()
         {
@@ -80,7 +83,8 @@ namespace OPTestTool
             Txt_WriteAddress.Text = setting.WriteAddress;
 
             //OPExport
-            ComboBox_CodeLang.SelectedIndex = setting.CodeLangIndex;
+            Btn_RefreshGenerateLang_Click(null, null);
+            ComboBox_CodeLang.SelectedIndex = ComboBox_CodeLang.FindString(setting.CodeLang);
             CheckBox_UseOutProject.Checked = setting.UseOutProject;
             Txt_OPFolder.Text = setting.OPFolder;
             CheckBox_AddWifiDoc.Checked = setting.AddWifiDoc;
@@ -153,7 +157,7 @@ namespace OPTestTool
             setting.WriteAddress = Txt_WriteAddress.Text;
 
             //OPExport
-            setting.CodeLangIndex = ComboBox_CodeLang.SelectedIndex;
+            setting.CodeLang = ComboBox_CodeLang.SelectedText;
             setting.UseOutProject = CheckBox_UseOutProject.Checked;
             setting.OPFolder = Txt_OPFolder.Text;
             setting.AddWifiDoc = CheckBox_AddWifiDoc.Checked;
@@ -951,12 +955,44 @@ namespace OPTestTool
             var url = (string)linkLabel.Tag;
             Process.Start(new ProcessStartInfo(url) { UseShellExecute = true });
         }
+        private void Btn_RefreshGenerateLang_Click(object sender, EventArgs e)
+        {
+            _exportLangs.Clear();
+            string templateFolder = Path.Combine(Application.StartupPath, "OpExport/Template");
+            if (Directory.Exists(templateFolder))
+            {
+                foreach (var file in Directory.GetFiles(templateFolder, "*.sbncs", SearchOption.TopDirectoryOnly))
+                {
+                    string fileName = Path.GetFileNameWithoutExtension(file);
+                    if (fileName.EndsWith("_h"))
+                        fileName = fileName.Substring(0, fileName.Length - "_h".Length);
+                    else if (fileName.EndsWith("_c"))
+                        fileName = fileName.Substring(0, fileName.Length - "_c".Length);
+                    else if (fileName.EndsWith("_cpp"))
+                        fileName = fileName.Substring(0, fileName.Length - "_cpp".Length);
+                    if (!_exportLangs.Contains(fileName))
+                        _exportLangs.Add(fileName);
+                }
+            }
+            ComboBox_CodeLang.Items.Clear();
+            for (int i = 0; i < _exportLangs.Count; i++)
+            {
+                ComboBox_CodeLang.Items.Add(_exportLangs[i]);
+            }
+        }
         private void Btn_GenerateCode_Click(object sender, EventArgs e)
         {
-            string exeFile = Path.Combine(Application.StartupPath, "OpExport/OpExport.exe");
+            string opExportRoot = Path.Combine(Application.StartupPath, "OpExport");
+            string templateFolder = Path.Combine(opExportRoot, "Template");
+            string exeFile = Path.Combine(opExportRoot, "OpExport.exe");
             if (!File.Exists(exeFile))
             {
                 MessageBox.Show(string.Format("无法执行,未找到可执行文件\n{0}", exeFile));
+                return;
+            }
+            if (!Directory.Exists(templateFolder))
+            {
+                MessageBox.Show(string.Format("无法执行,未找到模版文件夹\n{0}", templateFolder));
                 return;
             }
             string opFolder = Txt_OPFolder.Text;
@@ -987,42 +1023,83 @@ namespace OPTestTool
                 MessageBox.Show("找不到文件：\n" + idlFile);
                 return;
             }
-            string args = string.Format("{0} -lang {1} -doc {2}", opFolder, ComboBox_CodeLang.Text, CheckBox_AddWifiDoc.Checked);
-            Process process = new Process();
-            process.StartInfo.FileName = exeFile;
-            process.StartInfo.Arguments = args;
-            process.StartInfo.UseShellExecute = true;
-            process.Start();
-            process.WaitForExit();
+            string outFolder = Path.Combine(opExportRoot, "Out/" + ComboBox_CodeLang.Text);
+            if (!Directory.Exists(outFolder))
+                Directory.CreateDirectory(outFolder);
+            List<string> argsList = new List<string>();
+            List<string> outFileList = new List<string>();
+            do
+            {
+                string template = Path.Combine(templateFolder, ComboBox_CodeLang.Text + ".sbncs");
+                if (File.Exists(template))
+                {
+                    string outFile = Path.Combine(outFolder, ComboBox_CodeLang.Text + ".txt");
+                    outFileList.Add(outFile);
+                    argsList.Add(string.Format("{0} -t {1} -out {2} -doc {3}", opFolder, template, outFile, CheckBox_AddWifiDoc.Checked));
+                    break;
+                }
+                template = Path.Combine(templateFolder, ComboBox_CodeLang.Text + "_h.sbncs");
+                if (File.Exists(template))
+                {
+                    string outFile = Path.Combine(outFolder, ComboBox_CodeLang.Text + ".h");
+                    outFileList.Add(outFile);
+                    argsList.Add(string.Format("{0} -t {1} -out {2} -doc {3}", opFolder, template, outFile, CheckBox_AddWifiDoc.Checked));
+                }
+                template = Path.Combine(templateFolder, ComboBox_CodeLang.Text + "_c.sbncs");
+                if (File.Exists(template))
+                {
+                    string outFile = Path.Combine(outFolder, ComboBox_CodeLang.Text + ".c");
+                    outFileList.Add(outFile);
+                    argsList.Add(string.Format("{0} -t {1} -out {2} -doc {3}", opFolder, template, outFile, CheckBox_AddWifiDoc.Checked));
+                }
+                template = Path.Combine(templateFolder, ComboBox_CodeLang.Text + "_cpp.sbncs");
+                if (File.Exists(template))
+                {
+                    string outFile = Path.Combine(outFolder, ComboBox_CodeLang.Text + ".cpp");
+                    outFileList.Add(outFile);
+                    argsList.Add(string.Format("{0} -t {1} -out {2} -doc {3}", opFolder, template, outFile, CheckBox_AddWifiDoc.Checked));
+                }
+                break;
+            } while (true);
+            foreach (var args in argsList)
+            {
+                Process process = new Process();
+                process.StartInfo.FileName = exeFile;
+                process.StartInfo.Arguments = args;
+                process.StartInfo.UseShellExecute = true;
+                process.Start();
+                process.WaitForExit();
+            }
             if (CheckBox_OpenGenCodeFolder.Checked)
-                Process.Start(new ProcessStartInfo(Path.GetDirectoryName(exeFile)) { UseShellExecute = true });
-
+                Process.Start(new ProcessStartInfo(outFolder) { UseShellExecute = true });
             //对外部工程进行更改
             if (CheckBox_UseOutProject.Checked && ComboBox_CodeLang.Text.Equals("op", StringComparison.OrdinalIgnoreCase))
             {
                 string folder = Path.Combine(Path.GetDirectoryName(exeFile), "OP");
-                string srcHeader = Path.Combine(folder, "libopExport.h");
-                string srcSource = Path.Combine(folder, "libopExport.cpp");
-                if (!File.Exists(srcHeader) || !File.Exists(srcSource))
-                    return;
-                string desHeader = Path.Combine(opFolder, "libop/libopExport.h");
-                string desSource = Path.Combine(opFolder, "libop/libopExport.cpp");
-                if (!File.Exists(desHeader) || File.ReadAllText(desHeader) != File.ReadAllText(srcHeader))
-                    File.Copy(srcHeader, desHeader, true);
-                if (!File.Exists(desSource) || File.ReadAllText(desSource) != File.ReadAllText(srcSource))
-                    File.Copy(srcSource, desSource, true);
+                foreach (var file in outFileList)
+                {
+                    if (!File.Exists(file))
+                        return;
+                }
+                foreach (var file in outFileList)
+                {
+                    string des = Path.Combine(opFolder, $"libop/{Path.GetFileName(file)}");
+                    if (!File.Exists(des) || File.ReadAllText(des) != File.ReadAllText(file))
+                        File.Copy(file, des, true);
+                }
+                var findCppFile = outFileList.Find(item => item.EndsWith(".cpp"));
                 string makeFile = Path.Combine(opFolder, "libop/CMakeLists.txt");
-                if (!File.Exists(makeFile))
+                if (!File.Exists(makeFile) || string.IsNullOrWhiteSpace(findCppFile))
                     return;
                 string[] makeLines = File.ReadAllLines(makeFile);
                 List<string> newMakeLines = new List<string>(makeLines);
                 makeLines = Array.ConvertAll(makeLines, item => item.Trim());
-                if (Array.Exists(makeLines, "\"libopExport.cpp\"".Equals))
+                if (Array.Exists(makeLines, $"\"{Path.GetFileName(findCppFile)}\"".Equals))
                     return;
                 int index = Array.FindIndex(makeLines, "\"libop.cpp\"".Equals);
                 if (index < 0)
                     return;
-                newMakeLines.Insert(index + 1, "\"libopExport.cpp\"");
+                newMakeLines.Insert(index + 1, $"\"{Path.GetFileName(findCppFile)}\"");
                 File.WriteAllLines(makeFile, newMakeLines);
             }
         }

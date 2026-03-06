@@ -61,13 +61,13 @@ namespace OPTestTool.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public int CodeLangIndex {
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string CodeLang {
             get {
-                return ((int)(this["CodeLangIndex"]));
+                return ((string)(this["CodeLang"]));
             }
             set {
-                this["CodeLangIndex"] = value;
+                this["CodeLang"] = value;
             }
         }
         

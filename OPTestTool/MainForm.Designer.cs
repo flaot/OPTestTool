@@ -184,7 +184,6 @@
             label39 = new Label();
             CheckBox_UseOutProject = new CheckBox();
             linkLabel1 = new LinkLabel();
-            label38 = new Label();
             CheckBox_OpenGenCodeFolder = new CheckBox();
             label37 = new Label();
             ComboBox_CodeLang = new ComboBox();
@@ -207,6 +206,7 @@
             CheckBox_LogAutoScroll = new CheckBox();
             CheckBox_LogShowTime = new CheckBox();
             label1 = new Label();
+            Btn_RefreshGenerateLang = new Button();
             tabControl1.SuspendLayout();
             综合设置.SuspendLayout();
             groupBox2.SuspendLayout();
@@ -1881,13 +1881,13 @@
             // 
             // OPExport
             // 
+            OPExport.Controls.Add(Btn_RefreshGenerateLang);
             OPExport.Controls.Add(linkLabel3);
             OPExport.Controls.Add(CheckBox_AddWifiDoc);
             OPExport.Controls.Add(linkLabel2);
             OPExport.Controls.Add(Panel_UseOutProject);
             OPExport.Controls.Add(CheckBox_UseOutProject);
             OPExport.Controls.Add(linkLabel1);
-            OPExport.Controls.Add(label38);
             OPExport.Controls.Add(CheckBox_OpenGenCodeFolder);
             OPExport.Controls.Add(label37);
             OPExport.Controls.Add(ComboBox_CodeLang);
@@ -1907,7 +1907,7 @@
             linkLabel3.Location = new Point(8, 380);
             linkLabel3.Name = "linkLabel3";
             linkLabel3.Size = new Size(54, 17);
-            linkLabel3.TabIndex = 21;
+            linkLabel3.TabIndex = 7;
             linkLabel3.TabStop = true;
             linkLabel3.Tag = "https://github.com/WallBreaker2/op/wiki";
             linkLabel3.Text = "访问wiki";
@@ -1920,7 +1920,7 @@
             CheckBox_AddWifiDoc.Location = new Point(489, 380);
             CheckBox_AddWifiDoc.Name = "CheckBox_AddWifiDoc";
             CheckBox_AddWifiDoc.Size = new Size(145, 21);
-            CheckBox_AddWifiDoc.TabIndex = 19;
+            CheckBox_AddWifiDoc.TabIndex = 9;
             CheckBox_AddWifiDoc.Text = "添加wiki上的接口说明";
             CheckBox_AddWifiDoc.UseVisualStyleBackColor = true;
             // 
@@ -1928,10 +1928,10 @@
             // 
             linkLabel2.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             linkLabel2.AutoSize = true;
-            linkLabel2.Location = new Point(8, 408);
+            linkLabel2.Location = new Point(8, 407);
             linkLabel2.Name = "linkLabel2";
             linkLabel2.Size = new Size(90, 17);
-            linkLabel2.TabIndex = 18;
+            linkLabel2.TabIndex = 8;
             linkLabel2.TabStop = true;
             linkLabel2.Tag = "https://www.cnblogs.com/kewei/archive/2021/06/21/14913063.html";
             linkLabel2.Text = "GitHub访问慢?";
@@ -1946,7 +1946,7 @@
             Panel_UseOutProject.Location = new Point(8, 226);
             Panel_UseOutProject.Name = "Panel_UseOutProject";
             Panel_UseOutProject.Size = new Size(628, 60);
-            Panel_UseOutProject.TabIndex = 7;
+            Panel_UseOutProject.TabIndex = 5;
             Panel_UseOutProject.Visible = false;
             // 
             // Txt_OPFolder
@@ -1956,7 +1956,7 @@
             Txt_OPFolder.Location = new Point(134, 3);
             Txt_OPFolder.Name = "Txt_OPFolder";
             Txt_OPFolder.Size = new Size(452, 23);
-            Txt_OPFolder.TabIndex = 9;
+            Txt_OPFolder.TabIndex = 1;
             Txt_OPFolder.DragDrop += Txt_Folder_DragDrop;
             Txt_OPFolder.DragEnter += Txt_Folder_DragEnter;
             // 
@@ -1966,7 +1966,7 @@
             label39.Location = new Point(56, 6);
             label39.Name = "label39";
             label39.Size = new Size(71, 17);
-            label39.TabIndex = 8;
+            label39.TabIndex = 0;
             label39.Text = "工程根目录:";
             // 
             // CheckBox_UseOutProject
@@ -1975,34 +1975,27 @@
             CheckBox_UseOutProject.Location = new Point(478, 199);
             CheckBox_UseOutProject.Name = "CheckBox_UseOutProject";
             CheckBox_UseOutProject.Size = new Size(116, 21);
-            CheckBox_UseOutProject.TabIndex = 6;
+            CheckBox_UseOutProject.TabIndex = 4;
             CheckBox_UseOutProject.Text = "使用外部OP工程";
             CheckBox_UseOutProject.UseVisualStyleBackColor = true;
             CheckBox_UseOutProject.CheckedChanged += CheckBox_UseOutProject_CheckedChanged;
             // 
             // linkLabel1
             // 
-            linkLabel1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            linkLabel1.Location = new Point(586, 103);
+            linkLabel1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            linkLabel1.AutoSize = true;
+            linkLabel1.Cursor = Cursors.Help;
+            linkLabel1.Font = new Font("Microsoft YaHei UI", 30F);
+            linkLabel1.LinkBehavior = LinkBehavior.HoverUnderline;
+            linkLabel1.Location = new Point(204, 52);
             linkLabel1.Name = "linkLabel1";
-            linkLabel1.Size = new Size(48, 17);
-            linkLabel1.TabIndex = 2;
+            linkLabel1.Size = new Size(202, 52);
+            linkLabel1.TabIndex = 0;
             linkLabel1.TabStop = true;
             linkLabel1.Tag = "https://github.com/flaot/OPExport";
-            linkLabel1.Text = "GitHub";
-            linkLabel1.TextAlign = ContentAlignment.TopRight;
+            linkLabel1.Text = "OPExport";
+            linkLabel1.TextAlign = ContentAlignment.MiddleCenter;
             linkLabel1.LinkClicked += LinkLabel_LinkClicked;
-            // 
-            // label38
-            // 
-            label38.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            label38.BorderStyle = BorderStyle.FixedSingle;
-            label38.Location = new Point(8, 9);
-            label38.Name = "label38";
-            label38.Size = new Size(628, 116);
-            label38.TabIndex = 1;
-            label38.Text = "1.OPExport生成代码不是调用com组件的代码，自然是免注册\r\n2.可以使用本测试工具目录下的op_xx.dll或者自己编译附带调用函数的DLL\r\n    a.选择’使用外部OP工程‘ \r\n    b.选择语言'OP'->生成（会为工程额外增加代码文件\r\n    c.编译op_xx.dll";
-            label38.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // CheckBox_OpenGenCodeFolder
             // 
@@ -2013,7 +2006,7 @@
             CheckBox_OpenGenCodeFolder.Location = new Point(489, 407);
             CheckBox_OpenGenCodeFolder.Name = "CheckBox_OpenGenCodeFolder";
             CheckBox_OpenGenCodeFolder.Size = new Size(147, 21);
-            CheckBox_OpenGenCodeFolder.TabIndex = 20;
+            CheckBox_OpenGenCodeFolder.TabIndex = 10;
             CheckBox_OpenGenCodeFolder.Text = "生成后打开所在文件夹";
             CheckBox_OpenGenCodeFolder.UseVisualStyleBackColor = true;
             // 
@@ -2023,7 +2016,7 @@
             label37.Location = new Point(173, 198);
             label37.Name = "label37";
             label37.Size = new Size(59, 17);
-            label37.TabIndex = 3;
+            label37.TabIndex = 1;
             label37.Text = "选择语言:";
             // 
             // ComboBox_CodeLang
@@ -2034,14 +2027,14 @@
             ComboBox_CodeLang.Location = new Point(234, 195);
             ComboBox_CodeLang.Name = "ComboBox_CodeLang";
             ComboBox_CodeLang.Size = new Size(137, 25);
-            ComboBox_CodeLang.TabIndex = 4;
+            ComboBox_CodeLang.TabIndex = 2;
             // 
             // Btn_GenerateCode
             // 
-            Btn_GenerateCode.Location = new Point(377, 193);
+            Btn_GenerateCode.Location = new Point(281, 314);
             Btn_GenerateCode.Name = "Btn_GenerateCode";
-            Btn_GenerateCode.Size = new Size(89, 27);
-            Btn_GenerateCode.TabIndex = 5;
+            Btn_GenerateCode.Size = new Size(100, 30);
+            Btn_GenerateCode.TabIndex = 6;
             Btn_GenerateCode.Text = "生成";
             Btn_GenerateCode.UseVisualStyleBackColor = true;
             Btn_GenerateCode.Click += Btn_GenerateCode_Click;
@@ -2127,7 +2120,7 @@
             // toolStripMenuItem2
             // 
             toolStripMenuItem2.Name = "toolStripMenuItem2";
-            toolStripMenuItem2.Size = new Size(177, 6);
+            toolStripMenuItem2.Size = new Size(226, 6);
             // 
             // MenuItem_JumpOPExport
             // 
@@ -2150,7 +2143,7 @@
             // toolStripMenuItem1
             // 
             toolStripMenuItem1.Name = "toolStripMenuItem1";
-            toolStripMenuItem1.Size = new Size(177, 6);
+            toolStripMenuItem1.Size = new Size(193, 6);
             // 
             // MenuItem_About
             // 
@@ -2212,6 +2205,16 @@
             label1.Size = new Size(32, 17);
             label1.TabIndex = 0;
             label1.Text = "日志";
+            // 
+            // Btn_RefreshGenerateLang
+            // 
+            Btn_RefreshGenerateLang.Location = new Point(377, 194);
+            Btn_RefreshGenerateLang.Name = "Btn_RefreshGenerateLang";
+            Btn_RefreshGenerateLang.Size = new Size(89, 27);
+            Btn_RefreshGenerateLang.TabIndex = 3;
+            Btn_RefreshGenerateLang.Text = "刷新";
+            Btn_RefreshGenerateLang.UseVisualStyleBackColor = true;
+            Btn_RefreshGenerateLang.Click += Btn_RefreshGenerateLang_Click;
             // 
             // MainForm
             // 
@@ -2418,7 +2421,6 @@
         private Button Btn_FindPicEx;
         private TabPage OPExport;
         private Button Btn_GenerateCode;
-        private Label label38;
         private LinkLabel linkLabel1;
         private CheckBox CheckBox_OpenGenCodeFolder;
         private Label label37;
@@ -2442,5 +2444,6 @@
         private ToolStripSeparator toolStripMenuItem2;
         private ToolStripMenuItem 工具ToolStripMenuItem;
         private ToolStripMenuItem MenuItem_WordDictTool;
+        private Button Btn_RefreshGenerateLang;
     }
 }
