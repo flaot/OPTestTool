@@ -1033,7 +1033,7 @@ namespace OPTestTool
                 string template = Path.Combine(templateFolder, ComboBox_CodeLang.Text + ".sbncs");
                 if (File.Exists(template))
                 {
-                    string outFile = Path.Combine(outFolder, ComboBox_CodeLang.Text + ".txt");
+                    string outFile = Path.Combine(outFolder, ComboBox_CodeLang.Text);
                     outFileList.Add(outFile);
                     argsList.Add(string.Format("{0} -t {1} -out {2} -doc {3}", opFolder, template, outFile, CheckBox_AddWifiDoc.Checked));
                     break;
