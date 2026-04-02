@@ -8,9 +8,12 @@ OPTestTool是为OP在不同环境下的快捷测试工具，不局限于某个AP
 - 测试OP与某个APP的交互
 - 生成开发者快捷调用OP的胶水代码的操作界面
 
-## 交流
-* QQ group:743710486
-* [Discussion](https://github.com/WallBreaker2/op/discussions)
+## 🤝 社区与支持
+*   **Issues**: [GitHub Issues](https://github.com/WallBreaker2/op/issues) - 报告 Bug 或 提交功能建议。
+*   **Discussions**: [GitHub Discussions](https://github.com/WallBreaker2/op/discussions) - 提问或分享想法。
+*   **QQ 群**: 
+    *   1群: `743710486` (已满)
+    *   2群: `27872381` (活跃)
 
 ## 编译
 
