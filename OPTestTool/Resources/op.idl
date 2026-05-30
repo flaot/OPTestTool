@@ -89,11 +89,12 @@ interface IOpInterface : IDispatch
 	[id(101)] HRESULT UnBindWindow([out, retval] LONG* ret);
 	[id(102)] HRESULT GetBindWindow([out, retval] LONG* ret);
 	[id(103)] HRESULT IsBind([out, retval] LONG* ret);
+	[id(104)] HRESULT BindWindowEx([in] LONG display_hwnd, [in] LONG input_hwnd, [in] BSTR display, [in] BSTR mouse, [in] BSTR keypad, [in] LONG mode, [out, retval] LONG* ret);
 	//mouse & ketboard 120-149
 	[id(120)] HRESULT GetCursorPos([out] VARIANT* x, [out] VARIANT* y, [out, retval] LONG* ret);
 	[id(121)] HRESULT MoveR([in] LONG x, [in] LONG y, [out, retval] LONG* ret);
 	[id(122)] HRESULT MoveTo([in] LONG x, [in] LONG y, [out, retval] LONG* ret);
-	[id(123)] HRESULT MoveToEx([in] LONG x, [in] LONG y, [in] LONG w, [in] long h, [out, retval] LONG* ret);
+	[id(123)] HRESULT MoveToEx([in] LONG x, [in] LONG y, [in] LONG w, [in] long h, [out, retval] BSTR* ret);
 
 	[id(124)] HRESULT LeftClick([out, retval] LONG* ret);
 	[id(125)] HRESULT LeftDoubleClick([out, retval] LONG* ret);
@@ -165,6 +166,7 @@ interface IOpInterface : IDispatch
 	[id(207)] HRESULT OcrFromFile([in] BSTR file_name, [in] BSTR color_format, [in] DOUBLE sim, [out, retval] BSTR* retstr);
 	[id(208)] HRESULT OcrAutoFromFile([in] BSTR file_name, [in] DOUBLE sim, [out, retval] BSTR* retstr);
 	[id(209)] HRESULT FindLine([in] LONG x1, [in] LONG y1, [in] LONG x2, [in] LONG y2, [in] BSTR color, [in] DOUBLE sim, [out, retval] BSTR* retstr);
+	[id(210)] HRESULT SetOcrEngine([in] BSTR path_of_engine, [in] BSTR dll_name, [in] BSTR argv, [out, retval] LONG* ret);
 	[id(220)] HRESULT SetMemDict([in] LONG idx, [in]BSTR data, [in]LONG size, [out, retval] LONG* ret);
 	[id(221)] HRESULT GetDict([in] LONG idx, [in] LONG font_index, [out, retval] BSTR* retstr);
 	[id(222)] HRESULT AddDict([in] LONG idx, [in] BSTR dict_info, [out, retval] LONG* ret);
