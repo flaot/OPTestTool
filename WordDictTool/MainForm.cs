@@ -367,7 +367,10 @@ namespace WordDictTool
             if (cell is DataGridViewCheckBoxCell)
                 RefreshColor();
             if (columnName == Head_Name.OffColor)
+            { 
                 Utils.DataGridViewTextBoxCellColorHex_TextChanged(cell as DataGridViewTextBoxCell);
+                RefreshColor();
+            }
             if (columnName == Head_Name.RGB)
             {
                 var color = (Color)rowObj.Tag;
