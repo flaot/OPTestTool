@@ -9,7 +9,7 @@
         public event Action<WordDict> OnChange;
 
         private bool _firtEvent = true;
-
+        public int Count => wrods.Count;
         public void Clear()
         {
             if (wrods.Count <= 0)

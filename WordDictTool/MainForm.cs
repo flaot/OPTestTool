@@ -7,12 +7,20 @@ namespace WordDictTool
     {
         private OpSoft _opSoft = new OpSoft();
         private const int DICT_FILE = 0;
+        /// <summary> 存盘字库 </summary>
         private WordDict _wordDict = new WordDict();
+        /// <summary> 提取使用的临时字库 </summary>
         private WordDict _tempDict = new WordDict();
+        /// <summary> 当前界面上使用字库(引用) </summary>
         private WordDict _showDict;
+        /// <summary> 当前界面上选中下标 </summary>
+        private int _curSelectIndex;
 
-        private const int COLOR_MAX = 20; //颜色信息条目上限
+        /// <summary> 颜色信息条目上限 </summary>
+        private const int COLOR_MAX = 20;
+        /// <summary> 截图使用的临时图片名称 </summary>
         private const string TEMP_FILE = "temp.bmp";
+        /// <summary> 默认字库文件 </summary>
         private const string DEFAULT_DICT_FILE = "op.dict";
         private string TempFile => Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), TEMP_FILE);
         private string DictFile => Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), DEFAULT_DICT_FILE);
@@ -170,6 +178,7 @@ namespace WordDictTool
             else
                 _tempDict.Add(dictInfo);
             RefreshListBox();
+            RefreshListBoxSelectIndex(true);
         }
         private void ToolStripMenuItem_Extract_Click(object sender, EventArgs e)
         {
@@ -187,6 +196,7 @@ namespace WordDictTool
                     _tempDict.Add(dictInfo);
             }
             RefreshListBox();
+            RefreshListBoxSelectIndex(true);
         }
         private void ToolStripMenuItem_ResetColorConfig_Click(object sender, EventArgs e)
         {
@@ -219,6 +229,7 @@ namespace WordDictTool
             _showDict = _wordDict;
             _tempDict.Clear();
             RefreshListBox();
+            RefreshListBoxSelectIndex(true);
         }
         private void ToolStripMenuItem_SaveDict_Click(object sender, EventArgs e)
         {
@@ -256,6 +267,7 @@ namespace WordDictTool
                 _showDict.Add(wordCode);
             }
             RefreshListBox();
+            RefreshListBoxSelectIndex(false);
         }
         private void ToolStripMenuItem_Export_Click(object sender, EventArgs e)
         {
@@ -426,6 +438,7 @@ namespace WordDictTool
                 _showDict.Remove(selectedItem);
             }
             RefreshListBox();
+            RefreshListBoxSelectIndex(false);
         }
         private void DictListMenuItem_Import_Click(object sender, EventArgs e) => ToolStripMenuItem_Import.PerformClick();
         private void DictListMenuItem_Export_Click(object sender, EventArgs e) => ToolStripMenuItem_Export.PerformClick();
@@ -433,17 +446,20 @@ namespace WordDictTool
         {
             _showDict.SortByChar();
             RefreshListBox();
+            RefreshListBoxSelectIndex(true);
         }
         private void DictListMenuItem_BitCountSort_Click(object sender, EventArgs e)
         {
             _showDict.SortByBitCnt();
             RefreshListBox();
+            RefreshListBoxSelectIndex(true);
         }
         private void ListBox_Dict_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (ListBox_Dict.SelectedIndex < 0)
                 return;
 
+            _curSelectIndex = ListBox_Dict.SelectedIndex;
             string selectedItem = (string)ListBox_Dict.SelectedItem;
             var word = _showDict.Find(selectedItem);
             Grid_ShowWord.RefreshData(word);
@@ -458,6 +474,7 @@ namespace WordDictTool
             _wordDict.ReplaceChar(selectedItem, inputChar);
             _showDict.ReplaceChar(selectedItem, inputChar);
             RefreshListBox();
+            RefreshListBoxSelectIndex(false);
         }
         private void TextBox_FindWord_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -493,6 +510,7 @@ namespace WordDictTool
 
             //界面显示
             RefreshListBox();
+            RefreshListBoxSelectIndex(true);
             Dict_OnChange(_wordDict);
         }
         private void Dict_OnChange(WordDict obj)
@@ -505,6 +523,20 @@ namespace WordDictTool
             ListBox_Dict.Items.Clear();
             for (int i = 0; i < _showDict.wrods.Count; i++)
                 ListBox_Dict.Items.Add(_showDict.wrods[i].ToString());
+        }
+        private void RefreshListBoxSelectIndex(bool reset)
+        {
+            if (reset)
+            {
+                if (ListBox_Dict.Items.Count > 0)
+                    ListBox_Dict.SelectedIndex = 0;
+                return;
+            }
+            _curSelectIndex = Math.Clamp(_curSelectIndex, 0, ListBox_Dict.Items.Count - 1);
+            if (ListBox_Dict.Items.Count <= 0)
+                _curSelectIndex = -1;
+            if (ListBox_Dict.SelectedIndex != _curSelectIndex)
+                ListBox_Dict.SelectedIndex = _curSelectIndex;
         }
         #endregion
 
