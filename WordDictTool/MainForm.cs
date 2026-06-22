@@ -292,12 +292,17 @@ namespace WordDictTool
         //帮助
         private void ToolStripMenuItem_Guide_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("截图模式：小键盘方向键可控制鼠标每次移动1像素，加Shift可每次移动10像素\n\n" +
-                "取色模式：鼠标左键确定取当前鼠标所在像素颜色\n" +
-                "   Alt+1 为颜色配置1取色\n" +
-                "   Alt+2 为颜色配置2取色\n" +
-                "   ...\n" +
-                "   Alt+9 为颜色配置9取色\n\n" +
+            MessageBox.Show(
+                "【截图模式】双击选框内部，或按Enter/Space键 确认截图\n" +
+                "    右键：清除当前选框重新框选\n" +
+                "    Esc：取消并退出\n\n" +
+                "【取色模式】（Alt+1~9 打开对应颜色配置取色）\n" +
+                "    左键：取当前鼠标位置像素颜色\n" +
+                "    Esc：取消并退出\n\n" +
+                "【截图/取色通用】\n" +
+                "    方向键 / 小键盘 2/4/6/8（及 1/3/7/9 斜向）：移动鼠标 1 像素\n" +
+                "    Shift + 上述键：每次移动 10 像素\n" +
+                "    C：复制当前鼠标位置颜色 RGB 十六进制到剪贴板\n\n" +
                 "其余快捷键可看菜单栏子项");
         }
         private void ToolStripMenuItem_About_Click(object sender, EventArgs e)

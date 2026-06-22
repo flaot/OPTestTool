@@ -1,28 +1,32 @@
 ﻿namespace WordDictTool
 {
+    /// <summary>
+    /// 全屏截图/取色窗体。支持框选区域、调整选框、双击或 Enter/Space 确认截图。
+    /// </summary>
     public partial class ScreenshotForm : Form
     {
-        private Bitmap background;
-        private Bitmap result;
-        private Color resultColor;
-        private bool getColor;
-        private Point startPoint;
-        private Point endPoint;
-        private bool isDrawing = false;
-        private bool isResizing = false;
-        private int resizeHandleIndex = -1;
-        private Rectangle rect;
+        private Bitmap background;       // 屏幕截图背景
+        private Bitmap result;           // 框选确认后的截图结果
+        private Color resultColor;       // 取色模式下的选中颜色
+        private bool getColor;           // true=取色模式，false=截图模式
+        private Point startPoint;        // 框选起始点
+        private Point endPoint;          // 框选当前终点
+        private bool isDrawing = false;  // 是否正在绘制新选框
+        private bool isResizing = false; // 是否正在调整选框大小或移动
+        private int resizeHandleIndex = -1; // 当前操作的手柄索引，-2 表示移动整个选框
+        private Rectangle rect;          // 当前选框区域
         private Pen pen = new Pen(Color.Blue, 2);
         private SolidBrush handleBrush = new SolidBrush(Color.Red);
         private SolidBrush highlightBrush = new SolidBrush(Color.Orange);
-        private const int HandleSize = 8;
+        private const int HandleSize = 8; // 调整手柄边长
         private Rectangle[] handles = new Rectangle[HandleSize];
         private Point lastMousePoint;
-        private int hoveredHandleIndex = -1;
-        private bool isHoveringOverRectangle = false;
-        private const int MouseMoveStep = 1; // 鼠标移动步长
-        private const int MouseShiftMoveStep = 10;
-        private Point _startPoint;
+        private int hoveredHandleIndex = -1;      // 当前悬停的手柄索引
+        private bool isHoveringOverRectangle = false; // 鼠标是否悬停在选框内
+        private const int MouseMoveStep = 1;      // 方向键移动鼠标步长
+        private const int MouseShiftMoveStep = 10;  // Shift+方向键移动步长
+        private const int SizeLabelMargin = 4;      // 尺寸标签与选框的间距
+        private Point _startPoint; // 窗体左上角对应的屏幕坐标，用于坐标换算
         public ScreenshotForm()
         {
             InitializeComponent();
@@ -30,8 +34,8 @@
 
         private void ScreenshotForm_Load(object sender, EventArgs e)
         {
-
             sizeLabel.Visible = false;
+            // 覆盖全部虚拟屏幕（Debug 下仅主屏，便于调试）
             Rectangle bounds = SystemInformation.VirtualScreen; //所有显示器
 #if DEBUG
             bounds = Screen.PrimaryScreen.Bounds; //主显示器
@@ -67,17 +71,25 @@
 
         private void ScreenshotForm_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            // 双击选框关闭窗口
+            // 双击选框内部确认截图
             if (!rect.IsEmpty && rect.Contains(e.Location))
+                ConfirmSelection();
+        }
+
+        /// <summary>
+        /// 根据当前选框裁剪背景图并关闭窗体。
+        /// </summary>
+        private void ConfirmSelection()
+        {
+            if (rect.IsEmpty) return;
+
+            result = new Bitmap(rect.Width, rect.Height);
+            using (Graphics g = Graphics.FromImage(result))
             {
-                result = new Bitmap(rect.Width, rect.Height);
-                using (Graphics g = Graphics.FromImage(result))
-                {
-                    g.DrawImage(background, new Rectangle(0, 0, rect.Width, rect.Height), rect, GraphicsUnit.Pixel);
-                }
-                DialogResult = DialogResult.OK;
-                Close();
+                g.DrawImage(background, new Rectangle(0, 0, rect.Width, rect.Height), rect, GraphicsUnit.Pixel);
             }
+            DialogResult = DialogResult.OK;
+            Close();
         }
         private void ScreenshotForm_KeyDown(object sender, KeyEventArgs e)
         {
@@ -86,6 +98,12 @@
             {
                 DialogResult = DialogResult.Cancel;
                 Close();
+                return;
+            }
+            // Enter/Space 确认当前选框截图
+            if (!rect.IsEmpty && (e.KeyCode == Keys.Enter || e.KeyCode == Keys.Space))
+            {
+                ConfirmSelection();
                 return;
             }
             //按C键复制颜色值到剪贴板
@@ -161,6 +179,7 @@
                 return;
             if (getColor)
             {
+                // 取色模式：左键点击直接取色并关闭
                 if (e.Button == MouseButtons.Left)
                 {
                     resultColor = background.GetPixel(e.Location.X, e.Location.Y);
@@ -328,6 +347,9 @@
             }
         }
 
+        /// <summary>
+        /// 根据当前选框更新 8 个调整手柄的位置。
+        /// </summary>
         private void UpdateHandles()
         {
             if (rect.IsEmpty) return;
@@ -359,6 +381,9 @@
                 }
             }
         }
+        /// <summary>
+        /// 判断点是否落在某个调整手柄上。
+        /// </summary>
         private bool IsInHandle(Point p, out int index)
         {
             for (int i = 0; i < handles.Length; i++)
@@ -489,16 +514,43 @@
                 rect = new Rectangle(rect.Left, rect.Bottom, rect.Width, -rect.Height);
             }
         }
+        /// <summary>
+        /// 更新选框尺寸标签的位置。标签始终放在选框外侧，避免遮挡小选区导致无法双击确认。
+        /// </summary>
         private void UpdateSizeLabel()
         {
-            if (!rect.IsEmpty)
-            {
-                sizeLabel.Text = $"{rect.Width} x {rect.Height}";
-                sizeLabel.Location = new Point(rect.Left, rect.Top);
-                sizeLabel.Visible = true;
-            }
+            if (rect.IsEmpty) return;
+
+            sizeLabel.Text = $"{rect.Width} x {rect.Height}";
+            Size labelSize = sizeLabel.PreferredSize;
+            int x = rect.Left;
+            // 优先放在选框上方
+            int y = rect.Top - labelSize.Height - SizeLabelMargin;
+
+            // 上方空间不足时改放下方
+            if (y < 0)
+                y = rect.Bottom + SizeLabelMargin;
+
+            if (y + labelSize.Height > ClientSize.Height)
+                y = Math.Max(0, rect.Top - labelSize.Height - SizeLabelMargin);
+
+            // 横向溢出时依次尝试右侧、左侧
+            if (x + labelSize.Width > ClientSize.Width)
+                x = rect.Right + SizeLabelMargin;
+
+            if (x + labelSize.Width > ClientSize.Width)
+                x = Math.Max(0, rect.Left - labelSize.Width - SizeLabelMargin);
+
+            // 限制在窗体可见范围内
+            x = Math.Clamp(x, 0, Math.Max(0, ClientSize.Width - labelSize.Width));
+            y = Math.Clamp(y, 0, Math.Max(0, ClientSize.Height - labelSize.Height));
+            sizeLabel.Location = new Point(x, y);
+            sizeLabel.Visible = true;
         }
 
+        /// <summary>
+        /// 打开截图对话框，返回框选区域的位图；取消时返回 null。
+        /// </summary>
         public static Bitmap ShowDialogGetBitmap()
         {
             using (ScreenshotForm form = new ScreenshotForm())
@@ -511,6 +563,9 @@
                     return form.result;
             }
         }
+        /// <summary>
+        /// 打开取色对话框，点击左键取色；取消时返回 Color.Empty。
+        /// </summary>
         public static Color ShowPanelGetColor()
         {
             using (ScreenshotForm form = new ScreenshotForm())
