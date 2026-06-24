@@ -88,8 +88,8 @@
             // 
             // MagnifierControl
             // 
-            AutoScaleDimensions = new SizeF(7F, 17F);
-            AutoScaleMode = AutoScaleMode.Font;
+            AutoScaleDimensions = new SizeF(96F, 96F);
+            AutoScaleMode = AutoScaleMode.Dpi;
             BorderStyle = BorderStyle.FixedSingle;
             Controls.Add(splitContainer1);
             Name = "MagnifierControl";

@@ -105,8 +105,8 @@
             // 
             // ChangeKeypadForm
             // 
-            AutoScaleDimensions = new SizeF(7F, 17F);
-            AutoScaleMode = AutoScaleMode.Font;
+            AutoScaleDimensions = new SizeF(96F, 96F);
+            AutoScaleMode = AutoScaleMode.Dpi;
             ClientSize = new Size(380, 228);
             Controls.Add(button2);
             Controls.Add(button1);

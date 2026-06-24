@@ -146,8 +146,8 @@
             // 
             // ReadDataForm
             // 
-            AutoScaleDimensions = new SizeF(7F, 17F);
-            AutoScaleMode = AutoScaleMode.Font;
+            AutoScaleDimensions = new SizeF(96F, 96F);
+            AutoScaleMode = AutoScaleMode.Dpi;
             ClientSize = new Size(349, 144);
             Controls.Add(radioButton7);
             Controls.Add(button2);

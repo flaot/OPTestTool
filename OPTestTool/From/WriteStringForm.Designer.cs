@@ -109,7 +109,7 @@
             // 
             // WriteStringForm
             // 
-            AutoScaleDimensions = new SizeF(7F, 17F);
+            AutoScaleDimensions = new SizeF(96F, 96F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(307, 144);
             Controls.Add(Txt_Value);

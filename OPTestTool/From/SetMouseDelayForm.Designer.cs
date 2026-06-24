@@ -111,8 +111,8 @@
             // 
             // SetMouseDelayForm
             // 
-            AutoScaleDimensions = new SizeF(7F, 17F);
-            AutoScaleMode = AutoScaleMode.Font;
+            AutoScaleDimensions = new SizeF(96F, 96F);
+            AutoScaleMode = AutoScaleMode.Dpi;
             ClientSize = new Size(294, 139);
             Controls.Add(ComboBox_Mode);
             Controls.Add(label3);
