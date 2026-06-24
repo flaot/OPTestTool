@@ -176,6 +176,7 @@
             Txt_ReadAddress = new TextBox();
             label30 = new Label();
             OPExport = new TabPage();
+            Btn_RefreshGenerateLang = new Button();
             linkLabel3 = new LinkLabel();
             CheckBox_AddWifiDoc = new CheckBox();
             linkLabel2 = new LinkLabel();
@@ -206,7 +207,6 @@
             CheckBox_LogAutoScroll = new CheckBox();
             CheckBox_LogShowTime = new CheckBox();
             label1 = new Label();
-            Btn_RefreshGenerateLang = new Button();
             tabControl1.SuspendLayout();
             综合设置.SuspendLayout();
             groupBox2.SuspendLayout();
@@ -327,9 +327,9 @@
             TreeView_Window.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             TreeView_Window.FullRowSelect = true;
             TreeView_Window.HideSelection = false;
-            TreeView_Window.Location = new Point(0, 85);
+            TreeView_Window.Location = new Point(3, 85);
             TreeView_Window.Name = "TreeView_Window";
-            TreeView_Window.Size = new Size(636, 218);
+            TreeView_Window.Size = new Size(630, 218);
             TreeView_Window.TabIndex = 11;
             TreeView_Window.AfterSelect += TreeView_Window_AfterSelect;
             TreeView_Window.NodeMouseDoubleClick += TreeView_Window_NodeMouseDoubleClick;
@@ -1900,6 +1900,16 @@
             OPExport.Text = "OPExport";
             OPExport.UseVisualStyleBackColor = true;
             // 
+            // Btn_RefreshGenerateLang
+            // 
+            Btn_RefreshGenerateLang.Location = new Point(377, 194);
+            Btn_RefreshGenerateLang.Name = "Btn_RefreshGenerateLang";
+            Btn_RefreshGenerateLang.Size = new Size(89, 27);
+            Btn_RefreshGenerateLang.TabIndex = 3;
+            Btn_RefreshGenerateLang.Text = "刷新";
+            Btn_RefreshGenerateLang.UseVisualStyleBackColor = true;
+            Btn_RefreshGenerateLang.Click += Btn_RefreshGenerateLang_Click;
+            // 
             // linkLabel3
             // 
             linkLabel3.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
@@ -2205,16 +2215,6 @@
             label1.Size = new Size(32, 17);
             label1.TabIndex = 0;
             label1.Text = "日志";
-            // 
-            // Btn_RefreshGenerateLang
-            // 
-            Btn_RefreshGenerateLang.Location = new Point(377, 194);
-            Btn_RefreshGenerateLang.Name = "Btn_RefreshGenerateLang";
-            Btn_RefreshGenerateLang.Size = new Size(89, 27);
-            Btn_RefreshGenerateLang.TabIndex = 3;
-            Btn_RefreshGenerateLang.Text = "刷新";
-            Btn_RefreshGenerateLang.UseVisualStyleBackColor = true;
-            Btn_RefreshGenerateLang.Click += Btn_RefreshGenerateLang_Click;
             // 
             // MainForm
             // 
