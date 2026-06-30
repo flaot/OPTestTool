@@ -27,12 +27,12 @@ namespace OPTestTool
         {
             opSoft.SetShowErrorMsg(0);
 
-            //”¶”√…œ¥ŒÕÀ≥ˆ ±µƒ…Ë÷√
+            //Â∫îÁî®‰∏äÊ¨°ÈÄÄÂá∫Êó∂ÁöÑËÆæÁΩÆ
             var setting = Settings.Default;
-            //◊€∫œ…Ë÷√
+            //ÁªºÂêàËÆæÁΩÆ
             CheckBox_ExcludeHide.Checked = setting.ExcludeHide;
 
-            //∞Û∂®≤Œ ˝
+            //ÁªëÂÆöÂèÇÊï∞
             Txt_BindDisplayMode.Text = setting.BindDisplayMode;
             Txt_BindMouseMode.Text = setting.BindMouseMode;
             Txt_BindKeypadMode.Text = setting.BindKeypadMode;
@@ -40,7 +40,7 @@ namespace OPTestTool
             CheckBox_BindMoveWendow.Checked = setting.BindMoveWendow;
             CheckBox_BindMessage.Checked = setting.BindMessage;
 
-            //≤‚ ‘Õº…´
+            //ÊµãËØïÂõæËâ≤
             Txt_CaptureX1.Text = setting.CaptureX1;
             Txt_CaptureY1.Text = setting.CaptureY1;
             Txt_CaptureX2.Text = setting.CaptureX2;
@@ -57,7 +57,7 @@ namespace OPTestTool
             Txt_FindPicFile.Text = setting.FindPicFile;
             Txt_FindPicSim.Text = setting.FindPicSim.ToString();
 
-            //≤‚ ‘ Û±Í
+            //ÊµãËØïÈº†Ê†á
             Txt_MoveToX.Text = setting.MoveToX;
             Txt_MoveToY.Text = setting.MoveToY;
             Txt_MoveRX.Text = setting.MoveRX;
@@ -66,7 +66,7 @@ namespace OPTestTool
             ComboBox_MouseAction.SelectedIndex = setting.MouseActionIndex;
             CheckBox_MousePreActionWindow.Checked = setting.MousePreActionWindow;
 
-            //≤‚ ‘º¸≈Ã
+            //ÊµãËØïÈîÆÁõò
             Txt_KeyDown.Text = setting.KeyDown;
             Txt_KeyUp.Text = setting.KeyUp;
             Txt_KeyPress.Text = setting.KeyPress;
@@ -74,13 +74,19 @@ namespace OPTestTool
             Txt_KeyPressStrDelay.Text = setting.KeyPressStrDelay.ToString();
             CheckBox_KeyPreActive.Checked = setting.KeyPreActive;
 
-            //Œƒ±æ ‰»Î
+            //ÊñáÊú¨ËæìÂÖ•
             Txt_SendText.Text = setting.SendText;
             CheckBox_SendPreActive.Checked = setting.SendPreActive;
 
-            //ƒ⁄¥Êª„±‡
+            //ÂÜÖÂ≠òÊ±áÁºñ
             Txt_ReadAddress.Text = setting.ReadAddress;
             Txt_WriteAddress.Text = setting.WriteAddress;
+
+            //Â≠óÁ¨¶Ê£ÄÊµã
+            ComboBox_OCRServer.SelectedIndex = setting.OCRServerActionIndex;
+            Txt_TimeOutStrDelay.Text = setting.TimeOutStrDelay.ToString();
+            Txt_OCRPicFile.Text = setting.OCRPicFile;
+            Txt_OCRPicSim.Text = setting.OCRPicSim.ToString();
 
             //OPExport
             Btn_RefreshGenerateLang_Click(null, null);
@@ -90,7 +96,7 @@ namespace OPTestTool
             CheckBox_AddWifiDoc.Checked = setting.AddWifiDoc;
             CheckBox_OpenGenCodeFolder.Checked = setting.OpenGenCodeFolder;
 
-            //»’÷æ
+            //Êó•Âøó
             CheckBox_LogShowTime.Checked = setting.LogShowTime;
             CheckBox_LogAutoScroll.Checked = setting.LogAutoScroll;
 
@@ -103,10 +109,10 @@ namespace OPTestTool
         {
             _timerTick.Stop();
             var setting = Settings.Default;
-            //◊€∫œ…Ë÷√
+            //ÁªºÂêàËÆæÁΩÆ
             setting.ExcludeHide = CheckBox_ExcludeHide.Checked;
 
-            //∞Û∂®≤Œ ˝
+            //ÁªëÂÆöÂèÇÊï∞
             setting.BindDisplayMode = Txt_BindDisplayMode.Text;
             setting.BindMouseMode = Txt_BindMouseMode.Text;
             setting.BindKeypadMode = Txt_BindKeypadMode.Text;
@@ -114,7 +120,7 @@ namespace OPTestTool
             setting.BindMoveWendow = CheckBox_BindMoveWendow.Checked;
             setting.BindMessage = CheckBox_BindMessage.Checked;
 
-            //≤‚ ‘Õº…´
+            //ÊµãËØïÂõæËâ≤
             setting.CaptureX1 = Txt_CaptureX1.Text;
             setting.CaptureY1 = Txt_CaptureY1.Text;
             setting.CaptureX2 = Txt_CaptureX2.Text;
@@ -131,7 +137,7 @@ namespace OPTestTool
             setting.FindPicFile = Txt_FindPicFile.Text;
             setting.FindPicSim = float.Parse(Txt_FindPicSim.Text);
 
-            //≤‚ ‘ Û±Í
+            //ÊµãËØïÈº†Ê†á
             setting.MoveToX = Txt_MoveToX.Text;
             setting.MoveToY = Txt_MoveToY.Text;
             setting.MoveRX = Txt_MoveRX.Text;
@@ -140,7 +146,7 @@ namespace OPTestTool
             setting.MoveAndSend = CheckBox_MoveAndSend.Checked;
             setting.MousePreActionWindow = CheckBox_MousePreActionWindow.Checked;
 
-            //≤‚ ‘º¸≈Ã
+            //ÊµãËØïÈîÆÁõò
             setting.KeyDown = Txt_KeyDown.Text;
             setting.KeyUp = Txt_KeyUp.Text;
             setting.KeyPress = Txt_KeyPress.Text;
@@ -148,13 +154,19 @@ namespace OPTestTool
             setting.KeyPressStrDelay = int.Parse(Txt_KeyPressStrDelay.Text);
             setting.KeyPreActive = CheckBox_KeyPreActive.Checked;
 
-            //Œƒ±æ ‰»Î
+            //ÊñáÊú¨ËæìÂÖ•
             setting.SendText = Txt_SendText.Text;
             setting.SendPreActive = CheckBox_SendPreActive.Checked;
 
-            //ƒ⁄¥Êª„±‡
+            //ÂÜÖÂ≠òÊ±áÁºñ
             setting.ReadAddress = Txt_ReadAddress.Text;
             setting.WriteAddress = Txt_WriteAddress.Text;
+
+            //Â≠óÁ¨¶Ê£ÄÊµã
+            setting.OCRServerActionIndex = ComboBox_OCRServer.SelectedIndex;
+            setting.TimeOutStrDelay = int.Parse(Txt_TimeOutStrDelay.Text);
+            setting.OCRPicFile = Txt_OCRPicFile.Text;
+            setting.OCRPicSim = float.Parse(Txt_OCRPicSim.Text);
 
             //OPExport
             setting.CodeLang = ComboBox_CodeLang.SelectedText;
@@ -163,13 +175,13 @@ namespace OPTestTool
             setting.AddWifiDoc = CheckBox_AddWifiDoc.Checked;
             setting.OpenGenCodeFolder = CheckBox_OpenGenCodeFolder.Checked;
 
-            //»’÷æ
+            //Êó•Âøó
             setting.LogShowTime = CheckBox_LogShowTime.Checked;
             setting.LogAutoScroll = CheckBox_LogAutoScroll.Checked;
             setting.Save();
         }
 
-        #region »’÷æ
+        #region Êó•Âøó
         private void CheckBox_LogShowTime_CheckedChanged(object sender, EventArgs e)
         {
             lock (_logQueue)
@@ -188,7 +200,7 @@ namespace OPTestTool
             lock (_logQueue)
             {
                 if (_showLogTime)
-                    context = string.Format("°æ{0:HH:mm:ss}°ø", DateTime.Now) + context;
+                    context = string.Format("„Äê{0:HH:mm:ss}„Äë", DateTime.Now) + context;
             }
             _logQueue.Enqueue(logType.ToString() + "|" + context);
         }
@@ -240,7 +252,7 @@ namespace OPTestTool
         }
         #endregion
 
-        #region ◊€∫œ…Ë÷√
+        #region ÁªºÂêàËÆæÁΩÆ
         private void Finder_Window_WindowHandleChanged(object sender, EventArgs e)
         {
             var finder = (WindowFinder.WindowFinder)sender;
@@ -367,7 +379,7 @@ namespace OPTestTool
         }
         #endregion
 
-        #region ∞Û∂®≤Œ ˝
+        #region ÁªëÂÆöÂèÇÊï∞
         private void Btn_ChangeDisplay_Click(object sender, EventArgs e)
         {
             ChangeDisplayForm form = new ChangeDisplayForm();
@@ -404,30 +416,30 @@ namespace OPTestTool
             {
                 Logger.Log(">>>UnBindWindow");
                 int reault = opSoft.UnBindWindow();
-                Logger.Log("∑µªÿ÷µ£∫" + reault);
+                Logger.Log("ËøîÂõûÂÄºÔºö" + reault);
             }
             else
             {
                 var nHwnd = string.IsNullOrEmpty(Txt_WindowHwnd.Text) ? 0 : int.Parse(Txt_WindowHwnd.Text);
                 if (CheckBox_BindMoveWendow.Checked)
-                    opSoft.MoveWindow(nHwnd, -10, 0); //OP∑¢ÀÕµƒSetWindowPos(-10,0,W,H,28)  ¥ÛƒÆµƒ «SetWindowPos(-10,0,0,0,21)
+                    opSoft.MoveWindow(nHwnd, -10, 0); //OPÂèëÈÄÅÁöÑSetWindowPos(-10,0,W,H,28)  Â§ßÊº†ÁöÑÊòØSetWindowPos(-10,0,0,0,21)
                 Logger.Log(string.Format(">>>BindWindow\n{0},\"{1}\",\"{2}\",\"{3}\",{4}", nHwnd, Txt_BindDisplayMode.Text, Txt_BindMouseMode.Text, Txt_BindKeypadMode.Text, Txt_BindMode.Text));
                 int reault = opSoft.BindWindow(nHwnd, Txt_BindDisplayMode.Text, Txt_BindMouseMode.Text, Txt_BindKeypadMode.Text, int.Parse(Txt_BindMode.Text));
-                Logger.Log("∑µªÿ÷µ£∫" + reault);
+                Logger.Log("ËøîÂõûÂÄºÔºö" + reault);
                 if (CheckBox_BindMessage.Checked && reault == 1)
                 {
-                    MessageBox.Show("∞Û∂®≥…π¶");
+                    MessageBox.Show("ÁªëÂÆöÊàêÂäü");
                 }
             }
 
             if (opSoft.IsBind() != 0)
             {
-                Btn_Bind.Text = "Ω‚∞Û";
+                Btn_Bind.Text = "Ëß£Áªë";
                 Btn_SwitchBind.Enabled = true;
             }
             else
             {
-                Btn_Bind.Text = "∞Û∂®";
+                Btn_Bind.Text = "ÁªëÂÆö";
                 Btn_SwitchBind.Enabled = false;
             }
         }
@@ -440,11 +452,11 @@ namespace OPTestTool
             string bindCode = string.Format("op_ret = op.BindWindow(hwnd,\"{1}\",\"{2}\",\"{3}\",{4})", Txt_WindowHwnd.Text, Txt_BindDisplayMode.Text, Txt_BindMouseMode.Text, Txt_BindKeypadMode.Text, Txt_BindMode.Text);
             Logger.Log(string.Format(">>>SetClipboard \"{0}\"", bindCode));
             opSoft.SetClipboard(bindCode);
-            MessageBox.Show("¥˙¬Î“—æ≠∏¥÷∆µΩºÙÃ˘∞Â,÷±Ω”’≥Ã˘º¥ø… π”√£°");
+            MessageBox.Show("‰ª£Á†ÅÂ∑≤ÁªèÂ§çÂà∂Âà∞Ââ™Ë¥¥Êùø,Áõ¥Êé•Á≤òË¥¥Âç≥ÂèØ‰ΩøÁî®ÔºÅ");
         }
         #endregion
 
-        #region ≤‚ ‘Õº…´
+        #region ÊµãËØïÂõæËâ≤
         private void Btn_Capture_Click(object sender, EventArgs e)
         {
             int x1 = int.Parse(Txt_CaptureX1.Text);
@@ -454,7 +466,7 @@ namespace OPTestTool
             string file = Path.Combine(opSoft.GetPath(), "capture_file.bmp");
             Logger.Log(string.Format(">>>Capture\n{0},{1},{2},{3},\"{4}\"", x1, y1, x2, y2, file));
             int reault = opSoft.Capture(x1, y1, x2, y2, file);
-            Logger.Log("∑µªÿ÷µ£∫" + reault);
+            Logger.Log("ËøîÂõûÂÄºÔºö" + reault);
             if (reault == 1)
             {
                 Process.Start("mspaint.exe", string.Format("\"{0}\"", file));
@@ -466,7 +478,7 @@ namespace OPTestTool
             int y = int.Parse(Txt_GetColorY.Text);
             Logger.Log(string.Format(">>>GetColor {0},{1}", x, y));
             string reault = opSoft.GetColor(x, y);
-            Logger.Log("∑µªÿ÷µ£∫" + reault);
+            Logger.Log("ËøîÂõûÂÄºÔºö" + reault);
         }
         private void Finder_GetColor_MouseChangePos(object sender, EventArgs e)
         {
@@ -487,7 +499,7 @@ namespace OPTestTool
             int dir = int.Parse(Txt_FindPicDir.Text);
             Logger.Log(string.Format(">>>FindPic\n{0},{1},{2},{3},\"{4}\",\"{5}\",{6},{7},x,y", x1, y1, x2, y2, Txt_FindPicFile.Text, Txt_FindPicDelta.Text, sim, dir));
             int reault = opSoft.FindPic(x1, y1, x2, y2, Txt_FindPicFile.Text, Txt_FindPicDelta.Text, sim, dir, out var x, out var y);
-            Logger.Log("∑µªÿ÷µ£∫" + reault + ",x=" + x + ",y=" + y);
+            Logger.Log("ËøîÂõûÂÄºÔºö" + reault + ",x=" + x + ",y=" + y);
         }
         private void CheckBox_GetScreenDataBmp_CheckedChanged(object sender, EventArgs e)
         {
@@ -516,11 +528,11 @@ namespace OPTestTool
             int dir = int.Parse(Txt_FindPicDir.Text);
             Logger.Log(string.Format(">>>FindPicEx\n{0},{1},{2},{3},\"{4}\",\"{5}\",{6},{7}", x1, y1, x2, y2, Txt_FindPicFile.Text, Txt_FindPicDelta.Text, sim, dir));
             string reault = opSoft.FindPicEx(x1, y1, x2, y2, Txt_FindPicFile.Text, Txt_FindPicDelta.Text, sim, dir);
-            Logger.Log("∑µªÿ÷µ£∫" + reault);
+            Logger.Log("ËøîÂõûÂÄºÔºö" + reault);
         }
         #endregion
 
-        #region ≤‚ ‘ Û±Í
+        #region ÊµãËØïÈº†Ê†á
         private void Btn_SetMouseDelay_Click(object sender, EventArgs e)
         {
             SetMouseDelayForm form = new SetMouseDelayForm();
@@ -532,7 +544,7 @@ namespace OPTestTool
             int nDelay = int.Parse(delay);
             Logger.Log(string.Format(">>>SetMouseDelay {0},{1}", mode, nDelay));
             int reault = opSoft.SetMouseDelay(mode, nDelay);
-            Logger.Log("∑µªÿ÷µ£∫" + reault);
+            Logger.Log("ËøîÂõûÂÄºÔºö" + reault);
         }
         private void Btn_MoveTo_Click(object sender, EventArgs e)
         {
@@ -542,7 +554,7 @@ namespace OPTestTool
             int y = int.Parse(Txt_MoveToY.Text);
             Logger.Log(string.Format(">>>MoveTo {0},{1}", x, y));
             int reault = opSoft.MoveTo(x, y);
-            Logger.Log("∑µªÿ÷µ£∫" + reault);
+            Logger.Log("ËøîÂõûÂÄºÔºö" + reault);
             if (reault == 1 && CheckBox_MoveAndSend.Checked)
             {
                 Logger.Log(string.Format(">>>{0}", ComboBox_MouseAction.Text));
@@ -556,7 +568,7 @@ namespace OPTestTool
                     case "WheelDown": reault = opSoft.WheelDown(); break;
                     default: break;
                 }
-                Logger.Log("∑µªÿ÷µ£∫" + reault);
+                Logger.Log("ËøîÂõûÂÄºÔºö" + reault);
             }
         }
         private void Finder_MoveTo_MouseChangePos(object sender, EventArgs e)
@@ -576,7 +588,7 @@ namespace OPTestTool
             int y = int.Parse(Txt_MoveRY.Text);
             Logger.Log(string.Format(">>>MoveR {0},{1}", x, y));
             int reault = opSoft.MoveR(x, y);
-            Logger.Log("∑µªÿ÷µ£∫" + reault);
+            Logger.Log("ËøîÂõûÂÄºÔºö" + reault);
             if (reault == 1 && CheckBox_MoveAndSend.Checked)
             {
                 Logger.Log(string.Format(">>>{0}", ComboBox_MouseAction.Text));
@@ -590,7 +602,7 @@ namespace OPTestTool
                     case "WheelDown": reault = opSoft.WheelDown(); break;
                     default: break;
                 }
-                Logger.Log("∑µªÿ÷µ£∫" + reault);
+                Logger.Log("ËøîÂõûÂÄºÔºö" + reault);
             }
         }
         private void Btn_LeftDown_Click(object sender, EventArgs e)
@@ -599,7 +611,7 @@ namespace OPTestTool
                 opSoft.SetWindowState(opSoft.GetBindWindow(), 1);
             Logger.Log(">>>LeftDown");
             int reault = opSoft.LeftDown();
-            Logger.Log("∑µªÿ÷µ£∫" + reault);
+            Logger.Log("ËøîÂõûÂÄºÔºö" + reault);
         }
         private void Btn_LeftUp_Click(object sender, EventArgs e)
         {
@@ -607,7 +619,7 @@ namespace OPTestTool
                 opSoft.SetWindowState(opSoft.GetBindWindow(), 1);
             Logger.Log(">>>LeftUp");
             int reault = opSoft.LeftUp();
-            Logger.Log("∑µªÿ÷µ£∫" + reault);
+            Logger.Log("ËøîÂõûÂÄºÔºö" + reault);
         }
         private void Btn_LeftClick_Click(object sender, EventArgs e)
         {
@@ -615,7 +627,7 @@ namespace OPTestTool
                 opSoft.SetWindowState(opSoft.GetBindWindow(), 1);
             Logger.Log(">>>LeftClick");
             int reault = opSoft.LeftClick();
-            Logger.Log("∑µªÿ÷µ£∫" + reault);
+            Logger.Log("ËøîÂõûÂÄºÔºö" + reault);
         }
         private void Btn_RightDown_Click(object sender, EventArgs e)
         {
@@ -623,7 +635,7 @@ namespace OPTestTool
                 opSoft.SetWindowState(opSoft.GetBindWindow(), 1);
             Logger.Log(">>>RightDown");
             int reault = opSoft.RightDown();
-            Logger.Log("∑µªÿ÷µ£∫" + reault);
+            Logger.Log("ËøîÂõûÂÄºÔºö" + reault);
         }
         private void Btn_RightUp_Click(object sender, EventArgs e)
         {
@@ -631,7 +643,7 @@ namespace OPTestTool
                 opSoft.SetWindowState(opSoft.GetBindWindow(), 1);
             Logger.Log(">>>RightUp");
             int reault = opSoft.RightUp();
-            Logger.Log("∑µªÿ÷µ£∫" + reault);
+            Logger.Log("ËøîÂõûÂÄºÔºö" + reault);
         }
         private void Btn_RightClick_Click(object sender, EventArgs e)
         {
@@ -639,7 +651,7 @@ namespace OPTestTool
                 opSoft.SetWindowState(opSoft.GetBindWindow(), 1);
             Logger.Log(">>>RightClick");
             int reault = opSoft.RightClick();
-            Logger.Log("∑µªÿ÷µ£∫" + reault);
+            Logger.Log("ËøîÂõûÂÄºÔºö" + reault);
         }
         private void Btn_MiddleDown_Click(object sender, EventArgs e)
         {
@@ -647,7 +659,7 @@ namespace OPTestTool
                 opSoft.SetWindowState(opSoft.GetBindWindow(), 1);
             Logger.Log(">>>MiddleDown");
             int reault = opSoft.MiddleDown();
-            Logger.Log("∑µªÿ÷µ£∫" + reault);
+            Logger.Log("ËøîÂõûÂÄºÔºö" + reault);
         }
         private void Btn_MiddleUp_Click(object sender, EventArgs e)
         {
@@ -655,7 +667,7 @@ namespace OPTestTool
                 opSoft.SetWindowState(opSoft.GetBindWindow(), 1);
             Logger.Log(">>>MiddleUp");
             int reault = opSoft.MiddleUp();
-            Logger.Log("∑µªÿ÷µ£∫" + reault);
+            Logger.Log("ËøîÂõûÂÄºÔºö" + reault);
         }
         private void Btn_MiddleClick_Click(object sender, EventArgs e)
         {
@@ -663,7 +675,7 @@ namespace OPTestTool
                 opSoft.SetWindowState(opSoft.GetBindWindow(), 1);
             Logger.Log(">>>MiddleClick");
             int reault = opSoft.MiddleClick();
-            Logger.Log("∑µªÿ÷µ£∫" + reault);
+            Logger.Log("ËøîÂõûÂÄºÔºö" + reault);
         }
         private void Btn_WheelDown_Click(object sender, EventArgs e)
         {
@@ -671,7 +683,7 @@ namespace OPTestTool
                 opSoft.SetWindowState(opSoft.GetBindWindow(), 1);
             Logger.Log(">>>WheelDown");
             int reault = opSoft.WheelDown();
-            Logger.Log("∑µªÿ÷µ£∫" + reault);
+            Logger.Log("ËøîÂõûÂÄºÔºö" + reault);
         }
         private void Btn_WheelUp_Click(object sender, EventArgs e)
         {
@@ -679,7 +691,7 @@ namespace OPTestTool
                 opSoft.SetWindowState(opSoft.GetBindWindow(), 1);
             Logger.Log(">>>WheelUp");
             int reault = opSoft.WheelUp();
-            Logger.Log("∑µªÿ÷µ£∫" + reault);
+            Logger.Log("ËøîÂõûÂÄºÔºö" + reault);
         }
         private void Btn_LeftDoubleClick_Click(object sender, EventArgs e)
         {
@@ -687,7 +699,7 @@ namespace OPTestTool
                 opSoft.SetWindowState(opSoft.GetBindWindow(), 1);
             Logger.Log(">>>LeftDoubleClick");
             int reault = opSoft.LeftDoubleClick();
-            Logger.Log("∑µªÿ÷µ£∫" + reault);
+            Logger.Log("ËøîÂõûÂÄºÔºö" + reault);
         }
         private void Btn_GetCursorPos_Click(object sender, EventArgs e)
         {
@@ -695,11 +707,11 @@ namespace OPTestTool
                 opSoft.SetWindowState(opSoft.GetBindWindow(), 1);
             Logger.Log(">>>GetCursorPos x,y");
             int reault = opSoft.GetCursorPos(out var x, out var y);
-            Logger.Log("∑µªÿ÷µ£∫" + reault + ",x=" + x + ",y=" + y);
+            Logger.Log("ËøîÂõûÂÄºÔºö" + reault + ",x=" + x + ",y=" + y);
         }
         #endregion
 
-        #region ≤‚ ‘º¸≈Ã
+        #region ÊµãËØïÈîÆÁõò
         private void Btn_SetKeypadDelay_Click(object sender, EventArgs e)
         {
             SetKeypadDelayForm form = new SetKeypadDelayForm();
@@ -711,7 +723,7 @@ namespace OPTestTool
             int nDelay = int.Parse(delay);
             Logger.Log(string.Format(">>>SetKeypadDelay {0},{1}", mode, nDelay));
             int reault = opSoft.SetKeypadDelay(mode, nDelay);
-            Logger.Log("∑µªÿ÷µ£∫" + reault);
+            Logger.Log("ËøîÂõûÂÄºÔºö" + reault);
         }
         private void Btn_KeyDown_Click(object sender, EventArgs e)
         {
@@ -722,7 +734,7 @@ namespace OPTestTool
                 keyCode = int.Parse(Txt_KeyDown.Text);
             Logger.Log(string.Format(">>>KeyDown {0}", keyCode));
             int reault = opSoft.KeyDown(keyCode);
-            Logger.Log("∑µªÿ÷µ£∫" + reault);
+            Logger.Log("ËøîÂõûÂÄºÔºö" + reault);
         }
         private void Btn_KeyUp_Click(object sender, EventArgs e)
         {
@@ -733,7 +745,7 @@ namespace OPTestTool
                 keyCode = int.Parse(Txt_KeyUp.Text);
             Logger.Log(string.Format(">>>KeyUp {0}", keyCode));
             int reault = opSoft.KeyUp(keyCode);
-            Logger.Log("∑µªÿ÷µ£∫" + reault);
+            Logger.Log("ËøîÂõûÂÄºÔºö" + reault);
         }
         private void Btn_KeyPress_Click(object sender, EventArgs e)
         {
@@ -745,7 +757,7 @@ namespace OPTestTool
                 keyCode = int.Parse(Txt_KeyPress.Text);
             Logger.Log(string.Format(">>>KeyPress {0}", keyCode));
             int reault = opSoft.KeyPress(keyCode);
-            Logger.Log("∑µªÿ÷µ£∫" + reault);
+            Logger.Log("ËøîÂõûÂÄºÔºö" + reault);
         }
 
         private void Btn_KeyGroup_Click(object sender, EventArgs e)
@@ -768,7 +780,7 @@ namespace OPTestTool
             int delay = int.Parse(Txt_KeyPressStrDelay.Text);
             Logger.Log(string.Format(">>>KeyPressStr {0},{1}", Txt_KeyPressStr.Text, delay));
             int reault = opSoft.KeyPressStr(Txt_KeyPressStr.Text, delay);
-            Logger.Log("∑µªÿ÷µ£∫" + reault);
+            Logger.Log("ËøîÂõûÂÄºÔºö" + reault);
         }
         private void Txt_KeyDown_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -802,7 +814,7 @@ namespace OPTestTool
         }
         #endregion
 
-        #region Œƒ±æ ‰»Î
+        #region ÊñáÊú¨ËæìÂÖ•
         private void Btn_SendString_Click(object sender, EventArgs e)
         {
             if (CheckBox_SendPreActive.Checked)
@@ -811,7 +823,7 @@ namespace OPTestTool
             string sendText = Txt_SendText.Text;
             Logger.Log(string.Format(">>>SendString {0},{1}", opSoft.GetBindWindow(), sendText));
             int reault = opSoft.SendString(opSoft.GetBindWindow(), sendText);
-            Logger.Log("∑µªÿ÷µ£∫" + reault);
+            Logger.Log("ËøîÂõûÂÄºÔºö" + reault);
         }
         private void Btn_SendStringIme_Click(object sender, EventArgs e)
         {
@@ -821,7 +833,7 @@ namespace OPTestTool
             string sendText = Txt_SendText.Text;
             Logger.Log(string.Format(">>>SendStringIme {0},{1}", opSoft.GetBindWindow(), sendText));
             int reault = opSoft.SendStringIme(opSoft.GetBindWindow(), sendText);
-            Logger.Log("∑µªÿ÷µ£∫" + reault);
+            Logger.Log("ËøîÂõûÂÄºÔºö" + reault);
         }
         private void Btn_SendPaste_Click(object sender, EventArgs e)
         {
@@ -830,11 +842,11 @@ namespace OPTestTool
 
             Logger.Log(string.Format(">>>SendPaste {0}", opSoft.GetBindWindow()));
             int reault = opSoft.SendPaste(opSoft.GetBindWindow());
-            Logger.Log("∑µªÿ÷µ£∫" + reault);
+            Logger.Log("ËøîÂõûÂÄºÔºö" + reault);
         }
         #endregion
 
-        #region ƒ⁄¥Êª„±‡
+        #region ÂÜÖÂ≠òÊ±áÁºñ
         private void Btn_ReadInt_Click(object sender, EventArgs e)
         {
             ReadIntForm form = new ReadIntForm();
@@ -843,19 +855,19 @@ namespace OPTestTool
                 return;
             switch (form.GetSelect())
             {
-                case "+64": //64Œª”–∑˚∫≈
+                case "+64": //64‰ΩçÊúâÁ¨¶Âè∑
                     break;
-                case "+32": //32Œª”–∑˚∫≈
+                case "+32": //32‰ΩçÊúâÁ¨¶Âè∑
                     break;
-                case "-32": //32ŒªŒﬁ∑˚∫≈
+                case "-32": //32‰ΩçÊó†Á¨¶Âè∑
                     break;
-                case "+16": //16Œª”–∑˚∫≈
+                case "+16": //16‰ΩçÊúâÁ¨¶Âè∑
                     break;
-                case "-16": //16ŒªŒﬁ∑˚∫≈
+                case "-16": //16‰ΩçÊó†Á¨¶Âè∑
                     break;
-                case "+8": //8Œª”–∑˚∫≈
+                case "+8": //8‰ΩçÊúâÁ¨¶Âè∑
                     break;
-                case "-8": //8ŒªŒﬁ∑˚∫≈
+                case "-8": //8‰ΩçÊó†Á¨¶Âè∑
                     break;
                 default:
                     throw new KeyNotFoundException(form.GetSelect());
@@ -887,7 +899,7 @@ namespace OPTestTool
             int length = form.Length;
             Logger.Log(string.Format(">>>ReadData {0},\"{1}\",{2}", opSoft.GetBindWindow(), Txt_ReadAddress.Text, length));
             string reault = opSoft.ReadData(opSoft.GetBindWindow(), Txt_ReadAddress.Text, length);
-            Logger.Log("∑µªÿ÷µ£∫" + reault);
+            Logger.Log("ËøîÂõûÂÄºÔºö" + reault);
         }
         private void Btn_WriteInt_Click(object sender, EventArgs e)
         {
@@ -897,13 +909,13 @@ namespace OPTestTool
                 return;
             switch (form.GetSelect())
             {
-                case "+64": //64Œª”–∑˚∫≈
+                case "+64": //64‰ΩçÊúâÁ¨¶Âè∑
                     break;
-                case "+32": //32Œª”–∑˚∫≈
+                case "+32": //32‰ΩçÊúâÁ¨¶Âè∑
                     break;
-                case "+16": //16Œª”–∑˚∫≈
+                case "+16": //16‰ΩçÊúâÁ¨¶Âè∑
                     break;
-                case "+8": //8Œª”–∑˚∫≈
+                case "+8": //8‰ΩçÊúâÁ¨¶Âè∑
                     break;
                 default:
                     throw new KeyNotFoundException(form.GetSelect());
@@ -944,7 +956,7 @@ namespace OPTestTool
             string context = form.Context;
             Logger.Log(string.Format(">>>WriteData {0},\"{1}\",{2},{3}", opSoft.GetBindWindow(), Txt_ReadAddress.Text, context, context.Length));
             int reault = opSoft.WriteData(opSoft.GetBindWindow(), Txt_ReadAddress.Text, context, context.Length);
-            Logger.Log("∑µªÿ÷µ£∫" + reault);
+            Logger.Log("ËøîÂõûÂÄºÔºö" + reault);
         }
         #endregion
 
@@ -987,12 +999,12 @@ namespace OPTestTool
             string exeFile = Path.Combine(opExportRoot, "OpExport.exe");
             if (!File.Exists(exeFile))
             {
-                MessageBox.Show(string.Format("Œﬁ∑®÷¥––,Œ¥’“µΩø…÷¥––Œƒº˛\n{0}", exeFile));
+                MessageBox.Show(string.Format("Êó†Ê≥ïÊâßË°å,Êú™ÊâæÂà∞ÂèØÊâßË°åÊñá‰ª∂\n{0}", exeFile));
                 return;
             }
             if (!Directory.Exists(templateFolder))
             {
-                MessageBox.Show(string.Format("Œﬁ∑®÷¥––,Œ¥’“µΩƒ£∞ÊŒƒº˛º–\n{0}", templateFolder));
+                MessageBox.Show(string.Format("Êó†Ê≥ïÊâßË°å,Êú™ÊâæÂà∞Ê®°ÁâàÊñá‰ª∂Â§π\n{0}", templateFolder));
                 return;
             }
             string opFolder = Txt_OPFolder.Text;
@@ -1015,12 +1027,12 @@ namespace OPTestTool
             string idlFile = Path.Combine(opFolder, "libop/com/op.idl");
             if (!File.Exists(libopFile))
             {
-                MessageBox.Show("’“≤ªµΩŒƒº˛£∫\n" + libopFile);
+                MessageBox.Show("Êâæ‰∏çÂà∞Êñá‰ª∂Ôºö\n" + libopFile);
                 return;
             }
             if (!File.Exists(idlFile))
             {
-                MessageBox.Show("’“≤ªµΩŒƒº˛£∫\n" + idlFile);
+                MessageBox.Show("Êâæ‰∏çÂà∞Êñá‰ª∂Ôºö\n" + idlFile);
                 return;
             }
             string outFolder = Path.Combine(opExportRoot, "Out/" + ComboBox_CodeLang.Text);
@@ -1072,7 +1084,7 @@ namespace OPTestTool
             }
             if (CheckBox_OpenGenCodeFolder.Checked)
                 Process.Start(new ProcessStartInfo(outFolder) { UseShellExecute = true });
-            //∂‘Õ‚≤øπ§≥ÃΩ¯––∏¸∏ƒ
+            //ÂØπÂ§ñÈÉ®Â∑•Á®ãËøõË°åÊõ¥Êîπ
             if (CheckBox_UseOutProject.Checked && ComboBox_CodeLang.Text.Equals("op", StringComparison.OrdinalIgnoreCase))
             {
                 string folder = Path.Combine(Path.GetDirectoryName(exeFile), "OP");
@@ -1109,8 +1121,42 @@ namespace OPTestTool
         }
         #endregion
 
+        #region Â≠óÁ¨¶Ê£ÄÊµã
+        private void Btn_SetOcrServer_Click(object sender, EventArgs e)
+        {
+            string serverName = ComboBox_OCRServer.Text;
+            switch (serverName)
+            {
+                case "ncnn + PP-OCRv5": serverName = "paddle"; break;
+                default: break;
+            }
+            int timeout = int.Parse(Txt_TimeOutStrDelay.Text);
+            Logger.Log(string.Format(">>>SetOcrEngine {0},{1},{2}", serverName, string.Empty, $"--timeout={timeout}"));
+            int reault = opSoft.SetOcrEngine(serverName, string.Empty, $"--timeout={timeout}");
+            Logger.Log("ËøîÂõûÂÄºÔºö" + reault);
+        }
+        private void Btn_Recognize_Click(object sender, EventArgs e)
+        {
+            string picFile = Txt_OCRPicFile.Text;
+            float sim = float.Parse(Txt_OCRPicSim.Text);
+            opSoft.ClearDict(opSoft.GetNowDict());
+            Logger.Log(string.Format(">>>OcrAutoFromFile {0},{1}", picFile, sim));
+            string str = opSoft.OcrAutoFromFile(picFile, sim);
+            Logger.Log("ËøîÂõûÂÄºÔºö" + str);
+        }
+        private void Txt_OCRPicFile_TextChanged(object sender, EventArgs e)
+        {
+            string file = Txt_OCRPicFile.Text;
+            if (!File.Exists(file))
+            {
+                PictureBox_OCR.Image = null;
+                return;
+            }
+            PictureBox_OCR.Image = new Bitmap(file);
+        }
+        #endregion
 
-        #region øÿº˛- ‰»Îœﬁ÷∆
+        #region Êéß‰ª∂-ËæìÂÖ•ÈôêÂà∂
         private void Txt_Path_DragEnter(object sender, DragEventArgs e) => Utils.TextBoxFilePath_DragEnter(sender, e);
         private void Txt_Path_DragDrop(object sender, DragEventArgs e) => Utils.TextBoxFilePath_DragDrop(sender, e);
         private void Txt_Folder_DragEnter(object sender, DragEventArgs e) => Utils.TextBoxFileFolder_DragEnter(sender, e);
@@ -1146,7 +1192,7 @@ namespace OPTestTool
         }
         #endregion
 
-        #region ≤Àµ•¿∏
+        #region ËèúÂçïÊ†è
         private void MenuItem_WordDictTool_Click(object sender, EventArgs e)
         {
             WordDictTool.MainForm.ShowPanel();

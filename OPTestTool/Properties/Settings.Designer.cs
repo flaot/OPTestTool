@@ -574,5 +574,53 @@ namespace OPTestTool.Properties {
                 this["WriteAddress"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int OCRServerActionIndex {
+            get {
+                return ((int)(this["OCRServerActionIndex"]));
+            }
+            set {
+                this["OCRServerActionIndex"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("3000")]
+        public int TimeOutStrDelay {
+            get {
+                return ((int)(this["TimeOutStrDelay"]));
+            }
+            set {
+                this["TimeOutStrDelay"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string OCRPicFile {
+            get {
+                return ((string)(this["OCRPicFile"]));
+            }
+            set {
+                this["OCRPicFile"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0.95")]
+        public float OCRPicSim {
+            get {
+                return ((float)(this["OCRPicSim"]));
+            }
+            set {
+                this["OCRPicSim"] = value;
+            }
+        }
     }
 }

@@ -140,5 +140,17 @@
     <Setting Name="WriteAddress" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
+    <Setting Name="OCRServerActionIndex" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="TimeOutStrDelay" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">3000</Value>
+    </Setting>
+    <Setting Name="OCRPicFile" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="OCRPicSim" Type="System.Single" Scope="User">
+      <Value Profile="(Default)">0.95</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

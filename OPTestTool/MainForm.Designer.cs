@@ -175,6 +175,19 @@
             Btn_ReadInt = new Button();
             Txt_ReadAddress = new TextBox();
             label30 = new Label();
+            字符检测 = new TabPage();
+            linkLabel4 = new LinkLabel();
+            Txt_OCRPicSim = new TextBox();
+            label42 = new Label();
+            ComboBox_OCRServer = new ComboBox();
+            Btn_Recognize = new Button();
+            Txt_OCRPicFile = new TextBox();
+            label41 = new Label();
+            Txt_TimeOutStrDelay = new TextBox();
+            label40 = new Label();
+            label38 = new Label();
+            Btn_SetOcrServer = new Button();
+            PictureBox_OCR = new PictureBox();
             OPExport = new TabPage();
             Btn_RefreshGenerateLang = new Button();
             linkLabel3 = new LinkLabel();
@@ -220,6 +233,8 @@
             内存汇编.SuspendLayout();
             groupBox4.SuspendLayout();
             groupBox3.SuspendLayout();
+            字符检测.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)PictureBox_OCR).BeginInit();
             OPExport.SuspendLayout();
             Panel_UseOutProject.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
@@ -238,6 +253,7 @@
             tabControl1.Controls.Add(测试键盘);
             tabControl1.Controls.Add(文本输入);
             tabControl1.Controls.Add(内存汇编);
+            tabControl1.Controls.Add(字符检测);
             tabControl1.Controls.Add(OPExport);
             tabControl1.Dock = DockStyle.Fill;
             tabControl1.Location = new Point(0, 25);
@@ -1879,6 +1895,158 @@
             label30.TabIndex = 0;
             label30.Text = "地址:";
             // 
+            // 字符检测
+            // 
+            字符检测.Controls.Add(linkLabel4);
+            字符检测.Controls.Add(Txt_OCRPicSim);
+            字符检测.Controls.Add(label42);
+            字符检测.Controls.Add(ComboBox_OCRServer);
+            字符检测.Controls.Add(Btn_Recognize);
+            字符检测.Controls.Add(Txt_OCRPicFile);
+            字符检测.Controls.Add(label41);
+            字符检测.Controls.Add(Txt_TimeOutStrDelay);
+            字符检测.Controls.Add(label40);
+            字符检测.Controls.Add(label38);
+            字符检测.Controls.Add(Btn_SetOcrServer);
+            字符检测.Controls.Add(PictureBox_OCR);
+            字符检测.Location = new Point(4, 26);
+            字符检测.Name = "字符检测";
+            字符检测.Size = new Size(642, 436);
+            字符检测.TabIndex = 8;
+            字符检测.Text = "字符检测";
+            字符检测.UseVisualStyleBackColor = true;
+            // 
+            // linkLabel4
+            // 
+            linkLabel4.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            linkLabel4.AutoSize = true;
+            linkLabel4.Location = new Point(523, 11);
+            linkLabel4.Name = "linkLabel4";
+            linkLabel4.Size = new Size(111, 17);
+            linkLabel4.TabIndex = 5;
+            linkLabel4.TabStop = true;
+            linkLabel4.Tag = "https://github.com/WallBreaker2/op_ocr_engine";
+            linkLabel4.Text = "需启动 ocr_engine";
+            linkLabel4.LinkClicked += LinkLabel_LinkClicked;
+            // 
+            // Txt_OCRPicSim
+            // 
+            Txt_OCRPicSim.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            Txt_OCRPicSim.Location = new Point(576, 49);
+            Txt_OCRPicSim.Name = "Txt_OCRPicSim";
+            Txt_OCRPicSim.Size = new Size(54, 23);
+            Txt_OCRPicSim.TabIndex = 10;
+            Txt_OCRPicSim.Text = "0.95";
+            Txt_OCRPicSim.TextChanged += TextBoxFloatBar_TextChanged;
+            Txt_OCRPicSim.KeyPress += TextBoxFloatBar_KeyPress;
+            // 
+            // label42
+            // 
+            label42.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            label42.AutoSize = true;
+            label42.Location = new Point(527, 52);
+            label42.Name = "label42";
+            label42.Size = new Size(47, 17);
+            label42.TabIndex = 9;
+            label42.Text = "相似度:";
+            // 
+            // ComboBox_OCRServer
+            // 
+            ComboBox_OCRServer.DropDownStyle = ComboBoxStyle.DropDownList;
+            ComboBox_OCRServer.Enabled = false;
+            ComboBox_OCRServer.FormattingEnabled = true;
+            ComboBox_OCRServer.Items.AddRange(new object[] { "ncnn + PP-OCRv5", "tesseract" });
+            ComboBox_OCRServer.Location = new Point(168, 10);
+            ComboBox_OCRServer.Name = "ComboBox_OCRServer";
+            ComboBox_OCRServer.Size = new Size(130, 25);
+            ComboBox_OCRServer.TabIndex = 2;
+            // 
+            // Btn_Recognize
+            // 
+            Btn_Recognize.Location = new Point(8, 46);
+            Btn_Recognize.Name = "Btn_Recognize";
+            Btn_Recognize.Size = new Size(89, 27);
+            Btn_Recognize.TabIndex = 6;
+            Btn_Recognize.Text = "识别";
+            Btn_Recognize.UseVisualStyleBackColor = true;
+            Btn_Recognize.Click += Btn_Recognize_Click;
+            // 
+            // Txt_OCRPicFile
+            // 
+            Txt_OCRPicFile.AllowDrop = true;
+            Txt_OCRPicFile.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            Txt_OCRPicFile.Location = new Point(168, 49);
+            Txt_OCRPicFile.Name = "Txt_OCRPicFile";
+            Txt_OCRPicFile.Size = new Size(351, 23);
+            Txt_OCRPicFile.TabIndex = 8;
+            Txt_OCRPicFile.TextChanged += Txt_OCRPicFile_TextChanged;
+            Txt_OCRPicFile.DragDrop += Txt_Path_DragDrop;
+            Txt_OCRPicFile.DragEnter += Txt_Path_DragEnter;
+            // 
+            // label41
+            // 
+            label41.AutoSize = true;
+            label41.Location = new Point(118, 51);
+            label41.Name = "label41";
+            label41.Size = new Size(44, 17);
+            label41.TabIndex = 7;
+            label41.Tag = "";
+            label41.Text = "图片：";
+            // 
+            // Txt_TimeOutStrDelay
+            // 
+            Txt_TimeOutStrDelay.Location = new Point(377, 11);
+            Txt_TimeOutStrDelay.Name = "Txt_TimeOutStrDelay";
+            Txt_TimeOutStrDelay.Size = new Size(89, 23);
+            Txt_TimeOutStrDelay.TabIndex = 4;
+            Txt_TimeOutStrDelay.Text = "3000";
+            Txt_TimeOutStrDelay.TextChanged += TextBoxUInt_TextChanged;
+            Txt_TimeOutStrDelay.KeyPress += TextBoxUInt_KeyPress;
+            // 
+            // label40
+            // 
+            label40.AutoSize = true;
+            label40.Cursor = Cursors.SizeWE;
+            label40.Location = new Point(304, 14);
+            label40.Name = "label40";
+            label40.Size = new Size(67, 17);
+            label40.TabIndex = 3;
+            label40.Tag = "Txt_TimeOutStrDelay";
+            label40.Text = "超时(毫秒):";
+            label40.MouseDown += LabelUInt_MouseDown;
+            label40.MouseMove += LabelUInt_MouseMove;
+            label40.MouseUp += LabelUInt_MouseUp;
+            // 
+            // label38
+            // 
+            label38.AutoSize = true;
+            label38.Location = new Point(118, 14);
+            label38.Name = "label38";
+            label38.Size = new Size(44, 17);
+            label38.TabIndex = 1;
+            label38.Text = "服务：";
+            // 
+            // Btn_SetOcrServer
+            // 
+            Btn_SetOcrServer.Location = new Point(8, 9);
+            Btn_SetOcrServer.Name = "Btn_SetOcrServer";
+            Btn_SetOcrServer.Size = new Size(89, 27);
+            Btn_SetOcrServer.TabIndex = 0;
+            Btn_SetOcrServer.Text = "设置服务";
+            Btn_SetOcrServer.UseVisualStyleBackColor = true;
+            Btn_SetOcrServer.Click += Btn_SetOcrServer_Click;
+            // 
+            // PictureBox_OCR
+            // 
+            PictureBox_OCR.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            PictureBox_OCR.BorderStyle = BorderStyle.FixedSingle;
+            PictureBox_OCR.Location = new Point(3, 79);
+            PictureBox_OCR.Name = "PictureBox_OCR";
+            PictureBox_OCR.Size = new Size(636, 354);
+            PictureBox_OCR.SizeMode = PictureBoxSizeMode.Zoom;
+            PictureBox_OCR.TabIndex = 0;
+            PictureBox_OCR.TabStop = false;
+            // 
             // OPExport
             // 
             OPExport.Controls.Add(Btn_RefreshGenerateLang);
@@ -2249,6 +2417,9 @@
             groupBox4.PerformLayout();
             groupBox3.ResumeLayout(false);
             groupBox3.PerformLayout();
+            字符检测.ResumeLayout(false);
+            字符检测.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)PictureBox_OCR).EndInit();
             OPExport.ResumeLayout(false);
             OPExport.PerformLayout();
             Panel_UseOutProject.ResumeLayout(false);
@@ -2445,5 +2616,18 @@
         private ToolStripMenuItem 工具ToolStripMenuItem;
         private ToolStripMenuItem MenuItem_WordDictTool;
         private Button Btn_RefreshGenerateLang;
+        private TabPage 字符检测;
+        private Label label38;
+        private Button Btn_SetOcrServer;
+        private PictureBox PictureBox_OCR;
+        private Button Btn_Recognize;
+        private TextBox Txt_OCRPicFile;
+        private TextBox Txt_TimeOutStrDelay;
+        private Label label40;
+        private ComboBox ComboBox_OCRServer;
+        private Label label41;
+        private TextBox Txt_OCRPicSim;
+        private Label label42;
+        private LinkLabel linkLabel4;
     }
 }
