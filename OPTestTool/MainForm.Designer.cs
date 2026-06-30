@@ -1956,7 +1956,7 @@
             ComboBox_OCRServer.Enabled = false;
             ComboBox_OCRServer.FormattingEnabled = true;
             ComboBox_OCRServer.Items.AddRange(new object[] { "ncnn + PP-OCRv5", "tesseract" });
-            ComboBox_OCRServer.Location = new Point(168, 10);
+            ComboBox_OCRServer.Location = new Point(180, 11);
             ComboBox_OCRServer.Name = "ComboBox_OCRServer";
             ComboBox_OCRServer.Size = new Size(130, 25);
             ComboBox_OCRServer.TabIndex = 2;
@@ -1965,9 +1965,9 @@
             // 
             Btn_Recognize.Location = new Point(8, 46);
             Btn_Recognize.Name = "Btn_Recognize";
-            Btn_Recognize.Size = new Size(89, 27);
+            Btn_Recognize.Size = new Size(116, 27);
             Btn_Recognize.TabIndex = 6;
-            Btn_Recognize.Text = "识别";
+            Btn_Recognize.Text = "OcrAutoFromFile";
             Btn_Recognize.UseVisualStyleBackColor = true;
             Btn_Recognize.Click += Btn_Recognize_Click;
             // 
@@ -1975,9 +1975,9 @@
             // 
             Txt_OCRPicFile.AllowDrop = true;
             Txt_OCRPicFile.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            Txt_OCRPicFile.Location = new Point(168, 49);
+            Txt_OCRPicFile.Location = new Point(180, 49);
             Txt_OCRPicFile.Name = "Txt_OCRPicFile";
-            Txt_OCRPicFile.Size = new Size(351, 23);
+            Txt_OCRPicFile.Size = new Size(341, 23);
             Txt_OCRPicFile.TabIndex = 8;
             Txt_OCRPicFile.TextChanged += Txt_OCRPicFile_TextChanged;
             Txt_OCRPicFile.DragDrop += Txt_Path_DragDrop;
@@ -1986,7 +1986,7 @@
             // label41
             // 
             label41.AutoSize = true;
-            label41.Location = new Point(118, 51);
+            label41.Location = new Point(133, 51);
             label41.Name = "label41";
             label41.Size = new Size(44, 17);
             label41.TabIndex = 7;
@@ -1995,7 +1995,7 @@
             // 
             // Txt_TimeOutStrDelay
             // 
-            Txt_TimeOutStrDelay.Location = new Point(377, 11);
+            Txt_TimeOutStrDelay.Location = new Point(389, 12);
             Txt_TimeOutStrDelay.Name = "Txt_TimeOutStrDelay";
             Txt_TimeOutStrDelay.Size = new Size(89, 23);
             Txt_TimeOutStrDelay.TabIndex = 4;
@@ -2007,7 +2007,7 @@
             // 
             label40.AutoSize = true;
             label40.Cursor = Cursors.SizeWE;
-            label40.Location = new Point(304, 14);
+            label40.Location = new Point(316, 15);
             label40.Name = "label40";
             label40.Size = new Size(67, 17);
             label40.TabIndex = 3;
@@ -2020,7 +2020,7 @@
             // label38
             // 
             label38.AutoSize = true;
-            label38.Location = new Point(118, 14);
+            label38.Location = new Point(133, 14);
             label38.Name = "label38";
             label38.Size = new Size(44, 17);
             label38.TabIndex = 1;
@@ -2030,9 +2030,9 @@
             // 
             Btn_SetOcrServer.Location = new Point(8, 9);
             Btn_SetOcrServer.Name = "Btn_SetOcrServer";
-            Btn_SetOcrServer.Size = new Size(89, 27);
+            Btn_SetOcrServer.Size = new Size(116, 27);
             Btn_SetOcrServer.TabIndex = 0;
-            Btn_SetOcrServer.Text = "设置服务";
+            Btn_SetOcrServer.Text = "SetOcrEngine";
             Btn_SetOcrServer.UseVisualStyleBackColor = true;
             Btn_SetOcrServer.Click += Btn_SetOcrServer_Click;
             // 
