@@ -107,6 +107,11 @@ namespace OPTestTool
             _timerTick.Tick += EventTimer_Tick;
             _timerTick.Start();
         }
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (opSoft.IsBind() != 0)
+                opSoft.UnBindWindow();
+        }
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             _timerTick.Stop();
@@ -347,7 +352,7 @@ namespace OPTestTool
             {
                 string exeFile = opSoft.GetWindowProcessPath((int)hwnd);
                 if (string.IsNullOrWhiteSpace(exeFile))
-                { 
+                {
                     node.ImageKey = Win32.IsWindowVisible(hwnd) ? "Window" : "HiddenWindow";
                 }
                 else
@@ -454,6 +459,7 @@ namespace OPTestTool
         }
         private void Btn_SwitchBind_Click(object sender, EventArgs e)
         {
+            Btn_Bind_Click(sender, e);
             Btn_Bind_Click(sender, e);
         }
         private void Btn_GenBindCode_Click(object sender, EventArgs e)

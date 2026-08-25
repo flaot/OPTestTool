@@ -2385,6 +2385,7 @@
             MainMenuStrip = MenuItemStrip;
             Name = "MainForm";
             Text = "OP插件绑定测试工具";
+            FormClosing += MainForm_FormClosing;
             FormClosed += MainForm_FormClosed;
             Load += MainForm_Load;
             tabControl1.ResumeLayout(false);
